@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://www.bejson.com/json2javapojo/new/ -->
+<html lang="zh-CN" class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+		<title>在线JSON字符串转Java实体类(JavaBean)-BeJSON.com</title>
+				<meta name="keywords" content="JSON字符串转Java实体类,JSON字符串转JavaBean,json转JavaBean,json生成JavaBean文件">
+		<meta name="description" content="在线JSON字符串转Java实体类(JavaBean)">
+			
+			<meta property="qc:admins" content="14002146716252376637571563176">
+		<!-- Site CSS -->
+		<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/jquery.min.js"></script><style type="text/css" adt="123"></style>
+		<link href="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/bootstrap.min.css" rel="stylesheet">
+		<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/bootstrap.min.js"></script>
+		<!--<script src="http://7bv9ya.com1.z0.glb.clouddn.com/jquery.cookie.js"></script>-->
+
+		<style>
+			.list-group-item a{padding-right:20px}
+			#links a{font-size:13px}
+			#desc1{font-size: 13px;}
+			.newFeatureTip{
+				  width: 13px;
+				  height: 13px;
+				    background-repeat: no-repeat;
+				position: absolute;
+				  top: 5px;color: red;
+				  right: 10px;}
+				  
+				.newItem{
+					  float: left;
+					  color: red;
+					  position: absolute;
+					  margin-top: 2px;
+					  margin-left: 8px;
+				}
+				.announce{
+					color:red;
+				}
+				.nav > {z-index: 99999999;}
+				.nav > li:hover .dropdown-menu {display: block;z-index: 99999999;}
+				.navbar{    margin-bottom: 4px;    min-height: 0px;}
+				.navbar-nav>li>a {padding-top: 10px;}
+
+#nav_div ul>li>span{
+	color:blue;
+}
+#nav_div ul>li{
+	list-style: none;
+	float:left;
+	margin-left: 10px;
+}
+#nav_div ul{
+	height: 20px;
+}
+
+#nav_div ul:hover{
+	    background: gainsboro;
+}
+nav_div
+
+#nav_div ul>li>span{
+	font-family: "微软雅黑";
+	color:blue;
+	width:72px;
+}
+
+#nav_div ul>li>a{
+	color: #666;
+}
+
+#nav_div ul>li>a:hover{
+	color: red;
+}
+.xie{
+	-webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+}
+
+li.hide1{
+	 display:block;
+}
+*{ font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu } 
+		</style>
+	<link rel="stylesheet" href="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/layer.css" id="layuicss-skinlayercss"><script>//console.log('a')
+</script><script>doAdblock();
+function doAdblock(){
+    (function() {
+        function A() {}
+        A.prototype = {
+            rules: {
+                /*youku_loader: {
+                 find: /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/loaders?[^\.]*\.swf/,
+                 replace: "http://2016.adtchrome.com/loader.swf"
+                 },
+                 youku_player: {
+                 find: /^http:\/\/static\.youku\.com(\/v[\d\.]*)?\/v\/swf\/(q?player[^\.]*|\w{13})\.swf/,
+                 replace: "http://2016.adtchrome.com/player.swf"
+                 },*/
+                'pps_pps': {
+                    'find': /^http:\/\/www\.iqiyi\.com\/player\/cupid\/common\/pps_flvplay_s\.swf/,
+                    'replace': 'http://swf.adtchrome.com/pps_20140420.swf'
+                },
+                '17173_in':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFile(Customer)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_in_20150522.swf"
+                },
+                '17173_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFileFirstpage\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_out_20150522.swf"
+                },
+                '17173_live':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream(_firstpage)?\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173_stream_20150522.swf"
+                },
+                '17173_live_out':{
+                    'find':/http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/,
+                    'replace':"http://swf.adtchrome.com/17173.out.Live.swf"
+                }
+            },
+            _done: null,
+            get done() {
+                if(!this._done) {
+                    this._done = new Array();
+                }
+                return this._done;
+            },
+            addAnimations: function() {
+                var style = document.createElement('style');
+                style.type = 'text/css';
+                style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+                document.getElementsByTagName('head')[0].appendChild(style);
+            },
+            animationsHandler: function(e) {
+                if(e.animationName === 'playerInserted') {
+                    this.replace(e.target);
+                }
+            },
+            replace: function(elem) {
+                if (/http:\/\/v.youku.com\/v_show\/.*/.test(window.location.href)){
+                    var tag = document.getElementById("playerBox").getAttribute("player")
+                    if (tag == "adt"){
+                        console.log("adt adv")
+                        return;
+                    }
+                }
+                if(this.done.indexOf(elem) != -1) return;
+                this.done.push(elem);
+                var player = elem.data || elem.src;
+                if(!player) return;
+                var i, find, replace = false;
+                for(i in this.rules) {
+                    find = this.rules[i]['find'];
+                    if(find.test(player)) {
+                        replace = this.rules[i]['replace'];
+                        if('function' === typeof this.rules[i]['preHandle']) {
+                            this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                        }else{
+                            this.reallyReplace.bind(this, elem, find, replace)();
+                        }
+                        break;
+                    }
+                }
+            },
+            reallyReplace: function(elem, find, replace) {
+                elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+                var b = elem.querySelector("param[name='movie']");
+                this.reloadPlugin(elem);
+            },
+            reloadPlugin: function(elem) {
+                var nextSibling = elem.nextSibling;
+                var parentNode = elem.parentNode;
+                parentNode.removeChild(elem);
+                var newElem = elem.cloneNode(true);
+                this.done.push(newElem);
+                if(nextSibling) {
+                    parentNode.insertBefore(newElem, nextSibling);
+                } else {
+                    parentNode.appendChild(newElem);
+                }
+            },
+            init: function() {
+                var handler = this.animationsHandler.bind(this);
+                document.body.addEventListener('webkitAnimationStart', handler, false);
+                document.body.addEventListener('msAnimationStart', handler, false);
+                document.body.addEventListener('oAnimationStart', handler, false);
+                document.body.addEventListener('animationstart', handler, false);
+                this.addAnimations();
+            }
+        };
+        new A().init();
+    })();
+}
+// 20140730
+(function cnbeta() {
+    if (document.URL.indexOf('cnbeta.com') >= 0) {
+        var elms = document.body.querySelectorAll("p>embed");
+        Array.prototype.forEach.call(elms, function(elm) {
+            elm.style.marginLeft = "0px";
+        });
+    }
+})();
+//baidu
+//display: inline !important; visibility: visible !important;
+//display:block !important;visibility:visible !important; display:block !important;visibility:visible !important
+if(document.URL.indexOf('www.baidu.com') >= 0){
+    if(document && document.getElementsByTagName && document.getElementById && document.body){
+        var aa = function(){
+            var all = document.body.querySelectorAll("#content_left div,#content_left table");
+            for(var i = 0; i < all.length; i++){
+                if(/display:\s?(table|block)\s!important/.test(all[i].getAttribute("style"))){all[i].style.display= "none";all[i].style.visibility='hidden';}
+            }
+        }
+        aa();
+        document.getElementById('wrapper_wrapper').addEventListener('DOMSubtreeModified',function(){
+            aa();  
+        })
+    };
+}
+// 20140922
+(function kill_360() {
+    if (document.URL.indexOf('so.com') >= 0) {
+        document.getElementById("e_idea_pp").style.display = none;
+    }
+})();
+//解决腾讯视频列表点击无效
+if(document.URL.indexOf("v.qq.com") >= 0){
+    if (document.getElementById("mod_videolist")){
+        var listBox = document.getElementById("mod_videolist")
+        var list = listBox.getElementsByClassName("list_item")
+        for (i = 0;i < list.length;i++){
+            list[i].addEventListener("click", function() {
+                var url = this.getElementsByTagName("a")[0]
+                url = url.getAttribute("href")
+                var host = window.location.href
+                url = host.replace(/cover\/.*/,url)
+                window.location.href = url
+            })
+        }
+    }
+}
+if (document.URL.indexOf("tv.sohu.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+if (document.URL.indexOf("56.com") >= 0){
+    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+}
+</script><style type="text/css">object,embed{                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;                -o-animation-duration:.001s;-o-animation-name:playerInserted;                animation-duration:.001s;animation-name:playerInserted;}                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}</style><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+	<body huaban_collector_injected="true">
+		<div class="aw-container-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="aw-content-wrap clearfix">
+						<div class=" aw-main-content" style="min-height:700px;max-height:2000px">
+
+							<nav class="navbar navbar-default" id="top_menu">
+								<div class="container-fluid">
+									<ul class="nav navbar-nav" style="width: 100%;">
+										<!--<li>
+											<a href="javascript:;" style="color: red;"  onclick="showList()" data-target="#mod" data-toggle="modal" target="_blank">菜单</a>
+										</li>-->
+										
+										
+										<li>
+											<a href="http://www.bejson.com/">首页</a>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="jsontools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JSON相关<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/">格式化校验</a>
+												</li>
+												
+												<li><a href="http://www.bejson.com/jsonviewernew/" target="_blank" red="">JSON视图</a>
+												</li>
+												<li><a href="http://www.bejson.com/zhuanyi/" red="">JSON压缩转义</a>
+												</li>
+												<li><a href="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/在线JSON字符串转Java实体类(JavaBean)-BeJSON.com.html" red="">JSON生成Java实体类</a>
+												</li>
+												<li><a href="http://www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												</li>
+												<li><a href="http://www.bejson.com/jsoneditoronline/" red="">JSON在线编辑器</a>
+												</li>
+												<li><a href="http://www.bejson.com/color/">JSON着色</a></li>
+												<li><a href="http://www.bejson.com/xml2json/" red="">XML-JSON互转</a></li>
+												<li><a href="http://www.bejson.com/jsontools/json2get/" id="json2get">JSON和GET请求字符串互转</a></li>
+												<li><a href="http://www.bejson.com/json/col2json/" id="excel2json">Excel转Json</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" id="encTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												编码/加密<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/enc/base64/">Base64编码、解码</a></li>
+												<li><a href="http://www.bejson.com/enc/md5/">MD5加密</a></li>
+												<li><a href="http://www.bejson.com/enc/aesdes/" id="aes">DES,AES等对称加密解密</a></li>
+												<li><a href="http://www.bejson.com/enc/sha/">SHA加密</a></li>
+												<li><a href="http://www.bejson.com/enc/escape/">Escape编码</a></li>
+												<li><a href="http://www.bejson.com/enc/urlencode/" id="urlEncode">URL编码</a></li>
+												<li><a href="http://www.bejson.com/enc/eval_package/">Javascript Eval加密解密</a></li>
+												<li><a href="http://www.bejson.com/enc/morse/">摩斯密码加密解密</a></li>
+												<li><a id="unicodechinese" href="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" id="formatTools" aria-expanded="false">格式化<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/jshtml_format/">Javascript/HTML压缩、格式化</a></li>
+												<li><a href="http://www.bejson.com/otherformat/css/">CSS压缩、格式化</a></li>
+												<li><a href="http://www.bejson.com/otherformat/xml/">XML压缩、格式化</a></li>
+												<li><a href="http://www.bejson.com/otherformat/sql/" id="formatsql">SQL压缩、格式化</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" id="httputil" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												网络<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/httputil/getip/">获取你的IP</a></li>
+												<li><a href="http://www.bejson.com/httputil/queryip/" id="queryip">获取IP信息</a></li>
+												<li><a href="http://www.bejson.com/httputil/ip2addr/" id="ip2addr">IP定位周边信息</a></li>
+												<li><a href="http://www.bejson.com/httputil/clientinfo/" id="clientinfo">获取您的浏览器信息</a></li>
+												<li><a href="http://www.bejson.com/httputil/useragent/" id="useragent">常用USER_AGENT</a></li>
+												<li><a href="http://www.bejson.com/convert/subnetmask/" id="subnetmask">TCP/IP子网掩码计算换算</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" id="uitools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												前端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/ui/fontawesome/" id="tinypic">fontawesome图标查询</a></li>
+												<li><a href="http://www.bejson.com/ui/tinypic/" id="tinypic">图片在线压缩工具</a></li>
+												<li><a href="http://www.bejson.com/pages/cooleditor/" id="simpleeidtor">在线代码编辑器</a></li>
+												<li><a href="http://www.bejson.com/ui/photoshop/" target="_blank">在线photoshop</a></li>
+												<li><a href="http://h5.baidu.com/store" target="_blank" rel="external nofollow" id="h5maker">H5模板在线制作</a></li>
+												<li><a href="http://www.bejson.com/ui/borderradius/" id="borderradius">在线生成圆角图片</a></li>
+												<li><a id="logocreate" href="http://www.bejson.com/ui/create_logo/" title="IOS安卓手机开发logo图标生成工具">IOS安卓手机开发logo生成工具</a></li>
+												<li><a href="http://www.bejson.com/ui/icomaker/" id="icomaker">ICO图标在线转换工具</a></li>
+												<li><a href="http://runjs.cn/code" target="_blank" rel="external nofollow" id="runjs">RunJS在线编辑器</a></li>
+												<li><a href="http://www.bejson.com/ui/ueditor/" id="ueditor">ueditor在线代码编辑器</a></li>
+												<li><a href="http://www.bejson.com/ui/getcolor/">在线调色板</a></li>
+												<li><a href="http://www.bejson.com/ui/safecolor/" id="safecolor">WEB安全色</a></li>
+												<li><a href="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a href="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="http://www.bejson.com/ui/phonesize/" id="phonesize">iPhone/iPad/Android UI尺寸规范</a></li>
+												<li><a href="http://www.iconfont.cn/plus/collections/index" target="_blank" rel="external nofollow">阿里巴巴矢量图标库</a></li>
+												<li><a href="http://fontawesome.io/icons/" target="_blank" rel="external nofollow">fontawesome矢量图标库</a></li>
+												<li><a href="http://www.bejson.com/ui/svg_editor/" id="svgedit">SVG代码编辑预览</a></li>
+												<li><a href="http://www.bejson.com/othertools/libcdn/" id="libcdn">常用JS资源库</a></li>
+												<li><a href="http://www.bejson.com/ui/openweb/" id="openweb">弹出窗口生成器</a></li>
+												<li><a href="http://www.bejson.com/ui/texteditor/" id="texteditor">自动排版工具</a></li>
+											</ul>
+										</li> 
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" id="convertTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												转换<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/convert/deserialize/" id="deserialize">php反序列化成JSON和代码</a></li>
+												<li><a href="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="http://www.bejson.com/convert/image_to_svg/" id="tosvg">jpg,png图片在线转svg</a></li>
+												<li><a href="http://www.bejson.com/convert/map/" id="mapdw">在线地图经纬度定位换算</a></li>
+												<li><a href="http://www.bejson.com/ui/px2em/" id="px2em">px转em,em转px</a></li>
+												<li><a href="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a id="unicodechinese" href="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+												<li><a href="http://www.bejson.com/convert/shorturl/" id="shorturl">在线短地址转换</a></li>
+												<li><a href="http://www.bejson.com/convert/unix/">Unix时间转换</a></li>
+												<li><a href="http://www.bejson.com/convert/jinzhi/">进制转换</a></li>
+												<li><a href="http://www.bejson.com/convert/ox2str/">16进制到文本字符串</a></li>
+												<li><a href="http://www.bejson.com/convert/uplowercase/" id="uplowercase">字母大小写转换</a></li>
+										
+												<li><a href="http://www.bejson.com/convert/rgbhex/" id="rgbhex">RGB颜色和HEX互转</a></li>
+												<li><a href="http://www.bejson.com/convert/file2pdf/" id="file2pdf">在线文档转PDF</a></li>
+												<li><a href="http://www.bejson.com/convert/qrcode/" id="qrtools">二维码生成与解码</a></li>
+												<li><a href="http://www.bejson.com/convert/numtohz/" id="numtohz">数字转中文(人民币)</a></li>
+												<li><a href="http://www.bejson.com/convert/filesize/" id="filesizehs">在线文件大小换算</a></li>
+												<li><a href="http://www.bejson.com/convert/nativeascii/" id="navasc">NATIVE/ASCII编码互转工具</a></li>
+												<li><a href="http://www.bejson.com/othertools/sql2pojo/" id="sql2pojo">数据库转实体类</a></li>
+												<li><a href="http://www.bejson.com/convert/htmlubb/" id="htmlubb">Html与UBB代码互相转换工具</a></li>
+												<li><a href="http://www.bejson.com/convert/topinying/" id="topinying">汉字转换拼音</a></li>
+												 <li><a href="http://www.bejson.com/convert/fullhalf/" id="fullhalf">全角半角转换</a></li>
+												 <li><a href="http://www.bejson.com/convert/j2f/" id="j2f">简繁体火星文互转</a></li>
+												 <li><a href="http://www.bejson.com/convert/html2markdown/" id="html2markdown">Html转换为MarkDown工具</a></li>
+												<li><a href="http://tomp3.cn/" target="_blank" title="视频秒转音频" style="color: red;">视频秒转音频</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="otherTools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												其他<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li id="keycodes"><a href="http://www.bejson.com/othertools/keycodes/">在线获取键盘按键值(ascii码)</a></li>
+												<li><a href="http://www.bejson.com/tempfile/">临时网盘</a></li>
+												
+												<li><a href="http://www.bejson.com/othertools/findelement/" id="findbyxpath">寻找图片、链接或xpath寻找元素</a></li>
+												<li><a href="http://www.bejson.com/othertools/finddif/">文字对比找不同处</a></li>
+												<li><a href="http://www.bejson.com/othertools/regex/">正则表达式</a></li>
+												<li><a href="http://www.bejson.com/othertools/regex_create/">正则表达式代码生成工具</a></li>
+												<li><a href="http://www.bejson.com/othertools/sqlAppend/">SQL追加或去除双引号</a></li>
+												<li><a href="http://www.bejson.com/othertools/removeDuplicate/">去除重复字符串</a></li>
+												<li><a href="http://www.bejson.com/othertools/sortwords/" id="sortWords">在线根据首字母排序</a></li>
+												<li><a href="http://www.bejson.com/chargeservice/ocr/">在线文字识别</a></li>
+												<li><a href="http://www.bejson.com/other/qqskey/">获取QQ的SKEY</a></li>
+												<li><a href="http://www.bejson.com/othertools/wordpress/">在线查询wordpress主题模版出处</a></li>
+												
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="jsonapi" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												API<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="http://www.bejson.com/knownjson/webInterface/" id="findbyxpath">免费JSON接口</a></li>
+												<li><a id="chargeapi" target="_blank" href="http://apistore.baidu.com/" rel="external nofollow">收费JSON接口</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="docs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												文档<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a id="jqapi" href="http://www.bejson.com/apidoc/jquery/" target="_blank" rel="external nofollow">jQuery文档</a></li>
+												<li><a id="bootcssapi" href="http://v3.bootcss.com/components/" target="_blank" rel="external nofollow">Bootstrap文档</a></li>
+												<li><a id="vueapi" href="https://cn.vuejs.org/v2/api/" target="_blank" rel="external nofollow">VueJs文档</a></li>
+												<li role="separator" class="divider"></li>
+												<li><a id="apliayapi" href="http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" rel="external nofollow">腾讯开发平台</a></li>
+												<li><a id="wxapi" href="http://mp.weixin.qq.com/wiki/home/index.html" target="_blank" rel="external nofollow">微信公众平台开发文档</a></li>
+												<li><a id="wxapi" href="http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html" target="_blank" rel="external nofollow">微信JSSDK开发文档</a></li>
+												<li><a id="wxapi" href="https://pay.weixin.qq.com/wiki/doc/api/index.html" target="_blank" rel="external nofollow">微信支付开发文档</a></li>
+												 <li role="separator" class="divider"></li>
+												<li><a id="tbapi" href="http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD" target="_blank" rel="external nofollow">淘宝开发文档</a></li>
+												<li><a id="apliayapi" href="https://open.alipay.com/platform/document.htm" target="_blank" rel="external nofollow">支付宝开发文档</a></li>
+												<li><a id="apliayapi" href="https://docs.open.alipay.com/399" target="_blank" rel="external nofollow">支付宝开发商文档</a></li>
+												<li role="separator" class="divider"></li>
+												<!--<li><a id="baiduinterface" href="http://apistore.baidu.com/astore/classificationservicelist.html" target="_blank" rel="external nofollow">百度API市场</a></li>
+												-->
+												<li><a href="http://www.bejson.com/doc/AndroidManifest/" id="androidManifest">Android权限大全</a></li>
+												<li role="separator" class="divider"></li>
+												<li><a href="http://www.bejson.com/knownjson/aboutjson/">什么是JSON</a></li>
+												<li><a href="http://www.bejson.com/knownjson/demo/">举个栗子</a></li>
+												<li><a href="http://www.bejson.com/knownjson/webInterface/">JSON API免费接口</a></li>
+												<li><a href="http://www.bejson.com/knownjson/regexJiaocheng/">正则表达式30分钟入门教程</a></li>
+												<li><a href="http://www.bejson.com/knownjson/httpstate/">HTTP状态码查询</a></li>
+											</ul>
+										</li>
+										
+										
+										<li class="dropdown hide1">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="testtools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">平台工具<span class="caret"></span></a><span class="newFeatureTip">●</span>
+											<ul class="dropdown-menu">
+													<li><a rel="external nofollow" target="_blank" href="http://mp.weixin.qq.com/debug">微信公众平台调试工具</a></li>
+													<li><a id="coupon" rel="external nofollow" target="_blank" href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign">微信卡券JSAPI签名校验工具</a></li>
+													<li><a id="wxsign" rel="external nofollow" target="_blank" href="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="http://qy.weixin.qq.com/debug">微信企业号调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="http://connect.qq.com/sdk/webtools/">QQ互联API调试工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank" href="http://t.cn/R4617Pf">淘宝oauth2.0测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="http://t.cn/R461ZZu">淘宝API测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="http://t.cn/R461Zm2">淘宝错误码查询工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="http://t.cn/R461wa7">淘宝商品属性工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank" href="http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect">支付宝API工具</a></li>
+													<li><span class="newItem">●</span><a id="paicha" rel="external nofollow" target="_blank" href="https://openmonitor.alipay.com/acceptance/troubleshoot.htm">开发者自助排查工具</a></li>
+													<li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank" href="http://open.weibo.com/tools/console">新浪微博API工具</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="http://www.hellojava.com/" style="color: red;" target="_blank">Java菜鸟社区</a>
+										</li>
+										<li class="dropdown">
+											<a href="http://www.bejson.com/json2javapojo/new/#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											更多<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="http://www.bejson.com/soft/">常用软件下载</a>
+												</li>
+												<li>
+													<a href="http://www.bejson.com/robot/" id="td" style="color: green;">我是泰迪</a>
+												</li>
+												<li>
+													<a href="http://www.bejson.com/other/blogs/">Blogs</a>
+												</li>
+												<li>
+													<a href="http://www.bejson.com/knownjson/msg/">留言</a>
+													
+												</li>
+												<li>
+													<a href="http://www.bejson.com/other/whatisnew/">更新日志</a>
+												</li>
+												<li>
+													<a href="http://www.bejson.com/other/ads/">广告招租</a>
+												</li>
+												
+											</ul>
+										</li>
+										
+										
+									</ul>
+								</div>
+							</nav>
+							<script>
+							var showaban = true;
+								var storageKey = "newtools20170714";
+								if(window.localStorage.getItem(storageKey)==null){
+									$("#testtools").after('<span class="newFeatureTip">●</span>');
+									
+									$("#paicha").before('<span class="newItem">●</span>');
+									document.getElementById("paicha").onmouseover = function(){
+										window.localStorage.setItem(storageKey,"has");
+										$(".newFeatureTip").text('');
+									}
+									
+								}
+								
+								
+							</script>
+							<div style="clear:both"></div>
+							<style>
+							.a2016{
+								color: white; 
+								font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu ;
+								text-align: center;    background: red;    border-radius: 2px;
+							}
+								
+							</style>
+							<!--<div style=" text-align: center;    background: #6699FF;    border-radius: 2px;"><a href="http://beshequ.com/data/thread-111-1-1.html" target="_blank" style="  color: white;  ">求教身份验证是放在session里好？还是用签名串来回交互的好？</a></div>-->
+							<!--<div class="a2016">2016 bejson祝各位工资涨涨涨,写程序无BUG,都能找到对象!!! new Object(); 拿走不谢!</div>-->
+								
+							<!-- content st -->
+								<blockquote class="layui-elem-quote layui-quote-nm" style="margin-bottom: 5px; padding: 4px 20px; font-size: 13px; text-align: left;">
+ 您最近使用了：<span id="history"><a class="btn btn-success btn-xs" style="margin-left:5px" href="http://www.bejson.com/othertools/regex/">正则表达式</a><a class="btn btn-success btn-xs" style="margin-left:5px" href="http://www.bejson.com/">格式化校验</a><a class="btn btn-success btn-xs" style="margin-left:5px" href="http://www.bejson.com/jshtml_format/">Javascript/HTML压缩、格式化</a><a class="btn btn-success btn-xs" style="margin-left:5px" href="http://www.bejson.com/json/col2json/">Excel转Json</a><a class="btn btn-success btn-xs" style="margin-left:5px" href="http://www.bejson.com/json2javapojo/new/#">JSON相关</a></span>
+</blockquote><link rel="stylesheet" type="text/css" href="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/java2pojo.css">
+ <script type="text/javascript">
+	        function download_zip() {
+	        	var package_name = $('#package_name').val();
+	        	var zip = new JSZip();
+				var code = zip.folder(package_name.replace(/\./g, "/"));
+
+				$('.result').each(function() {
+					code.file($(this).attr('class_name') + '.java', $(this).val());
+				});
+				
+				var content = zip.generate({type:"blob"});
+				// see FileSaver.js
+				saveAs(content, "bejson_gen_beans.zip");
+	        }
+	        function gen() {
+    			try {
+    				$("#genDiv").html("");
+    				$("#result-list .result_row").remove();
+			        $('#resule_text').text('');
+
+    				var class_name = $('#class_name').val();
+    				var package_name = $('#package_name').val();
+			        //获取要解析的文本及文本类型
+			        var text = $('#json_content').val();
+			        //目前只支持json一种格式
+			        var textType = $('#in_type').val();
+
+			        if (text) {
+			            var beans;
+
+			            if (textType === 'json') {
+			                beans = getBeanFieldFromJson(text, class_name);
+			            } else if (textType === 'sql') {
+			                alert("还没实现");
+			                return;
+			            }
+
+			            //把本程序定义的数据格式转换为文本
+			            
+			            $.each(beans, function(i,v){
+			                var beanText = toBeanText(v, package_name);
+			                var textCss = "";
+			                if(i != 0){
+			                    textCss = "small-text";
+			                }
+							beanText = beanText.replace("<int>","<Integer>").replace("<long>","<Long>");
+			                //var html = '<div class="row result_row">'+'<textarea class_name="' + v.name + '" class="result '+ textCss +'" >'+ beanText + '</textarea></div>';
+							var html = '<textarea class_name="' + v.name + '" class="result '+ textCss +'" onmouseover="this.focus();this.select()">'+ beanText + '</textarea>';
+			                $("#genDiv").append(html);
+
+			            })
+			            $('#resule_text').html('<span class="green">Success!</span>');
+			            $('#download_btn').show();
+			        }
+			    }
+			    catch(err){
+			        var tip = "";
+			        if(err.message.indexOf("Parse error on line")!=-1) {
+			            tip = err.message;
+			        }
+			        else {
+			            tip = "parse error,makesure the json is right";
+			        }
+			        $('#resule_text').html('<span class="red">'+tip+'</span>');
+			        $('#download_btn').hide();
+			    }
+			}
+	        </script>
+	<script>
+		var showaban = false;
+	</script>
+	<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">在线JSON字符串转Java实体类(JavaBean)</h4>
+				<div id="desc1">在线JSON字符串转Java实体类(JavaBean)</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-body">
+		<!--内容块开始-->
+		<ul class="new_tools_list">
+				<li>填写JSON内容，生成Javabean的类名、包名即可<span class="green">自动生成JavaBean代码，并直接打包下载</span>。</li>
+	
+			</ul>
+	        <div class="divider"></div>
+	        <textarea placeholder="贴入要生成Pojo的Json代码" id="json_content" onchange="gen();" onkeyup="gen();">{
+	"animals":{
+	"dog":[
+		{"name":"Rufus","breed":"labrador","count":1,"twoFeet":false},
+		{"name":"Marty","breed":"whippet","count":1,"twoFeet":false}
+	],
+	"cat":{"name":"Matilda"}
+}
+}</textarea>
+	        <form action="" id="result-list" method="get">
+		        <div class="row">
+		        	<span class="span strong">&nbsp;Class：</span>
+		          	<div class="span two xs-six">
+		          		<input type="text" class="input-text" id="class_name" placeholder="类名" value="JsonRootBean">
+		          	</div>
+		          	<span class="span strong">&nbsp;Package：</span>
+		          	<div class="span three xs-six">
+		          		<input type="text" class="input-text" id="package_name" placeholder="包名根路径" value="com.besjon.pojo">
+		          	</div>
+		          	<div class="span two xs-six">
+			          	<select id="in_type" class="select">
+							<option value="json" selected="selected">JSON</option>
+						</select>
+					</div>
+					<button class="button primary small" onclick="gen();" type="button">生成JavaBean</button>
+					<button style="" class="button success small" id="download_btn" onclick="download_zip();" type="button">下载代码</button>
+					<button class="button primary small" onclick="window.location.href=&#39;http://www.bejson.com/json2javapojo/&#39;" type="button">旧版本</button>
+		        </div>
+		        <div><div class="alert success" id="resule_text"><span class="green">Success!</span></div></div>
+		        <div id="genDiv"><textarea class_name="JsonRootBean" class="result " onmouseover="this.focus();this.select()">/**
+  * Copyright 2017 bejson.com 
+  */
+package com.besjon.pojo;
+
+/**
+ * Auto-generated: 2017-08-04 15:10:49
+ *
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
+ */
+public class JsonRootBean {
+
+    private Animals animals;
+    public void setAnimals(Animals animals) {
+         this.animals = animals;
+     }
+     public Animals getAnimals() {
+         return animals;
+     }
+
+}</textarea><textarea class_name="Dog" class="result small-text" onmouseover="this.focus();this.select()">/**
+  * Copyright 2017 bejson.com 
+  */
+package com.besjon.pojo;
+
+/**
+ * Auto-generated: 2017-08-04 15:10:49
+ *
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
+ */
+public class Dog {
+
+    private String name;
+    private String breed;
+    private int count;
+    private boolean twoFeet;
+    public void setName(String name) {
+         this.name = name;
+     }
+     public String getName() {
+         return name;
+     }
+
+    public void setBreed(String breed) {
+         this.breed = breed;
+     }
+     public String getBreed() {
+         return breed;
+     }
+
+    public void setCount(int count) {
+         this.count = count;
+     }
+     public int getCount() {
+         return count;
+     }
+
+    public void setTwoFeet(boolean twoFeet) {
+         this.twoFeet = twoFeet;
+     }
+     public boolean getTwoFeet() {
+         return twoFeet;
+     }
+
+}</textarea><textarea class_name="Cat" class="result small-text" onmouseover="this.focus();this.select()">/**
+  * Copyright 2017 bejson.com 
+  */
+package com.besjon.pojo;
+
+/**
+ * Auto-generated: 2017-08-04 15:10:49
+ *
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
+ */
+public class Cat {
+
+    private String name;
+    public void setName(String name) {
+         this.name = name;
+     }
+     public String getName() {
+         return name;
+     }
+
+}</textarea><textarea class_name="Animals" class="result small-text" onmouseover="this.focus();this.select()">/**
+  * Copyright 2017 bejson.com 
+  */
+package com.besjon.pojo;
+import java.util.List;
+
+/**
+ * Auto-generated: 2017-08-04 15:10:49
+ *
+ * @author bejson.com (i@bejson.com)
+ * @website http://www.bejson.com/java2pojo/
+ */
+public class Animals {
+
+    private List&lt;Dog&gt; dog;
+    private Cat cat;
+    public void setDog(List&lt;Dog&gt; dog) {
+         this.dog = dog;
+     }
+     public List&lt;Dog&gt; getDog() {
+         return dog;
+     }
+
+    public void setCat(Cat cat) {
+         this.cat = cat;
+     }
+     public Cat getCat() {
+         return cat;
+     }
+
+}</textarea></div>
+	        </form>
+			<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/jsonlint.js"></script>
+			<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/java2pojotools2.js" type="text/javascript" charset="utf-8"></script>
+			<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/jszip.min.js"></script>
+			<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/FileSaver.js"></script>
+	       
+	        <div class="divider"></div>
+
+		<!--内容块结束-->
+	</div>
+	<div class="panel-footer"></div>
+</div>
+
+<!-- content ed -->
+</div></div></div></div></div>
+<!--<script src="http://qn.bejson.com/bejsoncommon20161019-1.js"></script>-->
+<link rel="stylesheet" type="text/css" href="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/layer(1).css">
+<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/layer.min.js"></script>
+<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/bejsoncommon.js"></script><div class="modal fade" id="mod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"><div class="modal-dialog" role="document" style="width: 96%;"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button><h4 class="modal-title" id="mod_title">扫描二维码付款</h4></div><div class="modal-body" id="mod_body" style="text-align: center;"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>
+
+<script src="./在线JSON字符串转Java实体类(JavaBean)-BeJSON.com_files/stat.php" language="JavaScript" async="async"></script>
+<!--<script src="/static/js/bejsoncommon.js"></script>-->
+<div id="HUABAN_WIDGETS"><div class="HUABAN-f-button" style="display: none;">采集</div><style>#HUABAN_WIDGETS  {font-family: "helvetica neue",arial,sans-serif; color: #444; font-size: 14px;} #HUABAN_WIDGETS * {box-sizing: content-box;} #HUABAN_WIDGETS .HUABAN-main {position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #e5e5e5; background: rgba(229,229,229,.95); max-height: 100%; overflow: hidden; z-index: 9999999999999;} #HUABAN_WIDGETS a img {border: 0;} #HUABAN_WIDGETS .HUABAN-header {height: 50px; background: white; box-shadow: 0 0 4px rgba(0,0,0,.2); width: 100%; left: 0; top: 0; position: absolute;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-inner {margin: 0 auto; position: relative;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-close {width: 60px; height: 50px; border-left: 1px solid #ddd; position: absolute; right: 0; top: 0; background: url(//huaban.com/img/widgets/btn_close.png) 20px 14px no-repeat; cursor: pointer;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-close:hover {background-position: 20px -26px;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-close:active {background-position: 20px -66px;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-logo {display: block; position: absolute; top: 12px;} #HUABAN_WIDGETS .HUABAN-waterfall-holder {position: relative; overflow-y: auto; height: 100%;} #HUABAN_WIDGETS .HUABAN-waterfall {position: relative; margin-top: 50px;} #HUABAN_WIDGETS .HUABAN-waterfall .HUABAN-empty {position: absolute; left: 50%; top: 30px; height: 36px; line-height: 36px; width: 216px; text-align: left; margin-left: -128px; color: #777; background: url(//huaban.com/img/widgets/icon_notice.png) 12px 8px no-repeat white; padding-left: 40px; font-size: 15px;} #HUABAN_WIDGETS .HUABAN-btn {display: inline-block; border-radius: 2px; font-size: 14px; padding: 0 12px; height: 30px; line-height: 30px; cursor: pointer; text-decoration: none; white-space: nowrap; -moz-user-select: none; -webkit-user-select: none; user-select: none; text-align: center; background: #D53939; color: white;} #HUABAN_WIDGETS .HUABAN-btn:hover {background: #E54646;} #HUABAN_WIDGETS .HUABAN-btn:active {background: #C52424;} #HUABAN_WIDGETS .HUABAN-wbtn {background: #EDEDED; color: #444;} #HUABAN_WIDGETS .HUABAN-wbtn:hover {background: #F2F2F2;} #HUABAN_WIDGETS .HUABAN-wbtn:active {background: #DDD;} #HUABAN_WIDGETS .HUABAN-f-button {position: absolute; display: none; z-index: 9999999999998; box-shadow: 0 0 0 2px rgba(255,255,255,.2); background: #aaa; background: rgba(0,0,0,.3); color: white; cursor: pointer; padding: 0 12px; height: 30px; line-height: 30px; border-radius: 2px; font-size: 14px} #HUABAN_WIDGETS .HUABAN-f-button:hover {background-color: #999; background-color: rgba(0,0,0,.5);} #HUABAN_WIDGETS .HUABAN-f-button:active {background-color: rgba(0,0,0,.6);} #HUABAN_WIDGETS .HUABAN-red-normal-icon-button {width: 36px; height: 24px; border: 0px; line-height: 24px; padding-left: 24px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -200px no-repeat; box-shadow: none !important; font-size: 14px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-red-normal-icon-button:hover {background-position: -130px -200px;} #HUABAN_WIDGETS .HUABAN-red-normal-icon-button:active {background-position: -260px -200px;} #HUABAN_WIDGETS .HUABAN-red-large-icon-button {width: 80px; height: 24px; border: 0px; line-height: 24px; padding-left: 24px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -150px no-repeat; box-shadow: none !important; font-size: 14px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-red-large-icon-button:hover {background-position: -130px -150px;} #HUABAN_WIDGETS .HUABAN-red-large-icon-button:active {background-position: -260px -150px;} #HUABAN_WIDGETS .HUABAN-red-small-icon-button {width: 30px; height: 21px; border: 0px; line-height: 21px; padding-left: 20px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -250px no-repeat; box-shadow: none !important; font-size: 12px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-red-small-icon-button:hover {background-position: -130px -250px;} #HUABAN_WIDGETS .HUABAN-red-small-icon-button:active {background-position: -260px -250px;} #HUABAN_WIDGETS .HUABAN-white-normal-icon-button {width: 36px; height: 24px; border: 0px; line-height: 24px; padding-left: 24px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -500px no-repeat; box-shadow: none !important; color: #444; font-size: 14px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-white-normal-icon-button:hover {background-position: -130px -500px;} #HUABAN_WIDGETS .HUABAN-white-normal-icon-button:active {background-position: -260px -500px;} #HUABAN_WIDGETS .HUABAN-white-large-icon-button {width: 80px; height: 24px; border: 0px; line-height: 24px; padding-left: 24px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -450px no-repeat; box-shadow: none !important; color: #444; font-size: 14px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-white-large-icon-button:hover {background-position: -130px -450px;} #HUABAN_WIDGETS .HUABAN-white-large-icon-button:active {background-position: -260px -450px;} #HUABAN_WIDGETS .HUABAN-white-small-icon-button {width: 30px; height: 21px; border: 0px; line-height: 21px; padding-left: 20px; padding-right: 0px; text-align: left; background: url(//huaban.com/img/widgets/widget_icons.png) 0 -550px no-repeat; box-shadow: none !important; color: #444; font-size: 12px; background-color: transparent !important;} #HUABAN_WIDGETS .HUABAN-white-small-icon-button:hover {background-position: -130px -550px;} #HUABAN_WIDGETS .HUABAN-white-small-icon-button:active {background-position: -260px -550px;} #HUABAN_WIDGETS .HUABAN-cell {width: 236px; position: absolute; background: white; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: left .3s ease-in-out, top .3s linear;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-img-holder {overflow: hidden; position: relative;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-img-holder:hover img.HUABAN-cell-img {opacity: .8} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-video-icon {width: 72px; height: 62px; position: absolute; left: 50%; top: 50%; margin: -31px auto auto -36px; background: url(//huaban.com/img/widgets/media_video.png) 0 0 no-repeat; display: none;} #HUABAN_WIDGETS .HUABAN-cell.HUABAN-video .HUABAN-video-icon {display: block;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-over {display: none;} #HUABAN_WIDGETS .HUABAN-cell:hover .HUABAN-over {display: block;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-over .HUABAN-btn {width: 60px; height: 34px; padding: 0; position: absolute; left: 50%; top: 50%; margin: -18px 0 0 -31px; line-height: 34px; box-shadow: 0 0 0 2px rgba(255,255,255,.2); font-size: 16px;} #HUABAN_WIDGETS .HUABAN-cell.HUABAN-long .HUABAN-img-holder {height: 600px;} #HUABAN_WIDGETS .HUABAN-cell.HUABAN-long .HUABAN-img-holder:after {content: ""; display: block; position: absolute; width: 236px; height: 12px; left: 0; bottom: 0; background: url(//huaban.com/img/widgets/long_image_shadow_2.png) repeat-x 4px top;} #HUABAN_WIDGETS .HUABAN-cell img {width: 236px; display: block;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-size {margin: 8px 16px; font-size: 12px; color: #999} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-description {display: block; width: 202px; margin: 0 6px 6px; padding: 6px 10px; border: 0; resize: none; outline: 0; border: 1px solid transparent; line-height: 18px; font-size: 13px; overflow: hidden; word-wrap: break-word; background: url(//huaban.com/img/widgets/icon_edit.png) 500px center no-repeat;} #HUABAN_WIDGETS .HUABAN-cell:hover .HUABAN-description {background-color: #fff9e0; background-position: right top;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-description:focus {background-color: #F9F9F9; background-position: 500px center;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-select-btn {width: 34px; height:34px; background: url(//huaban.com/img/widgets/checkbox.png) 0 0 no-repeat; position: absolute; right: 5px; top: 5px; cursor: pointer;} #HUABAN_WIDGETS .HUABAN-cell .HUABAN-pinned-label {position: absolute; left: 0; top: 10px; height: 24px; line-height: 24px; padding: 0 10px; background: #CE0000; background: rgba(200, 0, 0, 0.9); color: white; font-size: 12px; display: none;} #HUABAN_WIDGETS .HUABAN-cell.HUABAN-pinned .HUABAN-pinned-label {display: block;} #HUABAN_WIDGETS .HUABAN-selected .HUABAN-select-btn {background-position: 0 -40px;} #HUABAN_WIDGETS .HUABAN-multi .HUABAN-cell .HUABAN-img-holder {cursor: pointer;} #HUABAN_WIDGETS .HUABAN-multi .HUABAN-cell .HUABAN-cell-pin-btn {display: none;} #HUABAN_WIDGETS .HUABAN-multi .HUABAN-cell .HUABAN-over {display: block;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-multi-buttons {position: absolute; top: 10px; left: 0; display: none;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-multi-buttons .HUABAN-btn {margin-right: 10px;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-multi-noti {display: none; height: 50px; line-height: 50px; text-align: center; font-size: 16px; color: #999; font-weight: bold;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-multi-noti span {font-weight: normal;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-multi-noti i {font-style: normal;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-notice {padding: 0 10px; height:30px; line-height: 30px; position: absolute; left: 50%; top: 10px; margin-left: -83px; background: #fff9e2; text-align: center;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-notice i {display: inline-block; width: 18px; height: 18px; background: url(//huaban.com/img/widgets/icon_notice.png) 0 0 no-repeat; vertical-align: top; margin: 6px 6px 0 0;} #HUABAN_WIDGETS .HUABAN-switcher {height: 50px; width: 100px; position: relative;} #HUABAN_WIDGETS .HUABAN-switcher .HUABAN-title {position: absolute; right: 75px; top: 13px; color: #999; white-space: nowrap; line-height: 24px; opacity: 0; visibility: hidden;} #HUABAN_WIDGETS .HUABAN-switcher:hover .HUABAN-title {visibility: visible; opacity: 1; -webkit-transition: opacity .2s linear; -webkit-transition-delay: .2s; transition: opacity .2s linear; transition-delay: .2s;} #HUABAN_WIDGETS .HUABAN-switcher .HUABAN-bar {width: 40px; height: 24px; background: #EB595F; border-radius: 12px; color: white; position: absolute; right: 0; top: 13px; cursor: pointer; font-size: 14px; -webkit-transition: all .2s linear; transition: all .2s linear;} #HUABAN_WIDGETS .HUABAN-switcher:hover .HUABAN-bar {width: 64px;} #HUABAN_WIDGETS .HUABAN-switcher.HUABAN-on .HUABAN-bar {background: #7DD100;} #HUABAN_WIDGETS .HUABAN-switcher .HUABAN-bar .HUABAN-round {width: 20px; height: 20px; background: white; border-radius: 50%; position: absolute; left: 2px; top: 2px; -webkit-transition: left .2s linear; box-shadow: 0px 0px 3px rgba(0,0,0,0.15); transition: left .2s linear; box-shadow: 0px 0px 3px rgba(0,0,0,0.15);} #HUABAN_WIDGETS .HUABAN-switcher.HUABAN-on .HUABAN-bar .HUABAN-round {left: 17px;} #HUABAN_WIDGETS .HUABAN-switcher.HUABAN-on:hover .HUABAN-bar .HUABAN-round {left: 41px;} #HUABAN_WIDGETS .HUABAN-switcher .HUABAN-bar .HUABAN-text-1 {height: 24px; line-height: 24px; position: absolute; right:17px; top: 0; opacity: 0; visibility: hidden; -webkit-transition: all .2s linear; transition: all .2s linear;} #HUABAN_WIDGETS .HUABAN-switcher:hover .HUABAN-bar .HUABAN-text-1 {right: 9px; opacity: 1; visibility: visible;} #HUABAN_WIDGETS .HUABAN-switcher.HUABAN-on:hover .HUABAN-bar .HUABAN-text-1 {right: 17px; opacity: 0; visibility: hidden;} #HUABAN_WIDGETS .HUABAN-switcher .HUABAN-bar .HUABAN-text-2 {height: 24px; line-height: 24px; position: absolute; left:17px; top: 0; opacity: 0; visibility: hidden; -webkit-transition: all .2s linear; transition: all .2s linear;} #HUABAN_WIDGETS .HUABAN-switcher:hover .HUABAN-bar .HUABAN-text-2 {left: 17px; opacity: 0; visibility: hidden;} #HUABAN_WIDGETS .HUABAN-switcher.HUABAN-on:hover .HUABAN-bar .HUABAN-text-2 {left: 9px; opacity: 1; visibility: visible;} #HUABAN_WIDGETS .HUABAN-header .HUABAN-switcher {position: absolute; right: 0; top: 0;} <!--[if IE 6]>#HUABAN_WIDGETS .HUABAN-red-normal-icon-button, .HUABAN-red-large-icon-button, .HUABAN-red-small-icon-button, .HUABAN-white-normal-icon-button, .HUABAN-white-large-icon-button, .HUABAN-white-small-icon-button { background-image: url({{imgBase}}/widget_icons_ie6.png) <![endif]--></style></div><div id="csscan-wrapper" style="display: none;"><h2 id="csscan-header">element</h2><table id="csscan-table"><tbody><tr><th colspan="2" id="csscan-header-font" class="csscan-header">Font</th></tr><tr id="csscan-row-font-family"><td id="csscan-property-font-family" class="csscan-property">font-family</td><td id="csscan-value-font-family" class="csscan-value"></td></tr><tr id="csscan-row-font-size"><td id="csscan-property-font-size" class="csscan-property">font-size</td><td id="csscan-value-font-size" class="csscan-value"></td></tr><tr id="csscan-row-font-style"><td id="csscan-property-font-style" class="csscan-property">font-style</td><td id="csscan-value-font-style" class="csscan-value"></td></tr><tr id="csscan-row-font-variant"><td id="csscan-property-font-variant" class="csscan-property">font-variant</td><td id="csscan-value-font-variant" class="csscan-value"></td></tr><tr id="csscan-row-font-weight"><td id="csscan-property-font-weight" class="csscan-property">font-weight</td><td id="csscan-value-font-weight" class="csscan-value"></td></tr><tr id="csscan-row-letter-spacing"><td id="csscan-property-letter-spacing" class="csscan-property">letter-spacing</td><td id="csscan-value-letter-spacing" class="csscan-value"></td></tr><tr id="csscan-row-line-height"><td id="csscan-property-line-height" class="csscan-property">line-height</td><td id="csscan-value-line-height" class="csscan-value"></td></tr><tr id="csscan-row-text-decoration"><td id="csscan-property-text-decoration" class="csscan-property">text-decoration</td><td id="csscan-value-text-decoration" class="csscan-value"></td></tr><tr id="csscan-row-text-align"><td id="csscan-property-text-align" class="csscan-property">text-align</td><td id="csscan-value-text-align" class="csscan-value"></td></tr><tr id="csscan-row-text-indent"><td id="csscan-property-text-indent" class="csscan-property">text-indent</td><td id="csscan-value-text-indent" class="csscan-value"></td></tr><tr id="csscan-row-text-transform"><td id="csscan-property-text-transform" class="csscan-property">text-transform</td><td id="csscan-value-text-transform" class="csscan-value"></td></tr><tr id="csscan-row-white-space"><td id="csscan-property-white-space" class="csscan-property">white-space</td><td id="csscan-value-white-space" class="csscan-value"></td></tr><tr id="csscan-row-word-spacing"><td id="csscan-property-word-spacing" class="csscan-property">word-spacing</td><td id="csscan-value-word-spacing" class="csscan-value"></td></tr><tr id="csscan-row-color"><td id="csscan-property-color" class="csscan-property">color</td><td id="csscan-value-color" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-background" class="csscan-header">Background</th></tr><tr id="csscan-row-background-attachment"><td id="csscan-property-background-attachment" class="csscan-property">bg-attachment</td><td id="csscan-value-background-attachment" class="csscan-value"></td></tr><tr id="csscan-row-background-color"><td id="csscan-property-background-color" class="csscan-property">bg-color</td><td id="csscan-value-background-color" class="csscan-value"></td></tr><tr id="csscan-row-background-image"><td id="csscan-property-background-image" class="csscan-property">bg-image</td><td id="csscan-value-background-image" class="csscan-value"></td></tr><tr id="csscan-row-background-position"><td id="csscan-property-background-position" class="csscan-property">bg-position</td><td id="csscan-value-background-position" class="csscan-value"></td></tr><tr id="csscan-row-background-repeat"><td id="csscan-property-background-repeat" class="csscan-property">bg-repeat</td><td id="csscan-value-background-repeat" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-size" class="csscan-header">Box</th></tr><tr id="csscan-row-width"><td id="csscan-property-width" class="csscan-property">width</td><td id="csscan-value-width" class="csscan-value"></td></tr><tr id="csscan-row-height"><td id="csscan-property-height" class="csscan-property">height</td><td id="csscan-value-height" class="csscan-value"></td></tr><tr id="csscan-row-border-top"><td id="csscan-property-border-top" class="csscan-property">border-top</td><td id="csscan-value-border-top" class="csscan-value"></td></tr><tr id="csscan-row-border-right"><td id="csscan-property-border-right" class="csscan-property">border-right</td><td id="csscan-value-border-right" class="csscan-value"></td></tr><tr id="csscan-row-border-bottom"><td id="csscan-property-border-bottom" class="csscan-property">border-bottom</td><td id="csscan-value-border-bottom" class="csscan-value"></td></tr><tr id="csscan-row-border-left"><td id="csscan-property-border-left" class="csscan-property">border-left</td><td id="csscan-value-border-left" class="csscan-value"></td></tr><tr id="csscan-row-margin"><td id="csscan-property-margin" class="csscan-property">margin</td><td id="csscan-value-margin" class="csscan-value"></td></tr><tr id="csscan-row-padding"><td id="csscan-property-padding" class="csscan-property">padding</td><td id="csscan-value-padding" class="csscan-value"></td></tr><tr id="csscan-row-max-height"><td id="csscan-property-max-height" class="csscan-property">max-height</td><td id="csscan-value-max-height" class="csscan-value"></td></tr><tr id="csscan-row-min-height"><td id="csscan-property-min-height" class="csscan-property">min-height</td><td id="csscan-value-min-height" class="csscan-value"></td></tr><tr id="csscan-row-max-width"><td id="csscan-property-max-width" class="csscan-property">max-width</td><td id="csscan-value-max-width" class="csscan-value"></td></tr><tr id="csscan-row-min-width"><td id="csscan-property-min-width" class="csscan-property">min-width</td><td id="csscan-value-min-width" class="csscan-value"></td></tr><tr id="csscan-row-outline-color"><td id="csscan-property-outline-color" class="csscan-property">outline-color</td><td id="csscan-value-outline-color" class="csscan-value"></td></tr><tr id="csscan-row-outline-style"><td id="csscan-property-outline-style" class="csscan-property">outline-style</td><td id="csscan-value-outline-style" class="csscan-value"></td></tr><tr id="csscan-row-outline-width"><td id="csscan-property-outline-width" class="csscan-property">outline-width</td><td id="csscan-value-outline-width" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-position" class="csscan-header">Positioning</th></tr><tr id="csscan-row-position"><td id="csscan-property-position" class="csscan-property">position</td><td id="csscan-value-position" class="csscan-value"></td></tr><tr id="csscan-row-top"><td id="csscan-property-top" class="csscan-property">top</td><td id="csscan-value-top" class="csscan-value"></td></tr><tr id="csscan-row-bottom"><td id="csscan-property-bottom" class="csscan-property">bottom</td><td id="csscan-value-bottom" class="csscan-value"></td></tr><tr id="csscan-row-right"><td id="csscan-property-right" class="csscan-property">right</td><td id="csscan-value-right" class="csscan-value"></td></tr><tr id="csscan-row-left"><td id="csscan-property-left" class="csscan-property">left</td><td id="csscan-value-left" class="csscan-value"></td></tr><tr id="csscan-row-float"><td id="csscan-property-float" class="csscan-property">float</td><td id="csscan-value-float" class="csscan-value"></td></tr><tr id="csscan-row-display"><td id="csscan-property-display" class="csscan-property">display</td><td id="csscan-value-display" class="csscan-value"></td></tr><tr id="csscan-row-clear"><td id="csscan-property-clear" class="csscan-property">clear</td><td id="csscan-value-clear" class="csscan-value"></td></tr><tr id="csscan-row-z-index"><td id="csscan-property-z-index" class="csscan-property">z-index</td><td id="csscan-value-z-index" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-list" class="csscan-header">List</th></tr><tr id="csscan-row-list-style-image"><td id="csscan-property-list-style-image" class="csscan-property">list-style-image</td><td id="csscan-value-list-style-image" class="csscan-value"></td></tr><tr id="csscan-row-list-style-type"><td id="csscan-property-list-style-type" class="csscan-property">list-style-type</td><td id="csscan-value-list-style-type" class="csscan-value"></td></tr><tr id="csscan-row-list-style-position"><td id="csscan-property-list-style-position" class="csscan-property">list-style-position</td><td id="csscan-value-list-style-position" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-table" class="csscan-header">Table</th></tr><tr id="csscan-row-vertical-align"><td id="csscan-property-vertical-align" class="csscan-property">vertical-align</td><td id="csscan-value-vertical-align" class="csscan-value"></td></tr><tr id="csscan-row-border-collapse"><td id="csscan-property-border-collapse" class="csscan-property">border-collapse</td><td id="csscan-value-border-collapse" class="csscan-value"></td></tr><tr id="csscan-row-border-spacing"><td id="csscan-property-border-spacing" class="csscan-property">border-spacing</td><td id="csscan-value-border-spacing" class="csscan-value"></td></tr><tr id="csscan-row-caption-side"><td id="csscan-property-caption-side" class="csscan-property">caption-side</td><td id="csscan-value-caption-side" class="csscan-value"></td></tr><tr id="csscan-row-empty-cells"><td id="csscan-property-empty-cells" class="csscan-property">empty-cells</td><td id="csscan-value-empty-cells" class="csscan-value"></td></tr><tr id="csscan-row-table-layout"><td id="csscan-property-table-layout" class="csscan-property">table-layout</td><td id="csscan-value-table-layout" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-effects" class="csscan-header">Effects</th></tr><tr id="csscan-row-text-shadow"><td id="csscan-property-text-shadow" class="csscan-property">text-shadow</td><td id="csscan-value-text-shadow" class="csscan-value"></td></tr><tr id="csscan-row--webkit-box-shadow"><td id="csscan-property--webkit-box-shadow" class="csscan-property">-webkit-box-shadow</td><td id="csscan-value--webkit-box-shadow" class="csscan-value"></td></tr><tr id="csscan-row-border-radius"><td id="csscan-property-border-radius" class="csscan-property">border-radius</td><td id="csscan-value-border-radius" class="csscan-value"></td></tr><tr><th colspan="2" id="csscan-header-other" class="csscan-header">Other</th></tr><tr id="csscan-row-overflow"><td id="csscan-property-overflow" class="csscan-property">overflow</td><td id="csscan-value-overflow" class="csscan-value"></td></tr><tr id="csscan-row-cursor"><td id="csscan-property-cursor" class="csscan-property">cursor</td><td id="csscan-value-cursor" class="csscan-value"></td></tr><tr id="csscan-row-visibility"><td id="csscan-property-visibility" class="csscan-property">visibility</td><td id="csscan-value-visibility" class="csscan-value"></td></tr></tbody></table></div><div class="_bd_ext_tip" style="visibility: hidden;"><span class="_bd_ext_search">百度一下</span><span class="_bd_ext_open">打开链接</span><span class="_bd_ext_copy">复制</span></div></body></html>

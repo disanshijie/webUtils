@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JSON格式化/校验</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script src="../jsonFormat/js/jsoninit.js"></script>
+    <script src="../jsonFormat/js/jsl.format.js"></script>
+    <script src="../jsonFormat/js/json.format.js"></script>
+    <script src="../jsonFormat/images/Collapsed.gif"></script>
+
+    <style>
+        ul li{
+            float: left;
+            width: 80px;
+            height: 30px;
+            list-style-type: none;
+        }
+        .clear{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div style="">
+    <div class="codelines" style="margin-top: 0px;">
+            <div class="lineno lineselect"></div>
+    </div>
+    <textarea id="jsonval" name="" class="" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 1078px; max-width: 1070px;height:100px;"></textarea>
+</div>
+<div class="clear"></div>
+<div>
+    <ul>
+        <li><input type="button" name="" id="getformat" value="转化" onclick=""></li>
+        <li><input type="button" name="" id="" value="清空" onclick="clearData()"></li>
+        <li><input type="button" name="" id="" value="清空所有" onclick="clearDataAll()"></li>
+    </ul>
+
+</div>
+<div class="clear"></div>
+<div class="box-ouput">
+    <textarea id="jsonResult" name="json_result" class="json_result" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 1078px; max-width: 1070px;height:150px;"></textarea>
+    </div>
+<!-- json转化结果 -->
+    <div>
+<div class="resultMsg">
+    <pre></pre>
+</div>
+
+    </div>
+<!-- 格式化json -->
+<div class="Canvas"></div>
+</body>
+</html>
+<script>
+
+    //清空数据
+    function clearData(){
+        $("#jsonval").val('');
+    }
+    //清空所有
+    function clearDataAll(){
+        $("#jsonval").val('');
+        $("#jsonResult").val('');
+        $(".Canvas").html('');
+    }
+
+</script>

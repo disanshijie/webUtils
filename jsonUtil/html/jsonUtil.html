@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+  <div class="panel-body">
+		<!--内容块开始-->
+		<form id="JSONVYasuo" method="post" action="http://www.bejson.com/" name="JSONVYasuo">
+			<input type="hidden" id="reformat" value="1">
+			<input type="hidden" id="compress" value="0">
+			<div>
+<!-- 				<div class="linedwrap"><div class="lines" style="width: 50px; height: 298px;"> -->
+				<div class="codelines" style="margin-top: 0px;">
+				</div></div><textarea id="json_input" name="json_input" class="json_input" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 1078px; max-width: 1070px;"></textarea></div>
+			</div>
+			<div class="validateButtons clear">
+				<div class="left">
+					<input type="button" value="压缩" onclick="yasuo(1);">
+					<input type="button" value="转义" onclick="yasuo(2);">
+					<input type="button" value="压缩并转义" onclick="yasuo(3);">
+					<input type="button" value="去除转义" onclick="yasuo(4);">
+					<input type="button" value="Unicode转中文" onclick="u2h()">
+					<input type="button" value="中文转Unicode" onclick="h2u()">
+					<input type="button" value="中文符号转英文符号" title="如果您从他人技术博客copy代码时,可能会因为json中重要符号被替换成中文字符而导致校验失败,这时就可以使用本功能替换" onclick="cnChar2EnChar()">
+				</div>
+			</div>
+		</form>
+		<script>
+			/**
+			1 压缩
+			2 转义
+			3 压缩转义
+			*/
+			function yasuo(ii){
+				 var txtA = document.getElementById("json_input");
+				 var text = txtA.value;
+					if(ii==1||ii==3){
+						 text = text.split("\n").join(" ");
+						var t = [];
+						var inString = false;
+						for (var i = 0, len = text.length; i < len; i++) {
+							var c = text.charAt(i);
+							if (inString && c === inString) {
+								// TODO: \\"
+								if (text.charAt(i - 1) !== '\\') {
+									inString = false;
+								}
+							} else if (!inString && (c === '"' || c === "'")) {
+								inString = c;
+							} else if (!inString && (c === ' ' || c === "\t")) {
+								c = '';
+							}
+							t.push(c);
+						}
+						text= t.join('');
+					}
+					if(ii==2||ii==3){
+						 text = text.replace(/\\/g,"\\\\").replace(/\"/g,"\\\"");
+					}
+					if(ii==4){
+					 text = text.replace(/\\\\/g,"\\").replace(/\\\"/g,'\"');
+					}
+					 txtA.value = text;
+			}
+			
+			String.prototype.trim=function()
+		{
+		     return this.replace(/(^\s*)|(\s*$)/g, '');
+		}
+			var GB2312UnicodeConverter={
+		  ToUnicode:function(str){
+		    var txt= escape(str).toLocaleLowerCase().replace(/%u/gi,'\\u');
+			//var txt= escape(str).replace(/([%3F]+)/gi,'\\u');
+			return txt.replace(/%7b/gi,'{').replace(/%7d/gi,'}').replace(/%3a/gi,':').replace(/%2c/gi,',').replace(/%27/gi,'\'').replace(/%22/gi,'"').replace(/%5b/gi,'[').replace(/%5d/gi,']').replace(/%3D/gi,'=').replace(/%20/gi,' ').replace(/%3E/gi,'>').replace(/%3C/gi,'<').replace(/%3F/gi,'?');//
+		  }
+		  ,ToGB2312:function(str){
+		    return unescape(str.replace(/\\u/gi,'%u'));
+		  }
+		};
+		
+		function u2h(){
+			 var txtA = document.getElementById("json_input");
+			 var text = txtA.value;
+			 text = text.trim();
+			// text = text.replace(/\u/g,"");
+			 txtA.value = GB2312UnicodeConverter.ToGB2312(text);	 
+		}
+		
+		function h2u(){
+			var txtA = document.getElementById("json_input");
+			 var text = txtA.value;
+			 text = text.trim();
+			// text = text.replace(/\u/g,"");
+			 txtA.value = GB2312UnicodeConverter.ToUnicode(text);
+		}
+		
+		function cnChar2EnChar(){
+		 var txtA = document.getElementById("json_input");
+		  var str = txtA.value;
+		str = str.replace(/\’|\‘/g,"'").replace(/\“|\”/g,"\"");
+		str = str.replace(/\【/g,"[").replace(/\】/g,"]").replace(/\｛/g,"{").replace(/\｝/g,"}");
+		str = str.replace(/，/g,",").replace(/：/g,":");
+		 txtA.value = str;
+		}
+		</script>
+
+		<!--内容块结束-->
+	</div>
+  
+  </body>
+</html>

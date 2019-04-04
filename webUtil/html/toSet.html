@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/htmlformat.js"></script>
+<script type="text/javascript" src="../js/jsformat.js"></script>
+
+<script type="text/javascript" src="../JS/new/jquery-1.8.2.js"></script>
+  </head>
+  
+  <body>
+  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+ <div class="panel panel-default">
+	<div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="content" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入option值组 空格间隔"></textarea>
+		</div>
+		
+		<div class="btn-group" role="group" aria-label="...">
+           
+		  <div style="margin:5px 0">
+			 转set自定义字段前后str
+			<br/>
+			<input id="autoStr" type="text" style="width:120px" value=".set$1();">
+			正则<input id="autoRexp" type="text" style="width:100px" value="\b(\w*)(\s*)">
+			<br/>
+			<br/>
+			指定字符按 0~n替换
+			<br/>
+			需替换字符串<input id="replaceStr" type="text" style="width:120px" value="---">
+			正则<input id="startNum" type="text" style="width:100px" value="0">
+		  </div>
+		  <div style="margin:10px 0">
+			  
+			  <button type="button" class="btn btn-danger" onclick="Empty();">清空结果</button>
+			  <button type="button" class="btn btn-danger" onclick="toSet();">首字母大写</button>
+			  <button type="button" class="btn btn-danger" onclick="toSetMethod();">直接转为set方法</button>
+			  <button type="button" class="btn btn-danger" onclick="toArraySimple();">指定字符按 0~n替换</button>
+			  <button type="button" class="btn btn-danger" onclick="toBeanJava(1);">下划线转驼峰</button>
+			  <button type="button" class="btn btn-danger" onclick="toBeanJava(2);">驼峰转下划线</button>
+		  </div>
+		</div>
+		
+		<div>
+			<textarea id="translateResult" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder=""></textarea>
+		</div>
+		<!--内容块结束-->
+		<div>
+		</div>
+	</div>
+	<input type="hidden" id="tabsize" value="1">
+	<div class="panel-footer"></div>
+</div>
+<script type="text/javascript">
+	if(window.localStorage && localStorage.getItem("content2format")){
+	 	document.getElementById('content').value = localStorage.getItem("content2format");
+	 	localStorage.setItem("content2format","");
+	}
+	
+	function sj(s){
+		$("#tabsize").val(s);
+		$("#sels").text(s+"个空格缩进");
+	}
+   
+    function Empty() {
+        document.getElementById('content').value = '';
+        document.getElementById('content').select();
+		
+		document.getElementById('optionSelect').select();
+    }
+	function store() {
+       if(window.localStorage){
+	 	localStorage.setItem("content2format",document.getElementById('content').value);
+		}
+    }
+	
+	//首字母大写  英文行式不限
+	function  toSet(){
+		var text=$("#content").val()||"";
+		 //方案一
+		 var str= text.replace(/\b(\w)(\w*)/g, function($0, $1, $2) {  return $1.toUpperCase() + $2; });
+		 //方案二
+		 var str2= text.replace(/\b(\w)|\s(\w)/g, function($1) { return $1.toUpperCase();});
+		 //console.log(str2);
+		 $("#translateResult").val(str);
+	}
+	//转化为set方法
+	function  toSetMethod(){
+		 var text=$("#content").val()||"", //字段内容
+		 	 autoRexp=new RegExp($("#autoRexp").val(),"g"), //自定义大写字母 前后规则
+		 	 autoStr=$("#autoStr").val(), //自定义字段前后str  默认 .set$1();
+		 	 str='';
+		//首字母大写
+		// var toUp= text.replace(/\b(\w)(\w*)/g, function($0, $1, $2) {  return $1.toUpperCase() + $2; });
+		//首字母大写 并去掉 非字符
+		 var toUp= text.replace(/\b(\w)(\w*)(\W*)/g, function($0, $1, $2,$3) {  return $1.toUpperCase() + $2+"\n"; });
+		 console.log(toUp);
+		//需要多行形式
+		//var set2=toUp.replace(/\b(\w*)\n/g,"Text.set$1();\n");
+		 var str=toUp.replace(autoRexp,autoStr+"\n");
+		 //console.log(str);
+		 $("#translateResult").val(str);
+	}
+	//set...()括号里面的改为数组
+	function toArraySimple(){
+		 var text=$("#content").val()||"", //字段内容
+		 	 rStr=new RegExp($("#replaceStr").val(),"g"), //规则
+		 	 sNum=parseInt($("#startNum").val()), //开始值
+		 	 str='';
+		 var array=text.split("\n");
+		 console.log(array);
+	 	 for ( var i = 0; i < array.length; i++) {
+	 		 if(array)
+	 		str +=array[i].replace(rStr,sNum++)+"\n";
+		 }
+	 	// console.log(str);
+	 	$("#translateResult").val(str);
+	}
+	//数据库bean转实体类
+	function toBeanJava(type){
+		 var text=$("#content").val()||"", //字段内容
+		 	 rStr=new RegExp("(.?)(_)(.{1})(.?)","g"), //下划线转驼峰
+		 	 tstr=new RegExp("(.?)([A-Z]{1})(.?)","g"), //下划线转驼峰
+		 	 str='';
+			 if(type==1){
+	 			 str =text.replace(rStr, function($0,$1,$2,$3,$4) {  return $1+$3.toUpperCase()+$4;} );
+			 }else if(type==2){
+	 			 str =text.replace(tstr, function($0,$1,$2,$3) {  return $1+"_"+$2.toLowerCase()+$3;} );
+			 }
+	 	// console.log(str);
+	 	$("#translateResult").val(str);
+	}
+</script>
+  </body>
+</html>

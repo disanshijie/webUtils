@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/htmlformat.js"></script>
+<script type="text/javascript" src="../js/jsformat.js"></script>
+  </head>
+  
+  <body>
+  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+ <div class="panel panel-default">
+	<div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="content" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入option值组 空格间隔"></textarea>
+		</div>
+		
+		<div class="btn-group" role="group" aria-label="...">
+           
+		  <div style="margin:5px 0">
+			<select id="optionSelect" name=""><option value="1">value为参数<option value="2">value为数字</select>
+			<br/>
+			自定义str<input id="autoStr" type="text" style="width:800px" value='str +="---";'>
+			替换符<input id="autoRexp" type="text" style="width:100px" value="---">
+		  </div>
+		  <div style="margin:10px 0">
+			  
+			  <button type="button" class="btn btn-danger" onclick="deleteBlankLine();">删除空白行</button>
+			  <button type="button" class="btn btn-danger" onclick="linetoAutoDefined();">自定义转化(按一行)</button>
+
+			  <button type="button" class="btn btn-danger" onclick="linetoAutoDefinedStrong();">自定义转化(按一行,每行\t)</button>
+
+			  <button type="button" class="btn btn-danger" onclick="changeToTable();">替换制表符\n\t</button>
+			  <button type="button" class="btn btn-danger" onclick="changeToTableAnd();">替换制表符\n\t," 转义</button>
+			 
+			  <button type="button" class="btn btn-danger" onclick="Empty();">清空结果</button>
+			  <button type="button" class="btn btn-danger" onclick="changText();"> 转换文本内容</button>
+		  </div>
+		</div>
+		
+		<div>
+			<textarea id="translateResult" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder=""></textarea>
+		</div>
+		<!--内容块结束-->
+		<div>
+		</div>
+	</div>
+	<input type="hidden" id="tabsize" value="1">
+	<div class="panel-footer"></div>
+</div>
+<script type="text/javascript">
+	if(window.localStorage && localStorage.getItem("content2format")){
+	 	document.getElementById('content').value = localStorage.getItem("content2format");
+	 	localStorage.setItem("content2format","");
+	}
+	
+	function sj(s){
+		$("#tabsize").val(s);
+		$("#sels").text(s+"个空格缩进");
+	}
+   
+    function changText() {
+		var text=$("#translateResult");
+		$("#content").val(text.val());
+		text.val('');
+	}
+    function Empty() {
+        document.getElementById('content').value = '';
+        document.getElementById('content').select();
+		
+		document.getElementById('optionSelect').select();
+    }
+	function store() {
+       if(window.localStorage){
+	 	localStorage.setItem("content2format",document.getElementById('content').value);
+		}
+    }
+	
+	//删除空白行
+	function deleteBlankLine(){
+		var text=$("#content").val()||"";
+		//var reg =/\n(\n)*( )*(\n)*\n/g;
+		var reg =/\n(\n)*(\s)*(\n)*\n/g;
+        var newStr = text.replace(reg,"\n");
+        console.log(newStr);
+    	$("#translateResult").val(newStr);
+	}
+	
+	//按一行作为一个转
+	function linetoAutoDefined(){
+		var text=$("#content").val()||"",param=$("#optionSelect").val(),autoStr=$("#autoStr").val(),autoRexp=new RegExp($("#autoRexp").val(),"g"),str='';
+        	text = text.replace(/\n(\n)*(\s)*(\n)*\n/g,"\n"); //删除空行
+        var arry2=text.split("\n");
+		for ( var i in arry2) {
+			var temp=arry2[i];
+			if(temp){
+				temp = temp.replace(/(^\s*)|(\s*$)/g,""); // 删除首尾空白
+				str +=autoStr.replace(autoRexp,temp)+'\r\n';
+			}
+		}
+		
+		$("#translateResult").val(str);
+		store();
+	}
+	
+	//转化制表符\n\t
+	function changeToTable(){
+		var text=$("#content").val()||"",param=$("#optionSelect").val(),autoStr=$("#autoStr").val(),autoRexp=new RegExp($("#autoRexp").val(),"g"),str='';
+        	
+		var arry2=text.split("\n");
+		for ( var i in arry2) {
+			var temp=arry2[i];
+			if(temp){
+				temp = temp.replace(/\t/g,"\\t"); //t符
+				temp = temp.replace(/(^\s*)|(\s*$)/g,""); // 删除首尾空白
+				str +=autoStr.replace(autoRexp,'\\n'+temp)+'\n';
+			}
+		}
+		
+		$("#translateResult").val(str);
+		store();
+	
+	}
+	//转化制表符\n\t
+	function changeToTableAnd(){
+		var text=$("#content").val()||"",param=$("#optionSelect").val(),autoStr=$("#autoStr").val(),autoRexp=new RegExp($("#autoRexp").val(),"g"),str='';
+        	
+		var arry2=text.split("\n");
+		for ( var i in arry2) {
+			var temp=arry2[i];
+			if(temp){
+				temp = temp.replace(/\t/g,"\\t"); //t符
+				temp = temp.replace(/(^\s*)|(\s*$)/g,""); // 删除首尾空白
+				temp = temp.replace(/"/g,'\\"');
+				str +=autoStr.replace(autoRexp,'\\n'+temp)+'\n';
+			}
+		}
+		
+		$("#translateResult").val(str);
+		store();
+	
+	}
+	//TODO 待改进
+	//增强型 按一行作为一个转
+	function linetoAutoDefinedStrong(){
+		var text=$("#content").val()||"",param=$("#optionSelect").val(),autoStr=$("#autoStr").val(),autoRexp=new RegExp($("#autoRexp").val(),"g"),str='';
+        	text = text.replace(/\n(\n)*(\s)*(\n)*\n/g,"\n"); //删除空行
+		//每行
+        var arry2=text.split("\n");
+		for ( var i in arry2) {
+			var temp=arry2[i];
+			if(temp){
+				temp = temp.replace(/(^\s*)|(\s*$)/g,""); // 删除首尾空白
+				//每行 \t
+				var arry3=temp.split("\t");
+				console.log(arry3);
+				var str1_1=autoStr;
+				for ( var j in arry3) {
+					var temp2=arry3[j];
+					if(temp2){
+						var rexp_j = "-"+j+"-"; //TODO
+						str1_1 =str1_1.replace(rexp_j,temp2);
+					}
+				}
+				str +=(str1_1+'\r\n');
+			}
+		}
+		$("#translateResult").val(str);
+		store();
+	}
+	
+</script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+  </head>
+  
+  <body>
+  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+  <div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="J_text_msg" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder="Enter JSON to validate"></textarea>
+		</div>
+		<button class="btn btn-primary" onclick="method1()">excel横向转数组</button>
+		<button class="btn btn-primary" onclick="method2()">{name:,value:}转{:,:}</button>
+		<button class="btn btn-primary" onclick="method3()">{name:,value:}转{:}</button>
+		<button class="btn btn-primary" onclick="method4()">{'name':,'value':}转{name:,value:}</button>
+		</div>
+		<!--内容块结束-->
+	</div>
+	<div>
+		<textarea id="J_text_result" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder="Enter JSON to validate"></textarea>
+	</div>
+	<div class="panel-footer" id="Canvas"></div>
+  </body>
+  <script type="text/javascript">
+
+//将excel横向|白菜	萝卜	黄瓜|-------白菜,萝卜,黄瓜, -----["白菜", "萝卜", "黄瓜"](console中)
+function  method1(){
+	var receive=$("#J_text_msg").val() || "";
+	console.log(receive);
+	//var arry=eval('('+receive+')');
+	//var arry=JSON.parse(receive);
+	 var arry1 = receive.replace(/\s+/g,","); //空格换为,
+	 console.log(arry1);//字符串
+	 $("#J_text_result").val(arry1);
+	
+	 var arry2 = receive.replace(/\s+/g,",").split(","); //空格换为,
+	 var resultArray=[];
+	 for ( var i in arry2) {
+		if(arry2[i])
+		resultArray.push(arry2[i]);
+	 }
+	 console.log(resultArray); //去掉""形式
+	 
+	 var arry3=receive.split(/\s+/g);　//存在兼容问题
+	 console.log(arry3);//数组
+}
+//将 excel----[{name:"蔬菜",value:"白菜"},{name:"肉类",value:"猪肉"},]---{'蔬菜':'白菜','肉类':'猪肉'};
+function method2(arry){
+	var receive=$("#J_text_msg").val();
+	//var arry=(receive || "").split(",");
+	var arry=eval('('+receive+')');
+      var str='{';
+      for ( var int = 0; int < arry.length; int++) {
+         var param=arry[int];
+         if(param)
+         str += "'"+param.name+"'"+":"+"'"+param.value+"'"+",";
+    }
+      str=str.substring(0,str.length-1)+'};';
+      console.log(str);
+      $("#J_text_result").val(str);
+ }
+//将 ------[{"name":"蔬菜","value":"白菜"},{"name":"肉类","value":"猪肉"},]----- [{"蔬菜":"白菜"},{"肉类":"猪肉"}]
+function method3(arry){
+	var receive=$("#J_text_msg").val();
+	var arry=eval('('+receive+')');
+	var newArray=[];
+	for ( var i in arry) {
+		var e=arry[i];
+		var o={};
+		if(e)
+		o[e.name]=e.value;
+		newArray.push(o);
+	}
+	console.log(newArray);
+	$("#J_text_result").val(JSON.stringify(newArray));
+}
+//将 ------[{"name":"蔬菜","value":"白菜"},{"name":"肉类","value":"猪肉"},]----- [{name:"蔬菜",value:"白菜"},{name:"肉类",value:"猪肉"},]
+function method4(arry){
+	var receive=$("#J_text_msg").val();
+	var rexp=/"(\w*)"/g; // 不确定是否正确
+	var str=receive.replace(rexp,"$1");
+	$("#J_text_result").val(str);
+	
+}
+  
+  </script>
+  
+</html>

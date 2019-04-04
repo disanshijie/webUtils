@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片识别</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- <script src="D:\sunjinchao\data\VSCode\workSpace\space1\web\resource\static\common\js\jquery-1.8.3.min.js"></script> -->
+</head>
+
+<body>
+    
+    <div>
+        <img src="" alt="" id="img_file_upload">
+        <input type="button" name="" value="左旋转" onclick="base64Transform.turnLeftRight('img_file_upload',1)">
+        <input type="button" name="" value="右旋转" onclick="base64Transform.turnLeftRight('img_file_upload',0)">
+    </div>
+    <div>
+        <p>方式一，上传图片</p>
+        <input accept="image/*" name="upimage" id="upload_file" type="file" onchange="base64Transform.change(this)">
+        <p>base64结果</p>
+        <textarea name="" id="fileBase64Value" cols="60" rows="5" style="display:none;"></textarea>
+        <div><a href="javascript:;" onclick="$('#fileBase64Value').val('')">清空</a></div>
+    </p>
+    <div>
+        <p>方式二，输入图片地址</p>
+        <div>
+            <input type="text" id="fileUrl" style="width:300px;height:25px;">
+        </div>
+    </div>
+    <br>
+    <div>
+        <input type="button" name="" value="重新获取token(需手动复制粘贴到access_token)" onclick="baiduORC.getAccessToken()">
+        <input type="button" name="" value="识别文字" onclick="picIdentity()">
+        <input type="button" name="" value="护照识别" onclick="picIdentity('port')">
+    </div>
+    <br>
+    <div>
+        <iframe name="myIframe" id="myIframe" style="display:block;height:20px;width:500px;"></iframe>
+       
+    </div>
+    <br>
+    <!-- 处理数据 -->
+    <div>
+        <div>
+            <textarea name="" id="handle_json_input" cols="100" rows="5"></textarea>
+        </div>
+        <p><input type="button" name="" value="处理数据" onclick="baiduORC.handleData()"></p>
+        <div>
+            <textarea name="" id="handle_json_result" cols="100" rows="5"></textarea>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    var _picurl = "https://hldfiles.oss-cn-qingdao.aliyuncs.com/ossfile/test/upload/finance/img/852328555209708.jpg";
+
+    $(function(){
+        baiduORC.init();
+    });
+
+    function picIdentity(key){
+        var imageDatas=$("#fileBase64Value").val();
+        var imageUrl=$("#fileUrl").val();
+        
+        if(key=='port'){
+            imageDatas = imageDatas.replace(/data:image\/.+?;base64,/, "");
+            baiduORC.port2character(imageDatas);
+        }else{
+            if(imageUrl){
+                baiduORC.pic2character(imageUrl,1);
+                $("#fileBase64Value").hide();
+            }else if(imageDatas){
+                imageDatas = imageDatas.replace(/data:image\/.+?;base64,/, "");
+                baiduORC.pic2character(imageDatas,2);
+            }else{
+                alert("没有数据");
+            }
+        }
+        $("#handle_json_input").val("");
+    }
+
+    function documnetDownLoad(url,params){
+        var form = $('<form target="myIframe"></form>')
+        form.attr('action',url);
+        form.attr('method','post');
+        var input="";
+        if(params){
+            for(var k in params){
+                input +=' <input name="'+k+'" type="hidden" value="'+params[k]+'">';
+            }
+        }
+        form.append(input);
+        form.appendTo("body",document);
+        form.css('display','none');
+        form.submit();
+        //删除表单
+        form.remove();
+    }
+
+
+    /*******************************百度文字识别接口***********************************************/
+    var baiduORC = {
+
+        //初始化
+        init: function(pararms) {
+            var defaults = {
+                baidu_AppID:"11526532",
+                baidu_APIKey:"zbGZwQmKb4PeorjTO6RfB4q4",
+                baidu_SecretKey:"Dpoq17gmTq56OnPNsoTE7W9gqDfMEiQe",
+                access_token : "24.54fc894252f076117f2991fccf4a4129.2592000.1534475940.282335-11526532"
+            }
+            this.opts = $.extend({}, defaults, pararms || {});
+            return this;
+        },
+        //获取access_token
+        getAccessToken: function() {
+            var url="https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials";
+            url +="&client_id="+this.opts.baidu_APIKey+"&client_secret="+this.opts.baidu_SecretKey+"&";
+
+            documnetDownLoad(url);
+            //var myIframe= document.getElementsByName("myIframe");
+            var reDatas=$("#myIframe",document).find("body").text();
+            
+
+            return ;
+            $.ajax({
+                url:url,
+                type:"post",
+                data:{},
+                dataType:"json",
+                success:function(result){
+                    if(result){
+                        console.log(result);
+                        this.opts.access_token=result.access_token;
+                    }
+                }
+            });
+
+        },
+        /**
+        *  图片文字识别，基本
+        *   value 图片数据
+        *   type 图片数据类型 1 url地址；2 base64
+        */
+        pic2character:function(value,type){
+            var _url = "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic?access_token=" + this.opts.access_token;
+            var params={};
+            if(type==1){
+                params.url=value;
+            }else{
+                params.image=value;
+            }
+            documnetDownLoad(_url,params);
+            return ;
+            $.ajax({
+                url: _url,
+                type: 'post',
+                data: params,
+                dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+
+            })
+        },
+        handleData:function(){
+            
+            var data=$("#handle_json_input").val();
+            var resultBox=$("#handle_json_result");
+            if(data){
+                var jsonStr=eval('('+data+')');
+                //普通文字识别
+                var str="";
+                if(jsonStr.words_result){
+                    for(var key in jsonStr.words_result){
+                        str +=jsonStr.words_result[key].words +"\n";
+                    }
+                }
+               resultBox.val(str);
+            }
+        },
+        //护照识别 
+        port2character:function(picBase64) {
+            var _url = "https://aip.baidubce.com/rest/2.0/ocr/v1/passport?access_token=" + this.opts.access_token;
+            $.ajax({
+                url: _url,
+                type: 'post',
+                data: {
+                    image: picBase64
+                },
+                dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function() {
+                    concole.log();
+                }
+
+            })
+        }
+    }
+var base64Transform = {
+        change:function(obj){
+            this.gen_base64(obj,function(result){
+                $(obj).val("");
+                $("#fileBase64Value").val(result).show();
+                $("#img_file_upload").attr("src",result);
+            });
+        },
+        //转化64
+        gen_base64:function(file,callback) {
+            var $_=function(id){return document.getElementById(id);};
+           // var file = $_('upload_file').files[0];
+            var file = file.files[0];
+            r = new FileReader();  //本地预览    
+            r.onload = function() {
+                if (r.result) {
+                    //data:image/jpeg;base64,
+                    // _picBase64 = r.result.replace(new RegExp("data:image/.?;base64,"), "");
+                    callback(r.result);
+                }
+            }              
+            r.readAsDataURL(file);    //Base64        
+        },
+        turnLeftRight:function(target,way){
+            current = this.current||0;
+            if(way==1){
+                this.current = (current-90)%360;
+                document.getElementById(target).style.transform = 'rotate('+current+'deg)';
+            }else{
+                this.current = (current+90)%360;
+                document.getElementById(target).style.transform = 'rotate('+current+'deg)';
+            }
+        }
+    }
+  
+</script>
+
+</html>

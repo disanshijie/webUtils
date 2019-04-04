@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/index.js"></script>
+	<style>
+	.Canvas {
+		font: 10pt Georgia;
+		background-color: #ECECEC;
+		color: #000000;
+		border: solid 1px #CECECE;
+	}
+	.ObjectBrace {
+		color: #00AA00;
+		font-weight: bold;
+	}
+	.ArrayBrace {
+		color: #0033FF;
+		font-weight: bold;
+	}
+	.PropertyName {
+		color: #CC0000;
+		font-weight: bold;
+	}
+	.String {
+		color: #007777;
+	}
+	.Number {
+		color: #AA00AA;
+	}
+	.Boolean {
+		color: #0000FF;
+	}
+	.Function {
+		color: #AA6633;
+		text-decoration: italic;
+	}
+	.Null {
+		color: #0000FF;
+	}
+	.Comma {
+		color: #000000;
+		font-weight: bold;
+	}
+	PRE.CodeContainer {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+</style>
+  </head>
+  
+  <body>
+	<iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+	<div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="RawJson" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder="Enter JSON to validate"></textarea>
+		</div>
+		<div class="btn-group" role="group" aria-label="...">
+		<button class="btn btn-primary" onclick="Process()">着色</button>
+		<button class="btn btn-danger" onclick="$('#RawJson').val('');">清空</button>
+		</div>
+		<input type="checkbox" checked="checked" id="enableU2C">unicode转中文
+		<!--内容块结束-->
+	</div>
+	<div class="panel-footer" id="Canvas"></div>
+  </body>
+</html>

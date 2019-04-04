@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsonUtil.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+  </head>
+  
+  <body>
+  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+ 	<div class="panel-body">
+		<!--内容块开始-->
+		<div>
+			<textarea id="content" name="RawJson" class="json_input" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入 CSS 代码"></textarea>
+		</div>
+		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-primary" onclick="CSS(&#39;format&#39;);">格式化</button>
+		  <button type="button" class="btn btn-primary" onclick="CSS('packKeepAno');">普通压缩保留注释</button>
+		  <button type="button" class="btn btn-primary" onclick="CSS(&#39;pack&#39;);">普通压缩</button>
+		  <button type="button" class="btn btn-primary" onclick="CSS(&#39;packAdv&#39;);">完全压缩</button>
+		  <button type="button" class="btn btn-danger" onclick="Empty();">清空结果</button>
+		</div>
+		<!--内容块结束-->
+	</div>
+	<input type="hidden" id="tabsize" value="1">
+	<div class="panel-footer"></div>
+<script type="text/javascript">
+var lCSSCoder = {
+		format: function(s) {
+			s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+			s = s.replace(/;\s*;/g, ";");
+			s = s.replace(/\,[\s\.\#\d]*{/g, "{");
+			s = s.replace(/([^\s])\{([^\s])/g, "$1 {\n\t$2");
+			s = s.replace(/([^\s])\}([^\n]*)/g, "$1\n}\n$2");
+			s = s.replace(/([^\s]);([^\s\}])/g, "$1;\n\t$2");
+			return s;
+		},
+		packAdv: function(s) {
+			s = s.replace(/\/\*(.|\n)*?\*\//g, "");
+			s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+			s = s.replace(/\,[\s\.\#\d]*\{/g, "{");
+			s = s.replace(/;\s*;/g, ";");
+			s = s.match(/^\s*(\S+(\s+\S+)*)\s*$/);
+			return (s == null) ? "": s[1];
+		},
+		pack: function(s) {
+			s = s.replace(/\/\*(.|\n)*?\*\//g, "");
+			s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+			s = s.replace(/\,[\s\.\#\d]*\{/g, "{");
+			s = s.replace(/;\s*;/g, ";");
+			s = s.replace(/;\s*}/g, "}");
+			s = s.replace(/([^\s])\{([^\s])/g, "$1{$2");
+			s = s.replace(/([^\s])\}([^\n]s*)/g, "$1}\n$2");
+			return s;
+		},
+		packKeepAno: function(s) {
+			s = s.replace(/\/\*((.|\n)*?)\*\//g, "/*$1*/");
+			s = s.replace(/\s*([\{\}\:\;\,])\s*/g, "$1");
+			s = s.replace(/\,[\s\.\#\d]*\{/g, "{");
+			s = s.replace(/;\s*;/g, ";");
+			s = s.replace(/;\s*}/g, "}");
+			s = s.replace(/([^\s])\{([^\s])/g, "$1{$2");
+			s = s.replace(/([^\s])\}([^\n]s*)/g, "$1}\n$2");
+			return s;
+		},
+		
+		//css压缩 http://www.jb51.net/tools/cssyasuo.htm
+		CSSencode:function(code) { 
+		 code = code.replace(/\n/ig,''); 
+		 code = code.replace(/(\s){2,}/ig,'$1'); 
+		 code = code.replace(/\t/ig,''); 
+		 code = code.replace(/\n\}/ig,'\}'); 
+		 code = code.replace(/\n\{\s*/ig,'\{'); 
+		 code = code.replace(/(\S)\s*\}/ig,'$1\}'); 
+		 code = code.replace(/(\S)\s*\{/ig,'$1\{'); 
+		 code = code.replace(/\{\s*(\S)/ig,'\{$1'); 
+		 return code; 
+		},
+		//css格式化 http://www.jb51.net/tools/cssyasuo.htm
+		CSSdecode:function(code){
+		 code = code.replace(/(\s){2,}/ig,'$1'); 
+		 code = code.replace(/(\S)\s*\{/ig,'$1 {'); 
+		 code = code.replace(/\*\/(.[^\}\{]*)}/ig,'\*\/\n$1}'); 
+		 code = code.replace(/\/\*/ig,'\n\/\*'); 
+		 code = code.replace(/;\s*(\S)/ig,';\n\t$1'); 
+		 code = code.replace(/\}\s*(\S)/ig,'\}\n$1'); 
+		 code = code.replace(/\n\s*\}/ig,'\n\}'); 
+		 code = code.replace(/\{\s*(\S)/ig,'\{\n\t$1'); 
+		 code = code.replace(/(\S)\s*\*\//ig,'$1\*\/'); 
+		 code = code.replace(/\*\/\s*([^\}\{]\S)/ig,'\*\/\n\t$1'); 
+		 code = code.replace(/(\S)\}/ig,'$1\n\}'); 
+		 code = code.replace(/(\n){2,}/ig,'\n'); 
+		 code = code.replace(/:/ig,': '); 
+		 code = code.replace(/  /ig,' '); 
+		 return code; 
+		}
+		
+	};
+	function CSS(s) {
+		document.getElementById("content").value = lCSSCoder[s](document.getElementById("content").value);
+	}
+	
+	function Empty() {
+		document.getElementById('content').value = '';
+		document.getElementById('content').select();
+	}
+
+	function GetFocus() {
+		document.getElementById('content').focus();
+	}
+</script>
+  </body>
+</html>
