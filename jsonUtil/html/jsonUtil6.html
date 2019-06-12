@@ -1,17 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>jsonUtil.html</title>
-	
+
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="this is my page">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    
+
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-  </head>
-  
-  <body>
-  <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
-  </body>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+
+<body>
+    <iframe src="./head.html" id="menushow" scrolling="no" width="100%" height="40px" frameborder=0> </iframe>
+    <div class="panel-body">
+        <!--内容块开始-->
+        <div>
+            <textarea id="J_text_msg" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder="Enter JSON to validate"></textarea>
+        </div>
+        <button class="btn btn-primary" onclick="example1()">例子</button>
+        <button class="btn btn-primary" onclick="clearAll()">清空所有</button>
+        <button class="btn btn-primary" onclick="method1()">form表单转body(json格式")</button>
+        <button class="btn btn-primary" onclick="method2()">form表单转body(json格式')</button>
+
+    </div>
+    <!--内容块结束-->
+    </br>
+    <div>
+        <textarea id="J_text_result" name="RawJson" class="json_input" rows="10" style="width: 100%;" spellcheck="false" placeholder="Enter JSON to validate"></textarea>
+    </div>
+    <div class="panel-footer" id="Canvas"></div>
+</body>
+<script type="text/javascript">
+    function example1() {
+        var str = 'email=878455649@qq.com&phone=185132402007';
+        $("#J_text_msg").val(str);
+        method1();
+    }
+
+    function clearAll() {
+        $("#J_text_msg").val('');
+        $("#J_text_result").val('');
+    }
+    //将 email=878455649@qq.com&phone=185132402007 转化为 {"email":"878455649@qq.com","phone":"185132402007"}
+    function method1() {
+        var receive = $("#J_text_msg").val() || "";
+        console.log(receive);
+        //var arry=eval('('+receive+')');
+        //var arry=JSON.parse(receive);
+        var handle1 = receive.replace(/=/g, "\":\"").replace(/\&/g, "\",\""); // =转为: & 转为,
+        var handle2 = "{\"" + handle1 + "\"}";
+        $("#J_text_result").val(handle2);
+        var arry1 = JSON.parse(handle2);
+        console.log(arry1);
+    }
+
+    function method2() {
+        var receive = $("#J_text_msg").val() || "";
+        console.log(receive);
+        //var arry=eval('('+receive+')');
+        //var arry=JSON.parse(receive);
+        var handle1 = receive.replace(/=/g, "':'").replace(/\&/g, "','"); // =转为: & 转为,
+        var handle2 = "{'" + handle1 + "'}";
+        $("#J_text_result").val(handle2);
+        var arry1 = JSON.parse(handle2);
+        console.log(arry1);
+    }
+</script>
+
 </html>
