@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>任意列excel替换到指定位置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+
+    <script type="text/javascript" src="../../common/js/jquery.min.js"></script>
+
+    <style>
+        ul li {
+            float: left;
+            height: 30px;
+            list-style-type: none;
+            margin-right: 20px;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 描述区 -->
+    <div style="">
+        <div class="codelines" style="margin-top: 0px;">
+            <div class="lineno lineselect"></div>
+        </div>
+        <div>
+            <p>excel中间单元格为空，是否直接整体向左移 ——> 手动改代码</p>
+            <p>正则替换默认是 -i- 格式；也可以自定义 eg：{{i}}、=i=、$i</p>
+            <p>单元格为空，可以重新定义此正则和实现，eg：单元格为空设置为null</p>
+            <p>没有此单元格无法替换的 如没有 -4- 这个单元格的内容 就删除。删除范围可以自定义，但必须包含正则范围 eg：正则：-i- 模板中为 ,"-i-" 如果没有 -4-这个内容，会把 ,"-i-" 一同删掉 </p>
+        </div>
+    </div>
+    <!-- 输入区 -->
+    <div class="clear"></div>
+    <div>
+        <textarea id="sun_input_id" name="RawJson" class="changeable" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入option值组 空格间隔"></textarea>
+    </div>
+    <!-- 参数区 -->
+    <div class="clear"></div>
+    <div>
+        <div>
+            <p></p>
+            自定义str <input id="sun_autoStr" type="text" style="width:800px" value=''>
+			替换符<input id="sun_autoRexp" type="text" style="width:100px" value="-i-">
+        </div>
+        
+        <div>
+            <p>参数</p>
+            单元格为空：正则<input id="sun_cellRexpNull" type="text" style="width:100px" value='' placeholder='eg：,"-i-"'>
+            值<input id="sun_cellRexpNullVal" type="text" style="width:100px" value='' placeholder='eg：null'><br/><br/>
+
+            没此单元格无法替换：<input id="sun_autoRexpNull" type="text" style="width:100px" value='' placeholder='eg："#-i-"'>
+
+        </div>
+
+    </div>
+    <!-- 功能按钮区 -->
+    <div class="clear"></div>
+    <div>
+        <ul>
+            <li><input type="button" name="" id="" value="自定义转化，按一行" onclick="methodEntry(1)"></li>
+            <li><input type="button" name="" id="" value="清空输入" onclick="clearInput()"></li>
+            <li><input type="button" name="" id="" value="清空结果" onclick="clearOutput()"></li>
+            <li><input type="button" name="" id="" value="清空所有" onclick="clearAll()"></li>
+        </ul>
+
+    </div>
+
+    <!-- 结果区 -->
+    <div class="clear"></div>
+    <div class="box-ouput">
+        <textarea id="sun_output_id" name="json_result" class="" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 1078px; max-width: 1070px;height:150px;"></textarea>
+    </div>
+    
+    <!-- json转化结果 -->
+    <div>
+        <div class="resultMsg">
+            <pre></pre>
+        </div>
+
+    </div>
+    <!-- 格式化json -->
+    <div class="Canvas"></div>
+</body>
+
+</html>
+<script>
+
+    //清空输入
+    function clearInput() {
+        $("#sun_input_id").val('');
+    }
+    //清空结果
+    function clearOutput() {
+        $("#sun_output_id").val('');
+    }
+    //清空所有
+    function clearAll() {
+        clearInput();
+        clearOutput();
+    }
+
+    //入口
+    function methodEntry(param) {
+        let inputValue=$("#sun_input_id").val();
+        let outputValue='';
+
+        if('1'==param){
+            let autoStr=$("#sun_autoStr").val();
+            //创建一个demo
+            if(!inputValue){
+                linetoAutoDefinedDemo();
+            }
+            let sun_autoRexp=$("#sun_autoRexp").val();
+            let sun_cellRexpNull=$("#sun_cellRexpNull").val();
+            let sun_cellRexpNullVal=$("#sun_cellRexpNullVal").val();
+            let sun_autoRexpNull=$("#sun_autoRexpNull").val();
+            outputValue=linetoAutoDefined(inputValue,autoStr,sun_autoRexp,sun_cellRexpNull,sun_cellRexpNullVal,sun_autoRexpNull);
+
+        }
+        $("#sun_output_id").val(outputValue);
+    }
+
+
+    /**
+     * 将 多列excel格式内容 按顺序填入自定义模板内
+     * text 输入值
+     * autoStr 模板文本内容
+     * autoRexp 正则 默认 -i-
+     * cellRexpNull 单元格为空处理 使用新的正则匹配 里面必须包含占位符i
+     * cellNull 单元格为空处理 默认不处理
+     * autoRexpNull 没有此单元格 
+     */
+    function linetoAutoDefined(text,autoStr,autoRexp,cellRexpNull,cellNull,autoRexpNull) {
+        if(!text || !autoStr){console.log("请输入：");return "";}
+        autoRexp=autoRexp||"-i-";
+
+        //console.log("执行："+text+">>>"+autoStr);
+        let str='';
+        text = text.replace(/(^\s*)|(\s*$)/g,""); // 删除首尾空白
+
+        var arryLine=text.split("\n"); //每行
+        arryLine.forEach(element => {
+            //console.log(element);
+            let temp=autoStr;
+            //let line = element.replace(/\s+/g,",").split(","); //空格换为, 连续两个空格会被忽略
+            let line = element.replace(/\s{1}/g,",").split(","); //空格换为, 连续两个空格产生数组空对象
+            for (let i = 0; i < line.length; i++) {
+            //for ( var i in line) { //此循环方式 i是字符串 无法加减运算
+                let cell=line[i];
+                //console.log("-"+(i+1)+"-"+">>>>"+cell);
+                let rexp=autoRexp.replace("i",(i+1)); //将假i替换成真i
+                //自动将 -i-替换位单位格中的内容
+                if(cell){
+                    //cell = cell.replace(/\n(\n)*(\s)*(\n)*\n/g,"\n"); //删除空行
+                    /* 
+                    //let autoRexp=new RegExp("-"+(i+1)+"-","g"); //默认使用 -i-
+                    console.log("-"+(i+1)+"-"+">>>>"+cell);
+                    temp =temp.replace("-"+(i+1)+"-",cell);
+                    */
+                    //console.log(rexp+">>>>"+cell);
+                    temp =temp.replace(rexp,cell);
+
+                }else{
+                    //数组值为空 处理
+                    if(cellRexpNull){
+                        rexp=cellRexpNull.replace("i",(i+1)); //将假i替换成真i
+                        temp =temp.replace(rexp,cellNull);
+                    }else{
+                        //  默认是这个空数组值""
+                        temp =temp.replace(rexp,cell);
+                    }
+                }
+            }
+
+            if(autoRexpNull){
+                let rexpNull=autoRexpNull.replace("i","\\d"); //将假i替换成数字
+                temp=temp.replace(new RegExp(rexpNull,"g"),''); // 无法替换自动删除
+                //temp=temp.replace(/-\d-/g,''); // 无法替换自动删除
+            }
+
+            str +=temp+'\r\n'
+        });
+        return str;
+    }
+    /**
+     * 创建一个Demo
+     */
+    function linetoAutoDefinedDemo() {
+        let str='';
+        str +='f1		内部编码base64_encode	必填\n';
+        str +='f2	默认A01	商品条形码base64_encode\n';
+        str +='f3		商品名称base64_encode\n';
+        str +='f4	单位	商品规格base64_encode	非必填\n';
+        str +='f5		商品等级base64_encode\n';
+        str +='f6		商品价格base64_encode\n';
+        str +='f7		商品原始价格base64_encode\n';
+        str +='f8		商品库存base64_encode\n';
+        str +='f9		商品库存预警阀值base64_encode\n';
+        str +='f10		商品单位base64_encode\n';
+        str +='f11		商品供应商base64_encode\n';
+        str +='f12		商品产地base64_encode\n';
+        str +='f13		商品描述base64_encode\n';
+        str +='f14		门店编码base64_encode\n';
+        str +='f15		商品促销类型base64_encode\n';
+        str +='f16		拓展字段1base64_encode\n';
+        str +='f17		拓展字段2base64_encode\n';
+        str +='f18		拓展字段3base64_encode\n';
+        str +='f19		商品二维码地址base64_encode\n';
+        str +='f20		拓展字段5base64_encode\n';
+        str +='f21		拓展字段6base64_encode\n';
+        str +='f22		承包商名称base64_encode\n';
+
+        $("#sun_input_id").val(str);
+        
+        let sun_autoStr='	    params.put("-1-","-2-"); //"-3-"  "#-4-"';
+        $("#sun_autoStr").val(sun_autoStr);
+
+        $("#sun_cellRexpNull").val('"-i-"');
+        $("#sun_cellRexpNullVal").val('null');
+        $("#sun_autoRexpNull").val('"#-i-"');
+       
+    }
+
+
+</script>
