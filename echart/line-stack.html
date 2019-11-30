@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://qiniu.disanshijie.top/web/common/js/jquery1.9.1.min.js"></script>
+</head>
+
+<body style="height: 100%; margin: 0">
+
+    <div>
+        <p>
+            输入： <input type="text" name="codes" id="location_code" value="01-15-07" style="width: 200px;height:26px;">
+        </p>
+        <div>
+            <input type="button" value="测试" onclick="analyze()">
+        </div>
+    </div>
+
+    <div id="container" style="height: 500px"></div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+    <!--  <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+
+        //入口
+        function analyze() {
+            var codes = $("#location_code").val();
+            var url = "http://localhost:8080/wztppt-service-fuyang/fuyang/analyze/queryScalageInfo";
+            //var array = getData(url, { codes: codes });
+            console.log(dataJson);
+            dataHandle(dataJson.data);
+        }
+
+        //自定义处理数据 格式化
+        function dataHandle(array) {
+            // console.log(array);
+            var xdata = [],
+                ydata = {
+                    name: '',
+                    type: 'line',
+                    //stack: '总量',
+                    data: []
+                },
+                ytemp = [],
+                yname = "";
+
+            array.forEach(element => {
+                xdata.push(element.createdstamp);
+                ytemp.push(element.weight);
+                ydata.name = element.code + "";
+            });
+            ydata.data = ytemp;
+            //console.log(ydata);
+            initEcharts(xdata, ydata);
+        }
+
+        /* 
+        获取数据 
+        */
+        function getData(f_url, param) {
+            var params = {};
+            var url = "";
+            var result = null;
+            params = param || params;
+            url = f_url || url;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                data: params,
+                async: false,
+                success: function(res) {
+                    if (res) {
+                        result = res.data;
+                    }
+                    //console.log("结果:"+JSON.stringify(data));
+                },
+            });
+            return result;
+        }
+
+        /* 
+        初始化数据
+        xdata： x轴数据 eg：['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        ydata： y轴数据 eg：
+                {
+                    name: '邮件营销',
+                    type: 'line',
+                    stack: '总量',
+                    data: [120, 132, 101, 134, 90, 230, 210]
+                } 
+        */
+        function initEcharts(xdata, ydata) {
+            var myChart = echarts.init(dom);
+
+            var app = {};
+            option = null;
+            option = {
+                title: {
+                    text: '折线图堆叠'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                /* 
+                legend: {
+                    data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                },
+                 */
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: xdata
+                },
+                dataZoom: [{
+                    type: 'slider',
+                    show: true,
+                    bottom: -5,
+                    start: 10,
+                    end: 100,
+                    handleSize: 8
+                }, {
+                    type: 'inside',
+                    start: 10,
+                    end: 100
+                }, {
+                    type: 'slider',
+                    show: true,
+                    yAxisIndex: 0,
+                    filterMode: 'empty',
+                    width: 12,
+                    height: '70%',
+                    handleSize: 8,
+                    showDataShadow: false,
+                    left: '93%'
+                }],
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%'],
+                    splitLine: {
+                        show: false
+                    }
+                },
+                series: [ydata]
+            };;
+            if (option && typeof option === "object") {
+                myChart.clear();
+                myChart.setOption(option, true);
+            }
+        }
+
+        /*         
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                text: '折线图堆叠'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                name: '邮件营销',
+                type: 'line',
+                stack: '总量',
+                data: [120, 132, 101, 134, 90, 230, 210]
+            }, {
+                name: '联盟广告',
+                type: 'line',
+                stack: '总量',
+                data: [220, 182, 191, 234, 290, 330, 310]
+            }, {
+                name: '视频广告',
+                type: 'line',
+                stack: '总量',
+                data: [150, 232, 201, 154, 190, 330, 410]
+            }, {
+                name: '直接访问',
+                type: 'line',
+                stack: '总量',
+                data: [320, 332, 301, 334, 390, 330, 320]
+            }, {
+                name: '搜索引擎',
+                type: 'line',
+                stack: '总量',
+                data: [820, 932, 901, 934, 1290, 1330, 1320]
+            }]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        } 
+        */
+        /* 
+        dataZoom: [
+        	//给x轴设置滚动条
+            {
+                start:0,//默认为0
+                //end: 100-1500/31,//默认为100
+                end: 90,//默认为100
+                type: 'slider',
+                show: true,
+                xAxisIndex: [0],
+                handleSize: 0,//滑动条的 左右2个滑动条的大小
+                height: 10,//组件高度
+                left: '10%', //左边的距离
+                right: '10%',//右边的距离
+                bottom: 26,//右边的距离
+                borderRadius:5,
+                showDataShadow: false,//是否显示数据阴影 默认auto
+                showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
+                realtime:true, //是否实时更新
+                filterMode: 'filter',
+                },
+                //下面这个属性是里面拖到
+            {
+                type: 'inside',
+                show: true,
+                xAxisIndex: [0],
+                start: 0,//默认为1
+                //end: 100-1500/31,//默认为100
+                end: 90,//默认为100
+            },
+         ],   
+         */
+    </script>
+
+    <!-- 引入要放在后面 -->
+    <script type="text/javascript" src="mock/scorage.json?cb=dataJson"></script>
+</body>
+
+</html>
