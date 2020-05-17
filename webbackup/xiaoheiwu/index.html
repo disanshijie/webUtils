@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://lab.mkblog.cn/adarkroom/ -->
+<html itemscope="" itemtype="http://schema.org/CreativeWork"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<!--  
+		A Dark Room (v1.4)
+		==================
+		
+		A minimalist text adventure by Michael Townsend and all his friends.
+		Inspired by Candy Box (http://candies.aniwey.net/)
+		Contribute on GitHub! (https://github.com/Continuities/adarkroom/)
+		本游戏源码下载地址：https://github.com/Continuities/adarkroom/
+	-->
+	<title>小黑屋</title>
+	<meta itemprop="description" name="description" property="og:description" content="A minimalist text adventure">
+	<meta itemprop="image" property="og:image" content="img/adr.png">
+	<meta itemprop="name" property="og:title" content="A Dark Room">
+	<link rel="shortcut icon" href="http://lab.mkblog.cn/adarkroom/favicon.ico">
+	<link rel="image_src" href="http://lab.mkblog.cn/adarkroom/img/adr.png">
+	<script src="./index_files/hm.js"></script><script src="./index_files/jquery.min.js"></script><style type="text/css" abt="234"></style><style type="text/css"></style>
+	<script>
+		if(!window.jQuery) {
+			document.write('<script src="lib/jquery.min.js"><\/script>')
+		}
+	</script>
+	<script src="./index_files/jquery.color-2.1.2.min.js"></script>
+	<script src="./index_files/jquery.event.move.js"></script>
+	<script src="./index_files/jquery.event.swipe.js"></script>
+	<script src="./index_files/base64.js"></script>
+	<script src="./index_files/translate.js"></script>
+	
+	<script src="./index_files/langs.js"></script>
+	
+	<script>
+		// try to read "lang" param's from url
+		var lang = decodeURIComponent((new RegExp('[?|&]lang=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+		// if no language requested, try to read it from local storage
+		if(!lang){
+			try {
+				lang = localStorage.lang;
+			} catch(e) {}
+		}
+		if(!lang) lang = 'cn';
+		// if a language different than english requested, load all translations
+		if(lang && lang != 'en'){
+			document.write('<script src="lang/'+lang+'/strings.js"><\/script>');
+			document.write('<link rel="stylesheet" type="text/css" href="lang/'+lang+'/main.css" \/>');
+		}
+	</script><script src="./index_files/strings.js"></script><link rel="stylesheet" type="text/css" href="./index_files/main.css">
+	
+	<script src="./index_files/Button.js"></script>
+	<script src="./index_files/engine.js"></script>
+	<script src="./index_files/state_manager.js"></script>
+	<script src="./index_files/header.js"></script>
+	<script src="./index_files/notifications.js"></script>
+	<script src="./index_files/events.js"></script>
+	<script src="./index_files/room.js"></script>
+	<script src="./index_files/outside.js"></script>
+	<script src="./index_files/world.js"></script>
+	<script src="./index_files/path.js"></script>
+	<script src="./index_files/ship.js"></script>
+	<script src="./index_files/space.js"></script>
+	<script src="./index_files/prestige.js"></script>
+	<script src="./index_files/scoring.js"></script>
+	<!-- Event modules -->
+	<script src="./index_files/global.js"></script>
+	<script src="./index_files/room(1).js"></script>
+	<script src="./index_files/outside(1).js"></script>
+	<script src="./index_files/encounters.js"></script>
+	<script src="./index_files/setpieces.js"></script>
+	
+	<script type="text/javascript">
+		var oldIE = false;
+	</script>
+	<!-- [if lt IE 9]> 
+		<script type="text/javascript">oldIE = true;</script> 
+	<![endif]-->
+	
+	<link rel="stylesheet" type="text/css" href="./index_files/main(1).css">
+	<link rel="stylesheet" type="text/css" href="./index_files/room.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/outside.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/path.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/world.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/ship.css">
+	<link rel="stylesheet" type="text/css" href="./index_files/space.css">
+	
+	<script src="./index_files/localization.js"></script><style>			div#stores:before{ content: '库存'}			div#weapons:before{ content: '武器'}			div#buildBtns:before{ content: '建筑物:'}			div#craftBtns:before{ content: '制造:'}			div#buyBtns:before{ content: '购买:'}			div#outfitting:before{ content: '耗材:'}			div#perks:before{ content: '技能:'}			div#lootButtons:before { content: '获得:'}			div#dropMenu:before { content: 'drop:'}			div#village.noHuts:before { content: '村庄'}			div#village:before { content: '村庄'}	</style>
+
+	<!-- 百度统计 -->
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ea4269d8a00e95fdb9ee61e3041a8f98";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+<script>//remove baidu search ad
+var _countAA = 0
+function doBBBd(){
+    var alla = document.getElementsByTagName('a')
+    for(var i = 0; i < alla.length; i++){
+        if(/baidu.com\/(baidu.php\?url=|adrc.php\?t)/.test(alla[i].href)){
+            var _temp = alla[i].parentElement, loop = 0
+            while(loop < 5){
+                _temp = _temp.parentElement
+                loop++
+                if(_temp.parentElement.id == 'content_left'){
+                    _temp.remove()
+                    break
+                }
+            }
+        }
+    }
+    
+    if(_countAA++ < 20){
+        setTimeout(doBBBd, 500)
+    }
+    
+}
+doBBBd()
+document.addEventListener('keyup', function(){_countAA-=10;doBBBd()}, false)
+document.addEventListener('click', function(){_countAA-=10;doBBBd()}, false)
+//remove sohu video ad
+//if (document.URL.indexOf("tv.sohu.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+//remove 56.com video ad
+//if (document.URL.indexOf("56.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+</script></head>
+<body>
+	<div id="wrapper">
+		<div id="saveNotify" style="opacity: 0;"><script>document.write(_("saved."));</script>已存档</div>
+		<div id="content">
+			<div id="outerSlider">
+				<div id="main">
+					<div id="header"><div id="location_room" class="headerButton selected">小黑屋</div></div>
+				<div id="locationSlider" style="width: 700px; left: 0px;"><div id="roomPanel" class="location"><div id="lightButton" class="button affordable free" style="width: 80px;">点火<div class="cooldown"></div><div class="tooltip bottom right"><div class="row_key">木头</div><div class="row_val">5</div></div></div><div id="stokeButton" class="button affordable free" style="width: 80px; display: none;">添柴火<div class="cooldown"></div><div class="tooltip bottom right"><div class="row_key">木头</div><div class="row_val">1</div></div></div><div id="storesContainer" style="top: 0px;"></div></div></div></div>
+			</div>
+		</div>
+	<div id="notifications" classname="notifications"><div class="notification" style="opacity: 1;">火堆熄灭了.</div><div class="notification" style="opacity: 1;">小屋很冷.</div><div id="notifyGradient"></div></div></div>
+
+
+<div class="menu"><span class="select-wrap"><select class="menuBtn"><option>language</option><option value="cn">简体中文</option><option value="en">english</option><option value="fr">français</option><option value="jp">日本語</option></select></span><span class="lightsOff menuBtn">关灯</span><span class="menuBtn">重生</span><span class="menuBtn">存档</span></div></body></html>

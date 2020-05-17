@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>正则表达式30分钟入门教程-BeJSON.com</title>
+				<meta name="keywords" content="正则表达式30分钟入门教程" />
+		<meta name="description" content="正则表达式30分钟入门教程">
+						<link rel='dns-prefetch' href='//cdn.staticfile.org' />
+		<link rel='dns-prefetch' href='//www.bejson.com' />
+			<meta property="qc:admins" content="14002146716252376637571563176" />
+		<!-- Site CSS -->
+		<script src="jquery.min.js" tppabs="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+		<link  href="bootstrap.min.css" tppabs="http://cdn.staticfile.org/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<script src="bootstrap.min.js" tppabs="http://cdn.staticfile.org/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="layer.css" tppabs="http://www.bejson.com/static/3part/layer2/theme/default/layer.css" rel="stylesheet">
+			<!--<link href="//cdn.staticfile.org/layer/2.3/skin/layer.css" rel="stylesheet">-->
+		<link rel="stylesheet" type="text/css" href="global.css" tppabs="http://www.bejson.com/static/css/global.css"/>
+		<script src="global.js-20180929.js" tppabs="http://www.bejson.com/static/bejson/common/global.js?20180929"></script>
+		<!--<script src="//cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>-->
+		<script src="clipboard.min.js" tppabs="http://cdn.staticfile.org/clipboard.js/1.7.1/clipboard.min.js"></script>
+		<meta name="baidu-site-verification" content="9jisY2iAF8" />
+		<script>
+			var NewVer = 201901092;
+		</script>
+		
+	</head>
+
+	<body>
+		<div class="aw-container-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="aw-content-wrap clearfix">
+						<div class=" aw-main-content" style="min-height:700px;max-height:2000px">
+
+							<nav class="navbar navbar-default"  id='top_menu'>
+								<div class="container-fluid">
+									<ul class="nav navbar-nav"  style="width: 100%;">
+										<!--<li>
+											<a href="javascript:;" style="color: red;"  onclick="showList()" data-target="#mod" data-toggle="modal" target="_blank">菜单</a>
+										</li>-->
+										
+										
+										<li>
+											<a href="index.htm" tppabs="http://www.bejson.com/">首页</a>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="jsontools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JSON<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index.htm" tppabs="http://www.bejson.com/">格式化校验</a>
+												</li>
+												
+												<li><a href="index-1.htm" tppabs="http://www.bejson.com/jsonviewernew/" target="_blank" red>JSON视图</a>
+												</li>
+												<li><a href="index-2.htm" tppabs="http://www.bejson.com/zhuanyi/" red>JSON压缩转义</a>
+												</li>
+												<li><a href="index-3.htm" tppabs="http://www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a>
+												</li>
+												<li><a href="index-4.htm" tppabs="http://www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												</li>
+												<li><a href="index-5.htm" tppabs="http://www.bejson.com/jsoneditoronline/" red>JSON在线编辑器</a>
+												</li>
+												<li><a href="index-6.htm" tppabs="http://www.bejson.com/json/jsonsort/" id="jsonsort">JSON排序</a>
+												</li>
+												<li><a href="index-7.htm" tppabs="http://www.bejson.com/color/">JSON着色</a></li>
+												<li><a href="index-8.htm" tppabs="http://www.bejson.com/xml2json/" red>XML-JSON互转</a></li>
+												<li><a href="index-9.htm" tppabs="http://www.bejson.com/jsontools/json2get/" id="json2get">JSON和GET请求字符串互转</a></li>
+												<li><a href="index-10.htm" tppabs="http://www.bejson.com/json/col2json/" id="excel2json">Excel转Json</a></li>
+												<li><a href="index-11.htm" tppabs="http://www.bejson.com/json/json2excel/" id="json2csv">json转csv、excel</a></li>
+												<li><a href="index-12.htm" tppabs="http://www.bejson.com/json/json2yaml/" id="json2csv">在线JSON转yaml,yaml转JSON</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="encTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												编码/加密<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-13.htm" tppabs="http://www.bejson.com/enc/base64/">Base64编码、解码</a></li>
+												<li><a href="index-14.htm" tppabs="http://www.bejson.com/enc/md5/">MD5加密</a></li>
+												<li><a href="javascript:if(confirm(%27https://www.somd5.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.somd5.com/%27" tppabs="https://www.somd5.com/"  target="_blank" rel="external nofollow" id="demd5">MD5解密</a></li>
+												<li><a href="index-15.htm" tppabs="http://www.bejson.com/enc/aesdes/" id="aes">DES,AES等对称加密解密</a></li>
+												<li><a href="index-16.htm" tppabs="http://www.bejson.com/enc/rsa/" id="rsa">RSA,RSA2公钥私钥加密解密</a></li>
+												<li><a href="index-17.htm" tppabs="http://www.bejson.com/enc/sha/">SHA加密</a></li>
+												<li><a href="index-18.htm" tppabs="http://www.bejson.com/enc/escape/">Escape编码</a></li>
+												<li><a href="index-19.htm" tppabs="http://www.bejson.com/enc/urlencode/" id="urlEncode">URL编码</a></li>
+												<li><a href="index-20.htm" tppabs="http://www.bejson.com/enc/eval_package/">Javascript Eval加密解密</a></li>
+												<li id="jshunxiao"><a href="javascript:if(confirm(%27https://javascriptobfuscator.com/Javascript-Obfuscator.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://javascriptobfuscator.com/Javascript-Obfuscator.aspx%27" tppabs="https://javascriptobfuscator.com/Javascript-Obfuscator.aspx" target="_blank" rel="external nofollow">Javascript加密混淆</a></li>
+												<li><a href="index-21.htm" tppabs="http://www.bejson.com/enc/morse/">摩斯密码加密解密</a></li>
+												<li><a id="unicodechinese" href="index-22.htm" tppabs="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" id="formatTools" aria-expanded="false">格式化<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-23.htm" tppabs="http://www.bejson.com/jshtml_format/">Javascript/HTML压缩、格式化</a></li>
+												<li><a href="index-24.htm" tppabs="http://www.bejson.com/otherformat/css/">CSS压缩、格式化</a></li>
+												<li><a href="index-25.htm" tppabs="http://www.bejson.com/otherformat/xmlsort/">XML排序、压缩、格式化</a></li>
+												<li><a href="index-26.htm" tppabs="http://www.bejson.com/otherformat/sql/" id="formatsql">SQL压缩、格式化</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="httputil" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												网络<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li id=""><a href="index-27.htm" tppabs="http://www.bejson.com/othertools/profession_request_tools/" target="_blank"  rel="external nofollow">模拟HTTP请求工具</a></li>
+												<li id="websocket"><a href="index-28.htm" tppabs="http://www.bejson.com/httputil/websocket/">在线模拟websocket请求工具</a></li>
+												<li><a href="index-29.htm" tppabs="http://www.bejson.com/httputil/getip/">获取你的IP</a></li>
+												<li><a href="index-30.htm" tppabs="http://www.bejson.com/httputil/queryip/" id="queryip">获取IP信息</a></li>
+												<li><a href="index-31.htm" tppabs="http://www.bejson.com/httputil/ip2addr/" id="ip2addr">IP定位周边信息</a></li>
+												<li><a href="index-32.htm" tppabs="http://www.bejson.com/httputil/clientinfo/" id="clientinfo">获取您的浏览器信息</a></li>
+												<li><a href="index-33.htm" tppabs="http://www.bejson.com/httputil/useragent/" id="useragent">常用USER_AGENT</a></li>
+												<li><a href="index-34.htm" tppabs="http://www.bejson.com/convert/ip2int/" id="ip2int">IP转数字,数字转IP</a></li>
+												<li><a href="index-35.htm" tppabs="http://www.bejson.com/convert/subnetmask/" id="subnetmask">TCP/IP子网掩码计算换算</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.ssleye.com/web/cipher_suites  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.ssleye.com/web/cipher_suites%27" tppabs="http://www.ssleye.com/web/cipher_suites" target="_blank" rel="external nofollow">SSL协议套件探测</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="uitools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												前端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu ul-list">
+												<li><a href="index-36.htm" tppabs="http://www.bejson.com/ui/tuchuang/" id="tuchuang">图床</a></li>
+												<li><a href="index-37.htm" tppabs="http://www.bejson.com/convert/gif2frame/" id="gif2frame">在线GIF转成帧</a></li>
+												<li><a href="index-38.htm" tppabs="http://www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="index-39.htm" tppabs="http://www.bejson.com/ui/fontawesome/" id="tinypic">fontawesome图标查询</a></li>
+												<li id="keycodes"><a href="index-40.htm" tppabs="http://www.bejson.com/othertools/keycodes/">在线获取键盘按键值(keycode、ascii码)</a></li>
+												<li ><a href="index-41.htm" tppabs="http://www.bejson.com/convert/str2img/" id="str2img">字符生成线条字</a></li>
+												<li id="genplayer"><a href="javascript:if(confirm(%27http://www.bejson.com/ui/gen_player  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.bejson.com/ui/gen_player%27" tppabs="http://www.bejson.com/ui/gen_player">生成音乐播放器</a></li>
+												<li><a href="index-42.htm" tppabs="http://www.bejson.com/ui/compress_img/" id="compress_img">图片在线压缩工具</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.bejson.com/pages/cooleditor/  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.bejson.com/pages/cooleditor/%27" tppabs="http://www.bejson.com/pages/cooleditor/" id="simpleeidtor">在线代码编辑器</a></li>
+												<li><a href="index-44.htm" tppabs="http://www.bejson.com/ui/photoshop/" target="_blank">在线photoshop</a></li>
+												<li><a href="javascript:if(confirm(%27http://h5.baidu.com/store  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://h5.baidu.com/store%27" tppabs="http://h5.baidu.com/store" target="_blank"  rel="external nofollow"  id="h5maker">H5模板在线制作</a></li>
+												<li><a href="index-45.htm" tppabs="http://www.bejson.com/ui/borderradius/" id="borderradius">在线生成圆角图片</a></li>
+												<li><a id="logocreate" href="index-46.htm" tppabs="http://www.bejson.com/ui/create_logo/" id="borderradius" title="IOS安卓手机开发logo图标生成工具">IOS安卓手机开发logo生成工具</a></li>
+												<li><a href="index-47.htm" tppabs="http://www.bejson.com/ui/icomaker/" id="icomaker">ICO图标在线转换工具</a></li>
+												<li><a href="javascript:if(confirm(%27http://runjs.cn/code  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://runjs.cn/code%27" tppabs="http://runjs.cn/code" target="_blank" rel="external nofollow" id="runjs">RunJS在线编辑器</a></li>
+												<li><a href="index-48.htm" tppabs="http://www.bejson.com/ui/ueditor/" id="ueditor">ueditor在线代码编辑器</a></li>
+												<li><a href="index-49.htm" tppabs="http://www.bejson.com/ui/getcolor/">在线调色板</a></li>
+												<li><a href="index-50.htm" tppabs="http://www.bejson.com/ui/safecolor/" id="safecolor">WEB安全色</a></li>
+												<li><a href="index-51.htm" tppabs="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a href="index-52.htm" tppabs="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="index-53.htm" tppabs="http://www.bejson.com/ui/phonesize/" id="phonesize">iPhone/iPad/Android UI尺寸规范</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.iconfont.cn/plus/collections/index  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.iconfont.cn/plus/collections/index%27" tppabs="http://www.iconfont.cn/plus/collections/index" target="_blank" rel="external nofollow">阿里巴巴矢量图标库</a></li>
+												<li><a href="javascript:if(confirm(%27http://fontawesome.io/icons/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://fontawesome.io/icons/%27" tppabs="http://fontawesome.io/icons/" target="_blank" rel="external nofollow">fontawesome矢量图标库</a></li>
+												<li><a href="index-54.htm" tppabs="http://www.bejson.com/ui/svg_editor/" id="svgedit">SVG代码编辑预览</a></li>
+												<li><a href="index-55.htm" tppabs="http://www.bejson.com/othertools/libcdn/" id="libcdn">常用JS资源库</a></li>
+												<li><a href="index-56.htm" tppabs="http://www.bejson.com/ui/openweb/" id="openweb">弹出窗口生成器</a></li>
+												<li><a href="index-57.htm" tppabs="http://www.bejson.com/ui/texteditor/" id="texteditor">自动排版工具</a></li>
+												
+											</ul>
+										</li> 
+										<li class="dropdown hide1">
+											<a href="#" id="houduantools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												后端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu">
+												<li><a href="index-3.htm" tppabs="http://www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a></li>
+												<li><a href="javascript:if(confirm(%27http://java.bejson.com/generator/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://java.bejson.com/generator/%27" tppabs="http://java.bejson.com/generator/" id="jpa" style="color:red">SQL生成Java代码</a></li>
+												<li><a href="index-4.htm" tppabs="http://www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												<li><a href="index-58.htm" tppabs="http://www.bejson.com/devtools/sql2pojo/" id="mysql2pojo">mysql转Java实体类</a></li>
+												<li><a href="index-59.htm" tppabs="http://www.bejson.com/devtools/sql2csharppojo/" id="sql2csharppojo">SQL转CSharp实体类</a></li>
+												<li><a href="index-60.htm" tppabs="http://www.bejson.com/othertools/sql2pojo/" id="sql2pojo">oracle转Java实体类</a></li>
+												<li><a href="index-61.htm" tppabs="http://www.bejson.com/devtools/sqlview/" id="sqlview">数据库插入、修改字段视图</a></li>
+												<li><a href="javascript:if(confirm(%27https://www.bejson.com/devtools/properties2yaml/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.bejson.com/devtools/properties2yaml/%27" tppabs="https://www.bejson.com/devtools/properties2yaml/" id="prop2yaml">properties转yaml</a></li>
+												<li><a href="index-62.htm" tppabs="http://www.bejson.com/validators/yaml_editor/">YAML、YML在线编辑(校验)器</a>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="convertTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												转换<span class="caret"></span></a>
+											<ul class="dropdown-menu ul-list">
+												<li><a href="index-63.htm" tppabs="http://www.bejson.com/convert/html_string/"  id="html2string">字符串拼接(多语言)</a></li>
+												<li><a href="index-64.htm" tppabs="http://www.bejson.com/convert/camel_underscore/"  id="camel2under">驼峰转下划线,下划线转驼峰</a></li>
+												<li><a href="index-38.htm" tppabs="http://www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="index-65.htm" tppabs="http://www.bejson.com/convert/ueditor2markdown/" id="ue2mk">在线ueditor富文本编辑器转markdown语法</a></li>
+												<li><a href="index-66.htm" tppabs="http://www.bejson.com/convert/deserialize/" id="deserialize">php反序列化成JSON和代码</a></li>
+												<li><a href="index-52.htm" tppabs="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="index-67.htm" tppabs="http://www.bejson.com/convert/image_to_svg/" id="tosvg">jpg,png图片在线转svg</a></li>
+												<li><a href="index-68.htm" tppabs="http://www.bejson.com/convert/map/" id="mapdw">在线地图经纬度定位换算</a></li>
+												<li><a href="index-69.htm" tppabs="http://www.bejson.com/ui/px2em/" id="px2em">px转em,em转px</a></li>
+												<li><a href="index-51.htm" tppabs="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a id="unicodechinese" href="index-22.htm" tppabs="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+												<li><a href="index-70.htm" tppabs="http://www.bejson.com/convert/shorturl/" id="shorturl">在线短地址转换</a></li>
+												<li><a href="index-71.htm" tppabs="http://www.bejson.com/convert/unix/">Unix时间转换(日期转毫秒)</a></li>
+												<li><a href="index-72.htm" tppabs="http://www.bejson.com/convert/jinzhi/">进制转换</a></li>
+												<li><a href="index-73.htm" tppabs="http://www.bejson.com/convert/ox2str/">16进制到文本字符串</a></li>
+												<li><a href="index-74.htm" tppabs="http://www.bejson.com/convert/uplowercase/" id="uplowercase">字母大小写转换</a></li>
+										
+												<li><a href="index-75.htm" tppabs="http://www.bejson.com/convert/rgbhex/" id="rgbhex">RGB颜色和HEX互转</a></li>
+												<li><a href="index-76.htm" tppabs="http://www.bejson.com/convert/file2pdf/" id="file2pdf">在线文档转PDF</a></li>
+												<li><a href="index-77.htm" tppabs="http://www.bejson.com/convert/qrcode/" id="qrtools">二维码生成与解码</a></li>
+												<li><a href="index-78.htm" tppabs="http://www.bejson.com/convert/numtohz/" id="numtohz">数字转中文(人民币)</a></li>
+												<li><a href="index-79.htm" tppabs="http://www.bejson.com/convert/filesize/" id="filesizehs">在线文件大小换算</a></li>
+												<li><a href="index-80.htm" tppabs="http://www.bejson.com/convert/nativeascii/" id="navasc">NATIVE/ASCII编码互转工具</a></li>
+												
+												<li><a href="index-81.htm" tppabs="http://www.bejson.com/convert/htmlubb/" id="htmlubb">Html与UBB代码互相转换工具</a></li>
+												<li><a href="index-82.htm" tppabs="http://www.bejson.com/convert/topinying/" id="topinying">汉字转换拼音</a></li>
+												 <li><a href="index-83.htm" tppabs="http://www.bejson.com/convert/fullhalf/" id="fullhalf">全角半角转换</a></li>
+												 <li><a href="index-84.htm" tppabs="http://www.bejson.com/convert/j2f/" id="j2f">简繁体火星文互转</a></li>
+												 <li><a href="index-85.htm" tppabs="http://www.bejson.com/convert/html2markdown/" id="html2markdown">Html转换为MarkDown工具</a></li>
+												<li><a href="index-86.htm" tppabs="http://www.bejson.com/convert/video2audio/" target='_blank' title='视频秒转音频' style="color: red;">视频秒转音频(mp3)</a></li>
+											</ul>
+										</li>
+										
+										
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="otherTools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												其他<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-87.htm" tppabs="http://www.bejson.com/othertools/compare/" target="字符串数字对比" id="compare">字符串数字对比</a></li>
+												<li><a href="index-88.htm" tppabs="http://www.bejson.com/othertools/stringarraysort/" id="stringArraySort" target="字符串数组在线排序工具">字符串数组在线排序工具</a></li>
+												<li><a href="index-89.htm" tppabs="http://www.bejson.com/othertools/regex/" id="deserialize">正则表达式测试</a></li>
+												<li><a href="index-90.htm" tppabs="http://www.bejson.com/testtools/xpath/" id="deserialize">xpath测试</a></li>
+												<li id="barcode"><a href="index-91.htm" tppabs="http://www.bejson.com/othertools/barcode/">条形码生成器</a></li>
+												<li id="keycodes"><a href="index-40.htm" tppabs="http://www.bejson.com/othertools/keycodes/">在线获取键盘按键值(ascii码)</a></li>
+												<li id="cront"><a href="index-92.htm" tppabs="http://www.bejson.com/othertools/cron/">Cron表达式生成器</a></li>
+												<li id="cronvalidate"><a href="index-93.htm" tppabs="http://www.bejson.com/othertools/cronvalidate/">Cron表达式校验工具</a></li>
+												
+												<li><a href="index-94.htm" tppabs="http://www.bejson.com/othertools/fanyi/" target="jquery文档">中英互译</a></li>
+												<li><a href="index-95.htm" tppabs="http://www.bejson.com/othertools/findelement/" id="findbyxpath">寻找图片、链接或xpath寻找元素</a></li>
+												<li><a href="index-96.htm" tppabs="http://www.bejson.com/othertools/finddif3/">文字对比找不同处</a></li>
+												<li><a href="index-97.htm" tppabs="http://www.bejson.com/othertools/regex_create/">正则表达式代码生成工具</a></li>
+												<li><a href="index-98.htm" tppabs="http://www.bejson.com/othertools/sqlAppend/">SQL追加或去除双引号</a></li>
+												<li><a href="index-99.htm" tppabs="http://www.bejson.com/othertools/removeDuplicate/">去除重复字符串</a></li>
+												<li><a href="index-100.htm" tppabs="http://www.bejson.com/othertools/sortwords/" id="sortWords">在线根据首字母排序</a></li>
+												<li><a  href="index-101.htm" tppabs="http://www.bejson.com/chargeservice/ocr/">在线文字识别</a></li>
+												<li><a href="index-102.htm" tppabs="http://www.bejson.com/other/qqskey/">获取QQ的SKEY</a></li>
+												<li><a href="index-103.htm" tppabs="http://www.bejson.com/othertools/wordpress/">在线查询wordpress主题模版出处</a></li>
+												<li><a href="index-104.htm" tppabs="http://www.bejson.com/othertools/pic2weibo/">根据微博图片寻找微博出处</a></li>
+												<li><a href="index-105.htm" tppabs="http://www.bejson.com/othertools/ziponline/">在线解压缩获取文件列表名</a></li>
+												<li><a id="weixinalipay" href="index-106.htm" tppabs="http://www.bejson.com/othertools/createaliweixinqrcode/">支付宝、微信收款码共存</a></li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="jsonapi" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												API<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<!-- 20180803 - 20191123 王宣
+												<li><a href="https://www.mysubmail.com/sms/api?tag=bejson" rel="external nofollow" target="_blank">短信接口API</a></li>-->
+												<li><a href="index-107.htm" tppabs="http://www.bejson.com/knownjson/webInterface/" id="findbyxpath">免费JSON接口</a></li>										
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="docs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												文档<span class="caret"></span></a>
+											<ul class="dropdown-menu  ul-list" >
+												<li><a href="index-108.htm" tppabs="http://www.bejson.com/doc/systemd/">Systemd 入门教程：命令篇</a></li>
+												<li><a id="jqapi" href="index-109.htm" tppabs="http://www.bejson.com/apidoc/jquery/" target="_blank" rel="external nofollow">jQuery文档</a></li>
+												<li><a id="bootcssapi" href="javascript:if(confirm(%27http://v3.bootcss.com/components/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://v3.bootcss.com/components/%27" tppabs="http://v3.bootcss.com/components/" target="_blank" rel="external nofollow">Bootstrap文档</a></li>
+												<li><a id="vueapi" href="javascript:if(confirm(%27https://cn.vuejs.org/v2/api/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://cn.vuejs.org/v2/api/%27" tppabs="https://cn.vuejs.org/v2/api/" target="_blank" rel="external nofollow">VueJs文档</a></li>
+												
+												<li><a id="apliayapi" href="javascript:if(confirm(%27http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5%27" tppabs="http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" rel="external nofollow">腾讯开发平台</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27http://mp.weixin.qq.com/wiki/home/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/wiki/home/index.html%27" tppabs="http://mp.weixin.qq.com/wiki/home/index.html" target="_blank" rel="external nofollow">微信公众平台开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html%27" tppabs="http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html" target="_blank" rel="external nofollow">微信JSSDK开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/index.html%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/index.html" target="_blank" rel="external nofollow">微信支付开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/sl.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/sl.html%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/sl.html" target="_blank" rel="external nofollow">微信支付服务商文档</a></li>
+												<li><a id="wxliteappapi" href="javascript:if(confirm(%27https://developers.weixin.qq.com/miniprogram/dev/api/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://developers.weixin.qq.com/miniprogram/dev/api/%27" tppabs="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank" rel="external nofollow">微信小程序开发文档</a></li>
+												<li><a id="tbapi" href="javascript:if(confirm(%27http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD%27" tppabs="http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD" target="_blank" rel="external nofollow">淘宝开发文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://openhome.alipay.com/developmentDocument.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openhome.alipay.com/developmentDocument.htm%27" tppabs="https://openhome.alipay.com/developmentDocument.htm" target="_blank" rel="external nofollow">支付宝开发文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1%27" tppabs="https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1" target="_blank" rel="external nofollow">支付宝智慧门店文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://docs.open.alipay.com/399  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://docs.open.alipay.com/399%27" tppabs="https://docs.open.alipay.com/399" target="_blank" rel="external nofollow">支付宝开发商文档</a></li>
+							
+												<!--<li><a id="baiduinterface" href="http://apistore.baidu.com/astore/classificationservicelist.html" target="_blank" rel="external nofollow">百度API市场</a></li>
+												-->
+												<li><a href="index-110.htm" tppabs="http://www.bejson.com/doc/AndroidManifest/" id="androidManifest">Android权限大全</a></li>
+
+												<li><a href="index-111.htm" tppabs="http://www.bejson.com/knownjson/aboutjson/">什么是JSON</a></li>
+												<li><a href="index-112.htm" tppabs="http://www.bejson.com/knownjson/demo/">举个栗子</a></li>
+												<li><a href="index-107.htm" tppabs="http://www.bejson.com/knownjson/webInterface/">JSON API免费接口</a></li>
+												<li><a href="index-113.htm" tppabs="http://www.bejson.com/knownjson/regexJiaocheng/">正则表达式30分钟入门教程</a></li>
+												<li><a href="index-114.htm" tppabs="http://www.bejson.com/knownjson/httpstate/">HTTP状态码查询</a></li>
+												<li><a href="index-115.htm" tppabs="http://www.bejson.com/doc/httpcontent/">HTTP Content对照表</a></li>
+												<li><a href="index-116.htm" tppabs="http://www.bejson.com/doc/ascii/">ASCII码对照表</a></li>
+												<li><a href="index-117.htm" tppabs="http://www.bejson.com/doc/port/">常用端口解释</a></li>
+											</ul>
+										</li>
+										
+										
+										<li  class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="testtools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">平台工具<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug%27" tppabs="http://mp.weixin.qq.com/debug">微信公众平台调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/tools/signverify/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/tools/signverify/%27" tppabs="https://pay.weixin.qq.com/wiki/tools/signverify/">微信公众平台支付接口调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1">微信支付接口签名校验工具</a></li>
+													<li><a id="coupon" rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign%27" tppabs="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign">微信卡券JSAPI签名校验工具</a></li>
+													<li><a id="wxsign" rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign%27" tppabs="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://qy.weixin.qq.com/debug  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://qy.weixin.qq.com/debug%27" tppabs="http://qy.weixin.qq.com/debug">微信企业号调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://connect.qq.com/sdk/webtools/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://connect.qq.com/sdk/webtools/%27" tppabs="http://connect.qq.com/sdk/webtools/">QQ互联API调试工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R4617Pf  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R4617Pf%27" tppabs="http://t.cn/R4617Pf">淘宝oauth2.0测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461ZZu  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461ZZu%27" tppabs="http://t.cn/R461ZZu">淘宝API测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461Zm2  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461Zm2%27" tppabs="http://t.cn/R461Zm2">淘宝错误码查询工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461wa7  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461wa7%27" tppabs="http://t.cn/R461wa7">淘宝商品属性工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27https://openmonitor.alipay.com/acceptance/cloudparse.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openmonitor.alipay.com/acceptance/cloudparse.htm%27" tppabs="https://openmonitor.alipay.com/acceptance/cloudparse.htm">支付宝联调日志排查</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect%27" tppabs="http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect">支付宝API工具</a></li>
+													<li><a id="paicha" rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://openmonitor.alipay.com/acceptance/troubleshoot.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openmonitor.alipay.com/acceptance/troubleshoot.htm%27" tppabs="https://openmonitor.alipay.com/acceptance/troubleshoot.htm">开发者自助排查工具</a></li>
+													<li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://open.weibo.com/tools/console  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://open.weibo.com/tools/console%27" tppabs="http://open.weibo.com/tools/console">新浪微博API工具</a></li>
+											</ul>
+										</li>
+										
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											站长工具<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sanshu.cn/seotools/sitemap/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sanshu.cn/seotools/sitemap/%27" tppabs="http://sanshu.cn/seotools/sitemap/">sitemap提交入口大全</a></li>
+												<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sanshu.cn/seotools/beian/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sanshu.cn/seotools/beian/%27" tppabs="http://sanshu.cn/seotools/beian/">备案查询</a></li>
+											</ul>
+										</li>
+										
+										<!--<li>
+											<a href="http://bbs.hellojava.com/" style="color: red;" target="_blank">Java社区</a>
+										</li>-->
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											更多<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="index-118.htm" tppabs="http://www.bejson.com/soft/">常用软件下载</a>
+												</li>
+												<!--
+												<li >
+													<a href="//www.bejson.com/robot/" id="td" style="color: green;">我是泰迪</a>
+												</li>
+												-->
+												<li>
+													<a href="index-119.htm" tppabs="http://www.bejson.com/other/blogs/">Blogs</a>
+												</li>
+												<li>
+													<a href="index-120.htm" tppabs="http://www.bejson.com/knownjson/msg/">留言</a>
+													
+												</li>
+												<li>
+													<a href="index-121.htm" tppabs="http://www.bejson.com/other/whatisnew/">更新日志</a>
+												</li>
+												<li>
+													<a href="index-122.htm" tppabs="http://www.bejson.com/other/ads/">广告招租</a>
+												</li>
+												
+											</ul>
+										</li>
+										
+									<!--	
+										-->
+									</ul>
+									
+								</div>
+							</nav>
+							
+							<script>
+							var showaban = true;
+								var storageKey = "newtools20191218";
+								if(window.localStorage.getItem(storageKey)==null){
+									$("#convertTools").after('<span class="newFeatureTip">●</span>');
+									
+									$("#html2string").before('<span class="newItem">●</span>');
+									document.getElementById("html2string").onmouseover = function(){
+										window.localStorage.setItem(storageKey,"has");
+										$(".newFeatureTip").text('');
+									}
+								}
+							</script>
+							<div style="clear:both"></div>
+							<style>
+							.a2016{
+								color: white; 
+								font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu ;
+								text-align: center;    background: red;    border-radius: 2px;
+							}
+							
+							.touxiang{
+								height: 20px;
+								line-height: 45px;
+							}
+							</style>
+							<!--<div style=" text-align: center;    background: #6699FF;    border-radius: 2px;"><a href="http://beshequ.com/data/thread-111-1-1.html" target="_blank" style="  color: white;  ">求教身份验证是放在session里好？还是用签名串来回交互的好？</a></div>-->
+							<!--<div class="a2016">2016 bejson祝各位工资涨涨涨,写程序无BUG,都能找到对象!!! new Object(); 拿走不谢!</div>-->
+								
+							<!-- content st -->
+								<blockquote class="layui-elem-quote layui-quote-nm" style='margin-bottom: 5px;display:none;padding: 4px 20px;font-size:13px;    text-align: left;'>
+ 您最近使用了：<span  id="history"></span>
+</blockquote><style type="text/css">
+.pp1{margin: 5px 20px; text-indent: 2em; line-height: 18px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;}
+.tdd1{border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px; word-break: normal !important;}
+.span11{line-height: 19px; margin: 3px; color: blue;}
+.spandesc{line-height: 19px; margin: 3px; text-decoration: underline;}</style>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">正则表达式30分钟入门教程</h4>
+				<div id="desc1">
+					正则表达式30分钟入门教程</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-body">
+		<!--内容块开始-->
+		<p>
+	&nbsp;
+</p>
+
+<h2 id="contents" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	目录
+</h2>
+
+<p class="note" id="skipContents" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	<a href="#mission" style="color: rgb(7, 93, 179); font-weight: bold;" title="转到正文内容">跳过目录</a>
+</p>
+
+<ol style="padding-left: 50px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<li style="list-style-type: decimal;">
+		<a href="#mission" style="color: rgb(7, 93, 179); font-weight: bold;">本文目标</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#howtouse" style="color: rgb(7, 93, 179); font-weight: bold;">如何使用本教程</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#introduction" style="color: rgb(7, 93, 179); font-weight: bold;">正则表达式到底是什么东西？</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#getstarted" style="color: rgb(7, 93, 179); font-weight: bold;">入门</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#testing" style="color: rgb(7, 93, 179); font-weight: bold;">测试正则表达式</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#metacode" style="color: rgb(7, 93, 179); font-weight: bold;">元字符</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#escape" style="color: rgb(7, 93, 179); font-weight: bold;">字符转义</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#repeat" style="color: rgb(7, 93, 179); font-weight: bold;">重复</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#charclass" style="color: rgb(7, 93, 179); font-weight: bold;">字符类</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#alternative" style="color: rgb(7, 93, 179); font-weight: bold;">分枝条件</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#negation" style="color: rgb(7, 93, 179); font-weight: bold;">反义</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#grouping" style="color: rgb(7, 93, 179); font-weight: bold;">分组</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#backreference" style="color: rgb(7, 93, 179); font-weight: bold;">后向引用</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#lookaround" style="color: rgb(7, 93, 179); font-weight: bold;">零宽断言</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#negativelookaround" style="color: rgb(7, 93, 179); font-weight: bold;">负向零宽断言</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#commenting" style="color: rgb(7, 93, 179); font-weight: bold;">注释</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#greedyandlazy" style="color: rgb(7, 93, 179); font-weight: bold;">贪婪与懒惰</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#regexoptions" style="color: rgb(7, 93, 179); font-weight: bold;">处理选项</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#balancedgroup" style="color: rgb(7, 93, 179); font-weight: bold;">平衡组/递归匹配</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#more" style="color: rgb(7, 93, 179); font-weight: bold;">还有些什么东西没提到</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#contact" style="color: rgb(7, 93, 179); font-weight: bold;">联系作者</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#resources" style="color: rgb(7, 93, 179); font-weight: bold;">网上的资源及本文参考文献</a>
+	</li>
+	<li style="list-style-type: decimal;">
+		<a href="#updatelog" style="color: rgb(7, 93, 179); font-weight: bold;">更新纪录</a>
+	</li>
+</ol>
+
+<h2 id="mission" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	本文目标
+</h2>
+
+<p class="pp1">
+	30分钟内让你明白正则表达式是什么，并对它有一些基本的了解，让你可以在自己的程序或网页里使用它。
+</p>
+
+<h2 id="howtouse" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	如何使用本教程
+</h2>
+
+<p class="important note" id="giveMe30Minutes" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: orange; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	最重要的是&mdash;&mdash;请给我<i>30分钟</i>，如果你没有使用正则表达式的经验，请不要试图在30<i>秒</i>内入门&mdash;&mdash;除非你是超人 :)
+</p>
+
+<p class="pp1">
+	别被下面那些复杂的表达式吓倒，只要跟着我一步一步来，你会发现正则表达式其实并<span lang="zh-cn" style="line-height: 19px; margin: 3px;">没有</span>你想像中的那么困难。当然，如果你看完了这篇教程之后，发现自己明白了很多，却又几乎什么都记不得，那也是很正常的&mdash;&mdash;我认为，没接触过正则表达式的人在看完这篇教程后，能把提到过的语法记住80%以上的可能性为零。这里只是让你明白基本的原理，以后你还需要多练习，多使用，才能熟练掌握正则表达式。
+</p>
+
+<p class="pp1">
+	除了作为入门教程之外，本文还试图成为可以在日常工作中使用的正则表达式语法参考手册。就作者本人的经历来说，这个目标还是完成得不错的&mdash;&mdash;你看，我自己也没能把所有的东西记下来，不是吗？
+</p>
+
+<p class="pp1">
+	<a href="javascript:if(confirm(%27http://deerchao.net/tutorials/regex/regex.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://deerchao.net/tutorials/regex/regex.htm%27" tppabs="http://deerchao.net/tutorials/regex/regex.htm" id="clearButton" style="color: rgb(7, 93, 179); text-decoration: initial; font-weight: bold; border: 1px solid gray; background-color: rgb(238, 238, 238);">清除格式</a>&nbsp;文本格式约定：<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">专业术语</span>&nbsp;<span class="code span11">元字符/语法格式</span>&nbsp;<span class="regex" style="line-height: 19px; margin: 3px; color: red;">正则表达式</span>&nbsp;<span class="part" style="line-height: 19px; margin: 3px; color: green;">正则表达式中的一部分(用于分析)</span>&nbsp;<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">对其进行匹配的源字符串</span>&nbsp;<span class="desc spandesc">对正则表达式或其中一部分的说明</span>
+</p>
+
+<p class="pp1">
+	<a href="javascript:if(confirm(%27http://deerchao.net/tutorials/regex/regex.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://deerchao.net/tutorials/regex/regex.htm%27" tppabs="http://deerchao.net/tutorials/regex/regex.htm" id="hideButton" style="color: rgb(7, 93, 179); text-decoration: initial; font-weight: bold; border: 1px solid gray; background-color: rgb(238, 238, 238);">隐藏边注</a>&nbsp;本文右边有一些注释，主要是用来提供一些相关信息，或者给没有程序员背景的读者解释一些基本概念，通常可以忽略。
+</p>
+
+<h2 id="introduction" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	正则表达式到底是什么东西？
+</h2>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">字符</span>是计算机软件处理文字时最基本的单位，可能是字母，数字，标点符号，空格，换行符，汉字等等。<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">字符串</span>是0个或更多个字符的序列。<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">文本</span>也就是文字，字符串。说某个字符串<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">匹配</span>某个正则表达式，通常是指这个字符串里有一部分（或几部分分别）能满足表达式给出的条件。
+</p>
+
+<p class="pp1">
+	在编写处理字符串的程序或网页时，经常会有查找符合某些复杂规则的字符串的需要。<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">正则表达式</span>就是用于描述这些规则的工具。换句话说，正则表达式就是记录文本规则的代码。
+</p>
+
+<p class="pp1">
+	很可能你使用过Windows/Dos下用于文件查找的<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">通配符(wildcard)</span>，也就是<span class="code span11">*</span>和<span class="code span11">?</span>。如果你想查找某个目录下的所有的Word文档的话，你会搜索<span style="line-height: 19px; margin: 3px; color: red;">*.doc</span>。在这里，<span class="code span11">*</span>会被解释成任意的字符串。和通配符类似，正则表达式也是用来进行文本匹配的工具，只不过比起通配符，它能更精确地描述你的需求&mdash;&mdash;当然，代价就是更复杂&mdash;&mdash;比如你可以编写一个正则表达式，用来查找<span class="desc spandesc">所有以0开头，后面跟着2-3个数字，然后是一个连字号&ldquo;-&rdquo;，最后是7或8位数字的字符串</span>(像<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">010-12345678</span>或<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">0376-7654321</span>)。
+</p>
+
+<h2 id="getstarted" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	入门
+</h2>
+
+<p class="pp1">
+	学习正则表达式的最好方法是从例子开始，理解例子之后再自己对例子进行修改，实验。下面给出了不少简单的例子，并对它们作了详细的说明。
+</p>
+
+<p class="pp1">
+	假设你在一篇英文小说里查找<span class="desc spandesc">hi</span>，你可以使用正则表达式<span class="regex" style="line-height: 19px; margin: 3px; color: red;">hi</span>。
+</p>
+
+<p class="pp1">
+	这几乎是最简单的正则表达式了，它可以精确匹配这样的字符串：<span class="desc spandesc">由两个字符组成，前一个字符是h,后一个是i</span>。通常，处理正则表达式的工具会提供一个忽略大小写的选项，如果选中了这个选项，它可以匹配<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">hi</span>,<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">HI</span>,<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">Hi</span>,<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">hI</span>这四种情况中的任意一种。
+</p>
+
+<p class="pp1">
+	不幸的是，很多单词里包含<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">hi</span>这两个连续的字符，比如<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">him</span>,<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">history</span>,<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">high</span>等等。用<span class="regex" style="line-height: 19px; margin: 3px; color: red;">hi</span>来查找的话，这里边的<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">hi</span>也会被找出来。如果要<span class="desc spandesc">精确地查找hi这个单词</span>的话，我们应该使用<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\bhi\b</span>。
+</p>
+
+<p class="pp1">
+	<span class="part" style="line-height: 19px; margin: 3px; color: green;">\b</span>是正则表达式规定的一个特殊代码（好吧，某些人叫它<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">元字符，metacharacter</span>），代表着<span class="desc spandesc">单词的开头或结尾，也就是单词的分界处</span>。虽然通常英文的单词是由空格，标点符号或者换行来分隔的，但是<span class="code span11">\b</span>并不匹配这些单词分隔字符中的任何一个，它<b>只匹配一个位置</b>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	如果需要更精确的说法，<span class="code span11">\b</span>匹配这样的位置：它的前一个字符和后一个字符不全是(一个是,一个不是或不存在)<span class="code span11">\w</span>。
+</p>
+
+<p class="pp1">
+	假如你要找的是<span class="desc spandesc">hi后面不远处跟着一个Lucy</span>，你应该用<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\bhi\b.*\bLucy\b</span>。
+</p>
+
+<p class="pp1">
+	这里，<span class="part" style="line-height: 19px; margin: 3px; color: green;">.</span>是另一个元字符，匹配<span class="desc spandesc">除了换行符以外的任意字符</span>。<span class="part" style="line-height: 19px; margin: 3px; color: green;">*</span>同样是元字符，不过它代表的不是字符，也不是位置，而是数量&mdash;&mdash;它指定*<span class="desc spandesc">前边的内容可以连续重复使用任意次以使整个表达式得到匹配</span>。因此，<span class="part" style="line-height: 19px; margin: 3px; color: green;">.*</span>连在一起就意味着<span class="desc spandesc">任意数量的不包含换行的字符</span>。现在<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\bhi\b.*\bLucy\b</span>的意思就很明显了：<span class="desc spandesc">先是一个单词hi,然后是任意个任意字符(但不能是换行)，最后是Lucy这个单词</span>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	换行符就是&#39;\n&#39;,ASCII编码为10(十六进制0x0A)的字符。
+</p>
+
+<p class="pp1">
+	如果同时使用其它元字符，我们就能构造出功能更强大的正则表达式。比如下面这个例子：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">0\d\d-\d\d\d\d\d\d\d\d</span>匹配这样的字符串：<span class="desc spandesc">以0开头，然后是两个数字，然后是一个连字号&ldquo;-&rdquo;，最后是8个数字</span>(也就是中国的电话号码。当然，这个例子只能匹配区号为3位的情形)。
+</p>
+
+<p class="pp1">
+	这里的<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d</span>是个新的元字符，匹配<span class="desc spandesc">一位数字(0，或1，或2，或&hellip;&hellip;)</span>。<span class="part" style="line-height: 19px; margin: 3px; color: green;">-</span>不是元字符，只匹配它本身&mdash;&mdash;连字符(或者减号，或者中横线，或者随你怎么称呼它)。
+</p>
+
+<p class="pp1">
+	为了避免那么多烦人的重复，我们也可以这样写这个表达式：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">0\d{2}-\d{8}</span>。 这里<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d</span>后面的<span class="part" style="line-height: 19px; margin: 3px; color: green;">{2}</span>(<span class="part" style="line-height: 19px; margin: 3px; color: green;">{8}</span>)的意思是前面<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d</span><span class="desc spandesc">必须连续重复匹配2次(8次)</span>。
+</p>
+
+<h2 id="testing" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	测试正则表达式
+</h2>
+
+<div class="note" style="float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<p style="margin: 5px 20px; text-indent: 2em; line-height: 18px;">
+		其它可用的测试工具:
+	</p>
+
+	<ul style="margin-left: 45px;">
+		<li style="list-style: inherit;">
+			<a href="javascript:if(confirm(%27http://www.regexbuddy.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.regexbuddy.com/%27" tppabs="http://www.regexbuddy.com/" style="color: rgb(7, 93, 179); font-weight: bold;">RegexBuddy</a>
+		</li>
+		<li style="list-style: inherit;">
+			<a href="javascript:if(confirm(%27http://regexpal.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://regexpal.com/%27" tppabs="http://regexpal.com/" style="color: rgb(7, 93, 179); font-weight: bold;">Javascript正则表达式在线测试工具</a>
+		</li>
+	</ul>
+</div>
+
+<p class="pp1">
+	如果你不觉得正则表达式很难读写的话，要么你是一个天才，要么，你不是地球人。正则表达式的语法很令人头疼，即使对经常使用它的人来说也是如此。由于难于读写，容易出错，所以找一种工具对正则表达式进行测试是很有必要的。
+</p>
+
+<p class="pp1">
+	不同的环境下正则表达式的一些细节是不相同的，本教程介绍的是微软 .Net Framework 4.0 下正则表达式的行为，所以，我向你推荐我编写的.Net下的工具&nbsp;<a href="javascript:if(confirm(%27http://deerchao.net/tools/regex_tester/index.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://deerchao.net/tools/regex_tester/index.htm%27" tppabs="http://deerchao.net/tools/regex_tester/index.htm" style="color: rgb(7, 93, 179); font-weight: bold;" title="转到RegexTester页面">正则表达式测试器</a>。请参考该页面的说明来安装和运行该软件。
+</p>
+
+<p class="pp1">
+	下面是Regex Tester运行时的截图：
+</p>
+
+<p class="pp1">
+	<a href="javascript:if(confirm(%27http://deerchao.net/tools/regex_tester/index.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://deerchao.net/tools/regex_tester/index.htm%27" tppabs="http://deerchao.net/tools/regex_tester/index.htm" style="color: rgb(7, 93, 179); font-weight: bold;"><img alt="正则表达式测试器运行截图" src="regex_tester-1.png" tppabs="http://deerchao.net/images/regex_tester.png" style="border: 0px;" /></a>
+</p>
+
+<h2 id="metacode" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	元字符
+</h2>
+
+<p class="pp1">
+	现在你已经知道几个很有用的元字符了，如<span class="code span11">\b</span>,<span class="code span11">.</span>,<span class="code span11">*</span>，还有<span class="code span11">\d</span>.正则表达式里还有更多的元字符，比如<span class="code span11">\s</span>匹配<span class="desc spandesc">任意的空白符，包括空格，制表符(Tab)，换行符，中文全角空格等</span>。<span class="code span11">\w</span>匹配<span class="desc spandesc">字母或数字或下划线或汉字等</span>。
+</p>
+
+<p class="note important" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: orange; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	对中文/汉字的特殊处理是由.Net提供的正则表达式引擎支持的，其它环境下的具体情况请查看相关文档。
+</p>
+
+<p class="pp1">
+	下面来看看更多的例子：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\ba\w*\b</span>匹配<span class="desc spandesc">以字母<span class="part" style="margin: 3px; color: green;">a</span>开头的单词&mdash;&mdash;先是某个单词开始处(<span class="part" style="margin: 3px; color: green;">\b</span>)，然后是字母<span class="part" style="margin: 3px; color: green;">a</span>,然后是任意数量的字母或数字(<span class="part" style="margin: 3px; color: green;">\w*</span>)，最后是单词结束处(<span class="part" style="margin: 3px; color: green;">\b</span>)</span>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	好吧，现在我们说说正则表达式里的单词是什么意思吧：就是不少于一个的连续的<span class="code span11">\w</span>。不错，这与学习英文时要背的成千上万个同名的东西的确关系不大 :)
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d+</span>匹配<span class="desc spandesc">1个或更多连续的数字</span>。这里的<span class="part" style="line-height: 19px; margin: 3px; color: green;">+</span>是和<span class="code span11">*</span>类似的元字符，不同的是<span class="code span11">*</span>匹配<span class="desc spandesc">重复任意次(可能是0次)</span>，而<span class="code span11">+</span>则匹配<span class="desc spandesc">重复1次或更多次</span>。
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b\w{6}\b</span>&nbsp;匹配<span class="desc spandesc">刚好6个字符的单词</span>。
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表1.常用的元字符
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">.</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配除换行符以外的任意字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\w</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配字母或数字或下划线或汉字</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\s</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配任意的空白符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\d</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配数字</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\b</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配单词的开始或结束</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">^</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配字符串的开始</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">$</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配字符串的结束</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	正则表达式引擎通常会提供一个&ldquo;测试指定的字符串是否匹配一个正则表达式&rdquo;的方法，如JavaScript里的RegExp.test()方法或.NET里的Regex.IsMatch()方法。这里的匹配是指是字符串里有没有符合表达式规则的部分。如果不使用<span class="code span11">^</span>和<span class="code span11">$</span>的话，对于<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d{5,12}</span>而言，使用这样的方法就只能保证字符串里<span class="desc spandesc">包含5到12连续位数字</span>，而不是整个字符串就是5到12位数字。
+</p>
+
+<p class="pp1">
+	元字符<span class="code span11">^</span>（和数字6在同一个键位上的符号）和<span class="code span11">$</span>都匹配一个位置，这和<span class="code span11">\b</span>有点类似。<span class="code span11">^</span>匹配你要用来查找的字符串的开头，<span class="code span11">$</span>匹配结尾。这两个代码在验证输入的内容时非常有用，比如一个网站如果要求你填写的QQ号必须为5位到12位数字时，可以使用：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">^\d{5,12}$</span>。
+</p>
+
+<p class="pp1">
+	这里的<span class="part" style="line-height: 19px; margin: 3px; color: green;">{5,12}</span>和前面介绍过的<span class="part" style="line-height: 19px; margin: 3px; color: green;">{2}</span>是类似的，只不过<span class="part" style="line-height: 19px; margin: 3px; color: green;">{2}</span>匹配<span class="desc spandesc">只能不多不少重复2次</span>，<span class="part" style="line-height: 19px; margin: 3px; color: green;">{5,12}</span>则是<span class="desc spandesc">重复的次数不能少于5次，不能多于12次</span>，否则都不匹配。
+</p>
+
+<p class="pp1">
+	因为使用了<span class="part" style="line-height: 19px; margin: 3px; color: green;">^</span>和<span class="part" style="line-height: 19px; margin: 3px; color: green;">$</span>，所以输入的整个字符串都要用来和<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d{5,12}</span>来匹配，也就是说整个输入<span class="desc spandesc">必须是5到12个数字</span>，因此如果输入的QQ号能匹配这个正则表达式的话，那就符合要求了。
+</p>
+
+<p class="pp1">
+	和忽略大小写的选项类似，有些正则表达式处理工具还有一个处理多行的选项。如果选中了这个选项，<span class="code span11">^</span>和<span class="code span11">$</span>的意义就变成了<span class="desc spandesc">匹配行的开始处和结束处</span>。
+</p>
+
+<h2 id="escape" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	字符转义
+</h2>
+
+<p class="pp1">
+	如果你想查找元字符本身的话，比如你查找<span class="desc spandesc">.</span>,或者<span class="desc spandesc">*</span>,就出现了问题：你没办法指定它们，因为它们会被解释成别的意思。这时你就得使用<span class="code span11">\</span>来取消这些字符的特殊意义。因此，你应该使用<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\.</span>和<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\*</span>。当然，要查找<span class="desc spandesc">\</span>本身，你也得用<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\\</span>.
+</p>
+
+<p class="pp1">
+	例如：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">unibetter\.com</span>匹配<span class="desc spandesc">unibetter.com</span>，<span class="regex" style="line-height: 19px; margin: 3px; color: red;">C:\\Windows</span>匹配<span class="desc spandesc">C:\Windows</span>。
+</p>
+
+<h2 id="repeat" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	重复
+</h2>
+
+<p class="pp1">
+	你已经看过了前面的<span class="code span11">*</span>,<span class="code span11">+</span>,<span class="code span11">{2}</span>,<span class="code span11">{5,12}</span>这几个匹配重复的方式了。下面是正则表达式中所有的限定符(指定数量的代码，例如*,{5,12}等)：
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表2.常用的限定符
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码/语法
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">*</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复零次或更多次</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">+</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复一次或更多次</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">?</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复零次或一次</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">{n}</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复n次</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">{n,}</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复n次或更多次</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">{n,m}</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复n到m次</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="pp1">
+	下面是一些使用重复的例子：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">Windows\d+</span>匹配<span class="desc spandesc">Windows后面跟1个或更多数字</span>
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">^\w+</span>匹配<span class="desc spandesc">一行的第一个单词(或整个字符串的第一个单词，具体匹配哪个意思得看选项设置)</span>
+</p>
+
+<h2 id="charclass" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	字符类
+</h2>
+
+<p class="pp1">
+	要想查找数字，字母或数字，空白是很简单的，因为已经有了对应这些字符**的元字符，但是如果你想匹配没有预定义元字符的字符**(比如元音字母a,e,i,o,u),应该怎么办？
+</p>
+
+<p class="pp1">
+	很简单，你只需要在方括号里列出它们就行了，像<span class="regex" style="line-height: 19px; margin: 3px; color: red;">[aeiou]</span>就匹配<span class="desc spandesc">任何一个英文元音字母</span>，<span class="regex" style="line-height: 19px; margin: 3px; color: red;">[.?!]</span>匹配<span class="desc spandesc">标点符号(.或?或!)</span>。
+</p>
+
+<p class="pp1">
+	我们也可以轻松地指定一个字符<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">范围</span>，像<span class="regex" style="line-height: 19px; margin: 3px; color: red;">[0-9]</span>代表的含意与<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d</span>就是完全一致的：<span class="desc spandesc">一位数字</span>；同理<span class="regex" style="line-height: 19px; margin: 3px; color: red;">[a-z0-9A-Z_]</span>也完全等同于<span class="code span11">\w</span>（如果只考虑英文的话）。
+</p>
+
+<p class="pp1">
+	下面是一个更复杂的表达式：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\(?0\d{2}[) -]?\d{8}</span>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	&ldquo;(&rdquo;和&ldquo;)&rdquo;也是元字符，后面的<a href="#grouping" style="color: rgb(7, 93, 179); font-weight: bold;">分组节</a>里会提到，所以在这里需要使用<a href="#escape" style="color: rgb(7, 93, 179); font-weight: bold;">转义</a>。
+</p>
+
+<p class="pp1">
+	这个表达式可以匹配<span class="desc spandesc">几种格式的电话号码</span>，像<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">(010)88886666</span>，或<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">022-22334455</span>，或<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">02912345678</span>等。我们对它进行一些分析吧：首先是一个转义字符<span class="part" style="line-height: 19px; margin: 3px; color: green;">\(</span>,它能出现0次或1次(<span class="part" style="line-height: 19px; margin: 3px; color: green;">?</span>),然后是一个<span class="part" style="line-height: 19px; margin: 3px; color: green;">0</span>，后面跟着2个数字(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d{2}</span>)，然后是<span class="part" style="line-height: 19px; margin: 3px; color: green;">)</span>或<span class="part" style="line-height: 19px; margin: 3px; color: green;">-</span>或<span class="part" style="line-height: 19px; margin: 3px; color: green;">空格</span>中的一个，它出现1次或不出现(<span class="part" style="line-height: 19px; margin: 3px; color: green;">?</span>)，最后是8个数字(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d{8}</span>)。
+</p>
+
+<h2 id="alternative" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	分枝条件
+</h2>
+
+<p class="pp1">
+	不幸的是，刚才那个表达式也能匹配<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">010)12345678</span>或<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">(022-87654321</span>这样的&ldquo;不正确&rdquo;的格式。要解决这个问题，我们需要用到<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">分枝条件</span>。正则表达式里的<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">分枝条件</span>指的是有几种规则，如果满足其中任意一种规则都应该当成匹配，具体方法是用<span class="code span11">|</span>把不同的规则分隔开。听不明白？没关系，看例子：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">0\d{2}-\d{8}|0\d{3}-\d{7}</span>这个表达式能<span class="desc spandesc">匹配两种以连字号分隔的电话号码：一种是三位区号，8位本地号(如010-12345678)，一种是4位区号，7位本地号(0376-2233445)</span>。
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\(0\d{2}\)[- ]?\d{8}|0\d{2}[- ]?\d{8}</span>这个表达式<span class="desc spandesc">匹配3位区号的电话号码，其中区号可以用小括号括起来，也可以不用，区号与本地号间可以用连字号或空格间隔，也可以没有间隔</span>。你可以试试用分枝条件把这个表达式扩展成也支持4位区号的。
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d{5}-\d{4}|\d{5}</span>这个表达式用于匹配美国的邮政编码。美国邮编的规则是5位数字，或者用连字号间隔的9位数字。之所以要给出这个例子是因为它能说明一个问题：<b>使用分枝条件时，要注意各个条件的顺序</b>。如果你把它改成<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d{5}|\d{5}-\d{4}</span>的话，那么就只会匹配5位的邮编(以及9位邮编的前5位)。原因是匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。
+</p>
+
+<h2 id="grouping" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	分组
+</h2>
+
+<p class="pp1">
+	我们已经提到了怎么重复单个字符（直接在字符后面加上限定符就行了）；但如果想要重复多个字符又该怎么办？你可以用小括号来指定<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">子表达式</span>(也叫做<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">分组</span>)，然后你就可以指定这个子表达式的重复次数了，你也可以对子表达式进行其它一些操作(后面会有介绍)。
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(\d{1,3}\.){3}\d{1,3}</span>是一个<span class="desc spandesc">简单的IP地址匹配</span>表达式。要理解这个表达式，请按下列顺序分析它：<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d{1,3}</span>匹配<span class="desc spandesc">1到3位的数字</span>，<span class="part" style="line-height: 19px; margin: 3px; color: green;">(\d{1,3}\.){3}</span>匹配<span class="desc spandesc">三位数字加上一个英文句号(这个整体也就是这个<span class="name" style="margin: 3px; font-weight: bold;">分组</span>)重复3次</span>，最后再加上<span class="desc spandesc">一个一到三位的数字</span>(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\d{1,3}</span>)。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	IP地址中每个数字都不能大于255，大家千万不要被《24》第三季的编剧给忽悠了&hellip;&hellip;
+</p>
+
+<p class="pp1">
+	不幸的是，它也将匹配<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">256.300.888.999</span>这种不可能存在的IP地址。如果能使用算术比较的话，或许能简单地解决这个问题，但是正则表达式中并不提供关于数学的任何功能，所以只能使用冗长的分组，选择，字符类来描述一个正确的IP地址：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)</span>。
+</p>
+
+<p class="pp1">
+	理解这个表达式的关键是理解<span class="part" style="line-height: 19px; margin: 3px; color: green;">2[0-4]\d|25[0-5]|[01]?\d\d?</span>，这里我就不细说了，你自己应该能分析得出来它的意义。
+</p>
+
+<h2 id="negation" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	反义
+</h2>
+
+<p class="pp1">
+	有时需要查找不属于某个能简单定义的字符类的字符。比如想查找除了数字以外，其它任意字符都行的情况，这时需要用到<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">反义</span>：
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表3.常用的反义代码
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码/语法
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\W</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配任意不是字母，数字，下划线，汉字的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\S</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配任意不是空白符的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\D</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配任意非数字的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\B</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配不是单词开头或结束的位置</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">[^x]</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配除了x以外的任意字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">[^aeiou]</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配除了aeiou这几个字母以外的任意字符</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="pp1">
+	例子：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\S+</span>匹配<span class="desc spandesc">不包含空白符的字符串</span>。
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">&lt;a[^>]+&gt;</span>匹配<span class="desc spandesc">用尖括号括起来的以a开头的字符串</span>。
+</p>
+
+<h2 id="backreference" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	后向引用
+</h2>
+
+<p class="pp1">
+	使用小括号指定一个子表达式后，<b>匹配这个子表达式的文本</b>(也就是此分组捕获的内容)可以在表达式或其它程序中作进一步的处理。默认情况下，每个分组会自动拥有一个<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">组号</span>，规则是：从左向右，以分组的左括号为标志，第一个出现的分组的组号为1，第二个为2，以此类推。
+</p>
+
+<div class="note" style="float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<p style="margin: 5px 20px; text-indent: 2em; line-height: 18px;">
+		呃&hellip;&hellip;其实,组号分配还不像我刚说得那么简单：
+	</p>
+
+	<ul style="margin-left: 45px;">
+		<li style="list-style: inherit;">
+			分组0对应整个正则表达式
+		</li>
+		<li style="list-style: inherit;">
+			实际上组号分配过程是要从左向右扫描两遍的：第一遍只给未命名组分配，第二遍只给命名组分配－－因此所有命名组的组号都大于未命名的组号
+		</li>
+		<li style="list-style: inherit;">
+			你可以使用<span class="code span11">(?:exp)</span>这样的语法来剥夺一个分组对组号分配的参与权．
+		</li>
+	</ul>
+</div>
+
+<p class="pp1">
+	<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">后向引用</span>用于重复搜索前面某个分组匹配的文本。例如，<span class="part" style="line-height: 19px; margin: 3px; color: green;">\1</span>代表<span class="desc spandesc">分组1匹配的文本</span>。难以理解？请看示例：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b(\w+)\b\s+\1\b</span>可以用来匹配<span class="desc spandesc">重复的单词</span>，像<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">go go</span>, 或者<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">kitty kitty</span>。这个表达式首先是<span class="desc spandesc">一个单词</span>，也就是<span class="desc spandesc">单词开始处和结束处之间的多于一个的字母或数字</span>(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\b(\w+)\b</span>)，这个单词会被捕获到编号为1的分组中，然后是<span class="desc spandesc">1个或几个空白符</span>(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\s+</span>)，最后是<span class="desc spandesc">分组1中捕获的内容（也就是前面匹配的那个单词）</span>(<span class="part" style="line-height: 19px; margin: 3px; color: green;">\1</span>)。
+</p>
+
+<p class="pp1">
+	你也可以自己指定子表达式的<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">组名</span>。要指定一个子表达式的组名，请使用这样的语法：<span class="code span11">(?&lt;Word&gt;\w+)</span>(或者把尖括号换成<span class="code span11">&#39;</span>也行：<span class="code span11">(?&#39;Word&#39;\w+)</span>),这样就把<span class="part" style="line-height: 19px; margin: 3px; color: green;">\w+</span>的组名指定为<span class="part" style="line-height: 19px; margin: 3px; color: green;">Word</span>了。要反向引用这个分组<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">捕获</span>的内容，你可以使用<span class="code span11">\k&lt;Word&gt;</span>,所以上一个例子也可以写成这样：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b(?&lt;Word&gt;\w+)\b\s+\k&lt;Word&gt;\b</span>。
+</p>
+
+<p class="pp1">
+	使用小括号的时候，还有很多特定用途的语法。下面列出了最常用的一些：
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表4.常用分组语法
+	</caption>
+	<tbody>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				分类
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码/语法
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+		<tr>
+			<th rowspan="3" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				捕获
+			</th>
+			<td class="tdd1">
+				<span class="code span11">(exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配exp,并捕获文本到自动命名的组里</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?&lt;name&gt;exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配exp,并捕获文本到名称为name的组里，也可以写成(?&#39;name&#39;exp)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?:exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配exp,不捕获匹配的文本，也不给此分组分配组号</span>
+			</td>
+		</tr>
+		<tr>
+			<th rowspan="4" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				零宽断言
+			</th>
+			<td class="tdd1">
+				<span class="code span11">(?=exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配exp前面的位置</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?&lt;=exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配exp后面的位置</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?!exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配后面跟的不是exp的位置</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?&lt;!exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">匹配前面不是exp的位置</span>
+			</td>
+		</tr>
+		<tr>
+			<th style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				注释
+			</th>
+			<td class="tdd1">
+				<span class="code span11">(?#comment)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">这种类型的分组不对正则表达式的处理产生任何影响，用于提供注释让人阅读</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="pp1">
+	我们已经讨论了前两种语法。第三个<span class="code span11">(?:exp)</span>不会改变正则表达式的处理方式，只是这样的组匹配的内容<span class="desc spandesc">不会像前两种那样被捕获到某个组里面，也不会拥有组号</span>。&ldquo;我为什么会想要这样做？&rdquo;&mdash;&mdash;好问题，你觉得为什么呢？
+</p>
+
+<h2 id="lookaround" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	零宽断言
+</h2>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	地球人，是不是觉得这些术语名称太复杂，太难记了？我也有同感。知道有这么一种东西就行了，它叫什么，随它去吧！人若无名，便可专心练剑；物若无名，便可随意取舍&hellip;&hellip;
+</p>
+
+<p class="pp1">
+	接下来的四个用于查找在某些内容(但并不包括这些内容)之前或之后的东西，也就是说它们像<span class="code span11">\b</span>,<span class="code span11">^</span>,<span class="code span11">$</span>那样用于指定一个位置，这个位置应该满足一定的条件(即断言)，因此它们也被称为<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">零宽断言</span>。最好还是拿例子来说明吧：
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	断言用来声明一个应该为真的事实。正则表达式中只有当断言为真时才会继续进行匹配。
+</p>
+
+<p class="pp1">
+	<span class="code span11">(?=exp)</span>也叫<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">零宽度正预测先行断言</span>，它<span class="desc spandesc">断言自身出现的位置的后面能匹配表达式exp</span>。比如<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b\w+(?=ing\b)</span>，匹配<span class="desc spandesc">以ing结尾的单词的前面部分(除了ing以外的部分)</span>，如查找<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">I&#39;m singing while you&#39;re dancing.</span>时，它会匹配<span class="desc spandesc">sing</span>和<span class="desc spandesc">danc</span>。
+</p>
+
+<p class="pp1">
+	<span class="code span11">(?&lt;=exp)</span>也叫<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">零宽度正回顾后发断言</span>，它<span class="desc spandesc">断言自身出现的位置的前面能匹配表达式exp</span>。比如<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(?&lt;=\bre)\w+\b</span>会匹配<span class="desc spandesc">以re开头的单词的后半部分(除了re以外的部分)</span>，例如在查找<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">reading a book</span>时，它匹配<span class="desc spandesc">ading</span>。
+</p>
+
+<p class="pp1">
+	假如你想要给一个很长的数字中每三位间加一个逗号(当然是从右边加起了)，你可以这样查找需要在前面和里面添加逗号的部分：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">((?&lt;=\d)\d{3})+\b</span>，用它对<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">1234567890</span>进行查找时结果是<span class="desc spandesc">234567890</span>。
+</p>
+
+<p class="pp1">
+	下面这个例子同时使用了这两种断言：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(?&lt;=\s)\d+(?=\s)</span>匹配<span class="desc spandesc">以空白符间隔的数字(再次强调，不包括这些空白符)</span>。
+</p>
+
+<h2 id="negativelookaround" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	负向零宽断言
+</h2>
+
+<p class="pp1">
+	前面我们提到过怎么查找<b>不是某个字符或不在某个字符类里</b>的字符的方法(反义)。但是如果我们只是想要<b>确保某个字符没有出现，但并不想去匹配它</b>时怎么办？例如，如果我们想查找这样的单词--它里面出现了字母q,但是q后面跟的不是字母u,我们可以尝试这样：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b\w*q[^u]\w*\b</span>匹配<span class="desc spandesc">包含<b>后面不是字母u的字母q</b>的单词</span>。但是如果多做测试(或者你思维足够敏锐，直接就观察出来了)，你会发现，如果q出现在单词的结尾的话，像<b>Iraq</b>,<b>Benq</b>，这个表达式就会出错。这是因为<span class="part" style="line-height: 19px; margin: 3px; color: green;">[^u]</span>总要匹配一个字符，所以如果q是单词的最后一个字符的话，后面的<span class="part" style="line-height: 19px; margin: 3px; color: green;">[^u]</span>将会匹配q后面的单词分隔符(可能是空格，或者是句号或其它的什么)，后面的<span class="part" style="line-height: 19px; margin: 3px; color: green;">\w*\b</span>将会匹配下一个单词，于是<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b\w*q[^u]\w*\b</span>就能匹配整个<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">Iraq fighting</span>。<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">负向零宽断言</span>能解决这样的问题，因为它只匹配一个位置，并不<b>消费</b>任何字符。现在，我们可以这样来解决这个问题：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b\w*q(?!u)\w*\b</span>。
+</p>
+
+<p class="pp1">
+	<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">零宽度负预测先行断言</span><span class="code span11">(?!exp)</span>，<span class="desc spandesc">断言此位置的后面不能匹配表达式exp</span>。例如：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\d{3}(?!\d)</span>匹配<span class="desc spandesc">三位数字，而且这三位数字的后面不能是数字</span>；<span class="regex" style="line-height: 19px; margin: 3px; color: red;">\b((?!abc)\w)+\b</span>匹配<span class="desc spandesc">不包含连续字符串abc的单词</span>。
+</p>
+
+<p class="pp1">
+	同理，我们可以用<span class="code span11">(?&lt;!exp)</span>,<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">零宽度负回顾后发断言</span>来<span class="desc spandesc">断言此位置的前面不能匹配表达式exp</span>：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(?&lt;![a-z])\d{7}</span>匹配<span class="desc spandesc">前面不是小写字母的七位数字</span>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	请详细分析表达式<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(?&lt;=&lt;(\w+)&gt;).*(?=&lt;\/\1&gt;)</span>，这个表达式最能表现零宽断言的真正用途。
+</p>
+
+<p class="pp1">
+	一个更复杂的例子：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">(?&lt;=&lt;(\w+)&gt;).*(?=&lt;\/\1&gt;)</span>匹配<span class="desc spandesc">不包含属性的简单HTML标签内里的内容</span>。<span class="code span11">(?&lt;=&lt;(\w+)&gt;)</span>指定了这样的<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">前缀</span>：<span class="desc spandesc">被尖括号括起来的单词</span>(比如可能是&lt;b&gt;)，然后是<span class="part" style="line-height: 19px; margin: 3px; color: green;">.*</span>(任意的字符串),最后是一个<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">后缀</span><span class="part" style="line-height: 19px; margin: 3px; color: green;">(?=&lt;\/\1&gt;)</span>。注意后缀里的<span class="part" style="line-height: 19px; margin: 3px; color: green;">\/</span>，它用到了前面提过的字符转义；<span class="part" style="line-height: 19px; margin: 3px; color: green;">\1</span>则是一个反向引用，引用的正是<span class="desc spandesc">捕获的第一组</span>，前面的<span class="part" style="line-height: 19px; margin: 3px; color: green;">(\w+)</span>匹配的内容，这样如果前缀实际上是&lt;b&gt;的话，后缀就是&lt;/b&gt;了。整个表达式匹配的是&lt;b&gt;和&lt;/b&gt;之间的内容(再次提醒，不包括前缀和后缀本身)。
+</p>
+
+<h2 id="commenting" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	注释
+</h2>
+
+<p class="pp1">
+	小括号的另一种用途是通过语法<span class="code span11">(?#comment)</span>来包含注释。例如：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">2[0-4]\d(?#200-249)|25[0-5](?#250-255)|[01]?\d\d?(?#0-199)</span>。
+</p>
+
+<p class="pp1">
+	要包含注释的话，最好是启用&ldquo;忽略模式里的空白符&rdquo;选项，这样在编写表达式时能任意的添加空格，Tab，换行，而实际使用时这些都将被忽略。启用这个选项后，在#后面到这一行结束的所有文本都将被当成注释忽略掉。例如，我们可以前面的一个表达式写成这样：
+</p>
+
+<pre class="regex" style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; color: red; font-size: 13px; line-height: 20.78333282470703px;">      (?&lt;=    # 断言要匹配的文本的前缀
+      &lt;(\w+)&gt; # 查找尖括号括起来的字母或数字(即HTML/XML标签)
+      )       # 前缀结束
+      .*      # 匹配任意文本
+      (?=     # 断言要匹配的文本的后缀
+      &lt;\/\1&gt;  # 查找尖括号括起来的内容：前面是一个&quot;/&quot;，后面是先前捕获的标签
+      )       # 后缀结束</pre>
+
+<h2 id="greedyandlazy" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	贪婪与懒惰
+</h2>
+
+<p class="pp1">
+	当正则表达式中包含能接受重复的限定符时，通常的行为是（在使整个表达式能得到匹配的前提下）匹配<b>尽可能多</b>的字符。以这个表达式为例：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">a.*b</span>，它将会匹配<span class="desc spandesc">最长的以a开始，以b结束的字符串</span>。如果用它来搜索<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">aabab</span>的话，它会匹配整个字符串<span class="desc spandesc">aabab</span>。这被称为<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">贪婪</span>匹配。
+</p>
+
+<p class="pp1">
+	有时，我们更需要<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">懒惰</span>匹配，也就是匹配<b>尽可能少</b>的字符。前面给出的限定符都可以被转化为懒惰匹配模式，只要在它后面加上一个问号<span class="code span11">?</span>。这样<span class="regex" style="line-height: 19px; margin: 3px; color: red;">.*?</span>就意味着<span class="desc spandesc">匹配任意数量的重复，但是在能使整个匹配成功的前提下使用最少的重复</span>。现在看看懒惰版的例子吧：
+</p>
+
+<p class="pp1">
+	<span class="regex" style="line-height: 19px; margin: 3px; color: red;">a.*?b</span>匹配<span class="desc spandesc">最短的，以a开始，以b结束的字符串</span>。如果把它应用于<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">aabab</span>的话，它会匹配<span class="desc spandesc">aab（第一到第三个字符）</span>和<span class="desc spandesc">ab（第四到第五个字符）</span>。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	为什么第一个匹配是aab（第一到第三个字符）而不是ab（第二到第三个字符）？简单地说，因为正则表达式有另一条规则，比懒惰／贪婪规则的优先级更高：最先开始的匹配拥有最高的优先权&mdash;&mdash;The match that begins earliest wins。
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表5.懒惰限定符
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码/语法
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">*?</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复任意次，但尽可能少重复</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">+?</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复1次或更多次，但尽可能少重复</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">??</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复0次或1次，但尽可能少重复</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">{n,m}?</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复n到m次，但尽可能少重复</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">{n,}?</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">重复n次以上，但尽可能少重复</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 id="regexoptions" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	处理选项
+</h2>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	在C#中，你可以使用<a href="javascript:if(confirm(%27http://msdn2.microsoft.com/zh-cn/library/h5845fdz.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://msdn2.microsoft.com/zh-cn/library/h5845fdz.aspx%27" tppabs="http://msdn2.microsoft.com/zh-cn/library/h5845fdz.aspx" style="color: rgb(7, 93, 179); font-weight: bold;" title="MSDN 相关文档">Regex(String, RegexOptions)构造函数</a>来设置正则表达式的处理选项。如：Regex regex = new Regex(@&quot;\ba\w{6}\b&quot;, RegexOptions.IgnoreCase);
+</p>
+
+<p class="pp1">
+	上面介绍了几个选项如忽略大小写，处理多行等，这些选项能用来改变处理正则表达式的方式。下面是.Net中常用的正则表达式选项：
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表6.常用的处理选项
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				名称
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				IgnoreCase(忽略大小写)
+			</td>
+			<td class="tdd1">
+				匹配时不区分大小写。
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				Multiline(多行模式)
+			</td>
+			<td class="tdd1">
+				更改<span class="code span11">^</span>和<span class="code span11">$</span>的含义，使它们分别在任意一行的行首和行尾匹配，而不仅仅在整个字符串的开头和结尾匹配。(在此模式下,<span class="code span11">$</span>的精确含意是:匹配\n之前的位置以及字符串结束前的位置.)
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				Singleline(单行模式)
+			</td>
+			<td class="tdd1">
+				更改<span class="code span11">.</span>的含义，使它与每一个字符匹配（包括换行符\n）。
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				IgnorePatternWhitespace(忽略空白)
+			</td>
+			<td class="tdd1">
+				忽略表达式中的非转义空白并启用由<span class="code span11">#</span>标记的注释。
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				ExplicitCapture(显式捕获)
+			</td>
+			<td class="tdd1">
+				仅捕获已被显式命名的组。
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="pp1">
+	一个经常被问到的问题是：是不是只能同时使用多行模式和单行模式中的一种？答案是：不是。这两个选项之间没有任何关系，除了它们的名字比较相似（以至于让人感到疑惑）以外。
+</p>
+
+<h2 id="balancedgroup" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	平衡组/递归匹配
+</h2>
+
+<p class="important note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: orange; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	这里介绍的平衡组语法是由.Net Framework支持的；其它语言／库不一定支持这种功能，或者支持此功能但需要使用不同的语法。
+</p>
+
+<p class="pp1">
+	有时我们需要匹配像<span class="desc spandesc">( 100 * ( 50 + 15 ) )这样的可嵌套的层次性结构</span>，这时简单地使用<span class="code span11">\(.+\)</span>则只会匹配到最左边的左括号和最右边的右括号之间的内容(这里我们讨论的是贪婪模式，懒惰模式也有下面的问题)。假如原来的字符串里的左括号和右括号出现的次数不相等，比如<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">( 5 / ( 3 + 2 ) ) )</span>，那我们的匹配结果里两者的个数也不会相等。有没有办法在这样的字符串里匹配到最长的，配对的括号之间的内容呢？
+</p>
+
+<p class="pp1">
+	为了避免<span class="code span11">(</span>和<span class="code span11">\(</span>把你的大脑彻底搞糊涂，我们还是用尖括号代替圆括号吧。现在我们的问题变成了如何把<span class="string" style="line-height: 19px; margin: 3px; font-style: italic;">xx &lt;aa &lt;bbb&gt; &lt;bbb&gt; aa&gt; yy</span>这样的字符串里，最长的配对的尖括号内的内容捕获出来？
+</p>
+
+<p class="pp1">
+	这里需要用到以下的语法构造：
+</p>
+
+<ul style="margin-left: 45px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<li style="list-style: inherit;">
+		<span class="code span11">(?&#39;group&#39;)</span>&nbsp;把捕获的内容命名为group,并压入<span class="name" style="line-height: 19px; margin: 3px; font-weight: bold;">堆栈(Stack)</span>
+	</li>
+	<li style="list-style: inherit;">
+		<span class="code span11">(?&#39;-group&#39;)</span>&nbsp;从堆栈上弹出最后压入堆栈的名为group的捕获内容，如果堆栈本来为空，则本分组的匹配失败
+	</li>
+	<li style="list-style: inherit;">
+		<span class="code span11">(?(group)yes|no)</span>&nbsp;如果堆栈上存在以名为group的捕获内容的话，继续匹配yes部分的表达式，否则继续匹配no部分
+	</li>
+	<li style="list-style: inherit;">
+		<span class="code span11">(?!)</span>&nbsp;零宽负向先行断言，由于没有后缀表达式，试图匹配总是失败
+	</li>
+</ul>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	如果你不是一个程序员（或者你自称程序员但是不知道堆栈是什么东西），你就这样理解上面的三种语法吧：第一个就是在黑板上写一个&quot;group&quot;，第二个就是从黑板上擦掉一个&quot;group&quot;，第三个就是看黑板上写的还有没有&quot;group&quot;，如果有就继续匹配yes部分，否则就匹配no部分。
+</p>
+
+<p class="pp1">
+	我们需要做的是每碰到了左括号，就在压入一个&quot;Open&quot;,每碰到一个右括号，就弹出一个，到了最后就看看堆栈是否为空－－如果不为空那就证明左括号比右括号多，那匹配就应该失败。正则表达式引擎会进行回溯(放弃最前面或最后面的一些字符)，尽量使整个表达式得到匹配。
+</p>
+
+<pre class="regex" style="margin-top: 0px; margin-bottom: 0px; white-space: pre-wrap; word-wrap: break-word; color: red; font-size: 13px; line-height: 20.78333282470703px;">&lt;                         #最外层的左括号
+    [^<>]*                #最外层的左括号后面的不是括号的内容
+    (
+        (
+            (?&#39;Open&#39;&lt;)    #碰到了左括号，在黑板上写一个&quot;Open&quot;
+            [^<>]*       #匹配左括号后面的不是括号的内容
+        )+
+        (
+            (?&#39;-Open&#39;&gt;)   #碰到了右括号，擦掉一个&quot;Open&quot;
+            [^<>]*        #匹配右括号后面不是括号的内容
+        )+
+    )*
+    (?(Open)(?!))         #在遇到最外层的右括号前面，判断黑板上还有没有没擦掉的&quot;Open&quot;；如果还有，则匹配失败
+
+&gt;                         #最外层的右括号</pre>
+
+<p class="pp1">
+	平衡组的一个最常见的应用就是匹配HTML,下面这个例子可以匹配<span class="desc spandesc">嵌套的&lt;div&gt;标签</span>：<span class="regex" style="line-height: 19px; margin: 3px; color: red;">&lt;div[^>]*>[^<>]*(((?'Open'<div[^>]*>)[^<>]*)+((?'-Open'</div>)[^<>]*)+)*(?(Open)(?!))&lt;/div&gt;</span>.
+</p>
+
+<h2 id="more" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	还有些什么东西没提到
+</h2>
+
+<p class="pp1">
+	上边已经描述了构造正则表达式的大量元素，但是还有很多没有提到的东西。下面是一些未提到的元素的列表，包含语法和简单的说明。你可以在网上找到更详细的参考资料来学习它们--当你需要用到它们的时候。如果你安装了MSDN Library,你也可以在里面找到.net下正则表达式详细的文档。
+</p>
+
+<p class="note" style="margin: 5px 20px; text-indent: 2em; line-height: 18px; float: right; width: 300px; padding: 5px; background-color: rgb(238, 238, 238); border: 1px solid gray; clear: right; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px;">
+	这里的介绍很简略，如果你需要更详细的信息，而又没有在电脑上安装MSDN Library,可以查看<a href="javascript:if(confirm(%27http://msdn.microsoft.com/zh-cn/library/az24scfc.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://msdn.microsoft.com/zh-cn/library/az24scfc.aspx%27" tppabs="http://msdn.microsoft.com/zh-cn/library/az24scfc.aspx" style="color: rgb(7, 93, 179); font-weight: bold;">关于正则表达式语言元素的MSDN在线文档</a>。
+</p>
+
+<table cellspacing="0" style="margin: auto; border: 1px solid rgb(192, 192, 192); background-color: rgb(238, 238, 238); border-collapse: collapse; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<caption style="margin: auto; font-weight: bold;">
+		表7.尚未详细讨论的语法
+	</caption>
+	<thead>
+		<tr>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				代码/语法
+			</th>
+			<th scope="col" style="border: 1px solid rgb(192, 192, 192); border-collapse: collapse; padding: 3px;">
+				说明
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\a</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">报警字符(打印它的效果是电脑嘀一声)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\b</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">通常是单词分界位置，但如果在字符类里使用代表退格</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\t</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">制表符，Tab</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\r</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">回车</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\v</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">竖向制表符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\f</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">换页符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\n</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">换行符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\e</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">Escape</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\0nn</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">ASCII代码中八进制代码为nn的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\xnn</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">ASCII代码中十六进制代码为nn的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\unnnn</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">Unicode代码中十六进制代码为nnnn的字符</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\cN</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">ASCII控制字符。比如\cC代表Ctrl+C</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\A</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">字符串开头(类似^，但不受处理多行选项的影响)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\Z</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">字符串结尾或行尾(不受处理多行选项的影响)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\z</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">字符串结尾(类似$，但不受处理多行选项的影响)</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\G</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">当前搜索的开头</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">\p{name}</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">Unicode中命名为name的字符类，例如\p{IsGreek}</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?&gt;exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">贪婪子表达式</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?&lt;x&gt;-&lt;y&gt;exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">平衡组</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?im-nsx:exp)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">在子表达式exp中改变处理选项</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?im-nsx)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">为表达式后面的部分改变处理选项</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?(exp)yes|no)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">把exp当作零宽正向先行断言，如果在这个位置能匹配，使用yes作为此组的表达式；否则使用no</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?(exp)yes)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">同上，只是使用空表达式作为no</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?(name)yes|no)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">如果命名为name的组捕获到了内容，使用yes作为表达式；否则使用no</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="tdd1">
+				<span class="code span11">(?(name)yes)</span>
+			</td>
+			<td class="tdd1">
+				<span class="desc spandesc">同上，只是使用空表达式作为no</span>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 id="contact" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	联系作者
+</h2>
+
+<p class="pp1">
+	好吧,我承认,我骗了你,读到这里你肯定花了不止30分钟.相信我,这是我的错,而不是因为你太笨.我之所以说&quot;30分钟&quot;,是为了让你有信心,有耐心继续下去.既然你看到了这里,那证明我的阴谋成功了.被忽悠的感觉很爽吧？
+</p>
+
+<p class="pp1">
+	要投诉我,或者觉得我其实可以忽悠得更高明,或者有任何其它问题,欢迎来<a href="" style="color: rgb(7, 93, 179); font-weight: bold;">我的博客</a>让我知道.
+</p>
+
+<p class="pp1">
+	&nbsp;
+</p>
+
+<h2 id="resources" style="margin-top: 10px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; line-height: 20.78333282470703px;">
+	网上的资源及本文参考文献
+</h2>
+
+<ul style="margin-left: 45px; color: rgb(0, 0, 0); font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; font-size: 13px; line-height: 20.78333282470703px;">
+	<li style="list-style: inherit;">
+		<a href="javascript:if(confirm(%27http://msdn.microsoft.com/library/chs/default.asp?url=/library/CHS/jscript7/html/jsreconintroductiontoregularexpressions.asp  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://msdn.microsoft.com/library/chs/default.asp?url=/library/CHS/jscript7/html/jsreconintroductiontoregularexpressions.asp%27" tppabs="http://msdn.microsoft.com/library/chs/default.asp?url=/library/CHS/jscript7/html/jsreconintroductiontoregularexpressions.asp" style="color: rgb(7, 93, 179); font-weight: bold;">微软的正则表达式教程</a>
+	</li>
+	<li style="list-style: inherit;">
+		<a href="javascript:if(confirm(%27http://msdn2.microsoft.com/zh-cn/library/system.text.regularexpressions.regex.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://msdn2.microsoft.com/zh-cn/library/system.text.regularexpressions.regex.aspx%27" tppabs="http://msdn2.microsoft.com/zh-cn/library/system.text.regularexpressions.regex.aspx" style="color: rgb(7, 93, 179); font-weight: bold;">System.Text.RegularExpressions.Regex类(MSDN)</a>
+	</li>
+	<li style="list-style: inherit;">
+		<a href="javascript:if(confirm(%27http://www.regular-expressions.info/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.regular-expressions.info/%27" tppabs="http://www.regular-expressions.info/" style="color: rgb(7, 93, 179); font-weight: bold;">专业的正则表达式教学网站(英文)</a>
+	</li>
+	<li style="list-style: inherit;">
+		<a href="javascript:if(confirm(%27http://weblogs.asp.net/whaggard/archive/2005/02/20/377025.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://weblogs.asp.net/whaggard/archive/2005/02/20/377025.aspx%27" tppabs="http://weblogs.asp.net/whaggard/archive/2005/02/20/377025.aspx" style="color: rgb(7, 93, 179); font-weight: bold;">关于.Net下的平衡组的详细讨论（英文）</a>
+	</li>
+	<li style="list-style: inherit;">
+		<a href="javascript:if(confirm(%27http://www.oreilly.com/catalog/regex2/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.oreilly.com/catalog/regex2/%27" tppabs="http://www.oreilly.com/catalog/regex2/" style="color: rgb(7, 93, 179); font-weight: bold;">Mastering Regular Expressions (Second Edition)</a>
+	</li>
+</ul>
+
+		<!--内容块结束-->
+	</div>
+	<input type="hidden" id="encode" value="1" />
+	<div class="panel-footer"></div>
+</div>
+<script src="adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js" tppabs="http://www.bejson.com/static/js/adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	if (typeof(killads)=='undefined'){
+		console.log('广告被过滤');
+		$("body").css({"background":"url('data:image/png;base64,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') repeat"})
+		
+	}
+</script><!-- content ed -->
+<!--<script src="//cdn.staticfile.org/layer/2.3/layer.js"></script>-->
+<div  id="ga">
+    <script async src="adsbygoogle.js" tppabs="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- bejson,970x90 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:970px;height:90px"
+         data-ad-client="ca-pub-1130438465287629"
+         data-ad-slot="8181570098"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<script src="layer2.js" tppabs="http://www.bejson.com/static/3part/layer2/layer2.js" type="text/javascript" charset="utf-8"></script>
+</div></div></div></div></div>
+<script src="bejsoncommon.js-v=20170711.js" tppabs="http://www.bejson.com/static/js/bejsoncommon.js?v=20170711"></script>
+<script>
+//GetJs("bejsoncommon.js-v=20170711.js"/*tpa=http://www.bejson.com/static/js/bejsoncommon.js?v=20170711*/,"bejson_common",NewVer);
+	function getCookie(cookieName){  
+        var cookieValue="";  
+        if (document.cookie && document.cookie != '') {   
+            var cookies = document.cookie.split(';');  
+            for (var i = 0; i < cookies.length; i++) {   
+                 var cookie = cookies[i];  
+                 if (cookie.substring(0, cookieName.length + 2).trim() == cookieName.trim() + "=") {  
+                       cookieValue = cookie.substring(cookieName.length + 2, cookie.length);   
+                       break;  
+                 }  
+             }  
+        }   
+        return cookieValue;  
+   }
+	
+var figureurl = getCookie("vdh_figureurl");
+if(figureurl!="" && $("#touxiang").attr("src")=="//www.bejson.com/static/common/QQ2.svg"){
+	$("#touxiang").attr("src",decodeURIComponent(figureurl));
+	$("#touxiang").after('<ul class="dropdown-menu" id="user_drop"> <li><a href="index-124.htm"/*tpa=http://www.bejson.com/mytools/shoucang/*/><i class="icon icon-inbox"></i> 网络收藏夹</a></li> <li><a href="http://www.bejson.com/account/openid/qq/bind/return_url-"><i class="icon icon-inbox"></i> 图床</a></li> <li><a href="index-126.htm"/*tpa=http://www.bejson.com/account/logout/*/><i class="icon icon-logout"></i> 退出</a></li>');
+}
+</script>
+<script src="z_stat.php-id=3302454&web_id=3302454.js" tppabs="https://s9.cnzz.com/z_stat.php?id=3302454&web_id=3302454" async="async" language="JavaScript"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "hm.js-ddbefc59d8991dcfdf3e602a50174fbb"/*tpa=https://hm.baidu.com/hm.js?ddbefc59d8991dcfdf3e602a50174fbb*/;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</div>
+</body></html>

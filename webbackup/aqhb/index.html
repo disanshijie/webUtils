@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0036)https://www.zmrbk.com/tool/aqhb.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>爱情画报——记录我们的爱情 By：追梦人博客|zmrbk.com</title>
+    <meta name="description" content=" 爱情画报，守望爱情，用心记录我们的爱情！">
+    <meta name="keywords" content="爱情,HTML5特效,浪漫特效,网页浪漫特效,爱情画报,追梦爱情,追梦人爱情,爱情板报,记录爱情">
+    <meta name="author" content="Dreamer">
+    <meta name="robots" content="http://www.zmrbk.com/tool/index.htm">
+    <meta name="copyright" content="Copyright 2013 	Dreamer">
+	
+	<link href="./index_files/default.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" async="" src="./index_files/ga.js"></script><script type="text/javascript" async="" src="./index_files/ga(1).js"></script><script type="text/javascript" async="" src="./index_files/ga(2).js"></script><script type="text/javascript" src="./index_files/jquery.min.js"></script>
+	<script type="text/javascript" src="./index_files/jquery-ui.min.js"></script>
+    <link href="./index_files/jquery-ui-1.8.2.custom.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+	    var _gaq = _gaq || [];
+	    _gaq.push(['_setAccount', 'UA-17073626-1']);
+	    _gaq.push(['_trackPageview']);
+	    (function () {
+	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	    })();
+    </script>
+    <script type="text/javascript">
+	
+	(function ($) {
+
+	    function Vector(x, y) {
+	        this.x = x;
+	        this.y = y;
+	    };
+	    Vector.prototype = {
+	        rotate: function (theta) {
+	            var x = this.x;
+	            var y = this.y;
+	            this.x = Math.cos(theta) * x - Math.sin(theta) * y;
+	            this.y = Math.sin(theta) * x + Math.cos(theta) * y;
+	            return this;
+	        },
+	        mult: function (f) {
+	            this.x *= f;
+	            this.y *= f;
+	            return this;
+	        },
+	        clone: function () {
+	            return new Vector(this.x, this.y);
+	        },
+	        length: function () {
+	            return Math.sqrt(this.x * this.x + this.y * this.y);
+	        },
+	        subtract: function (v) {
+	            this.x -= v.x;
+	            this.y -= v.y;
+	            return this;
+	        },
+	        set: function (x, y) {
+	            this.x = x;
+	            this.y = y;
+	            return this;
+	        }
+	    };
+
+	    function Petal(stretchA, stretchB, startAngle, angle, growFactor, bloom) {
+	        this.stretchA = stretchA;
+	        this.stretchB = stretchB;
+	        this.startAngle = startAngle;
+	        this.angle = angle;
+	        this.bloom = bloom;
+	        this.growFactor = growFactor;
+	        this.r = 1;
+	        this.isfinished = false;
+	        //this.tanAngleA = Garden.random(-Garden.degrad(Garden.options.tanAngle), Garden.degrad(Garden.options.tanAngle));
+	        //this.tanAngleB = Garden.random(-Garden.degrad(Garden.options.tanAngle), Garden.degrad(Garden.options.tanAngle));
+	    }
+	    Petal.prototype = {
+	        draw: function () {
+	            var ctx = this.bloom.garden.ctx;
+	            var v1, v2, v3, v4;
+	            v1 = new Vector(0, this.r).rotate(Garden.degrad(this.startAngle));
+	            v2 = v1.clone().rotate(Garden.degrad(this.angle));
+	            v3 = v1.clone().mult(this.stretchA); //.rotate(this.tanAngleA);
+	            v4 = v2.clone().mult(this.stretchB); //.rotate(this.tanAngleB);
+	            ctx.strokeStyle = this.bloom.c;
+	            ctx.beginPath();
+	            ctx.moveTo(v1.x, v1.y);
+	            ctx.bezierCurveTo(v3.x, v3.y, v4.x, v4.y, v2.x, v2.y);
+	            ctx.stroke();
+	        },
+	        render: function () {
+	            if (this.r <= this.bloom.r) {
+	                this.r += this.growFactor; // / 10;
+	                this.draw();
+	            } else {
+	                this.isfinished = true;
+	            }
+	        }
+	    }
+
+	    function Bloom(p, r, c, pc, garden) {
+	        this.p = p;
+	        this.r = r;
+	        this.c = c;
+	        this.pc = pc;
+	        this.petals = [];
+	        this.garden = garden;
+	        this.init();
+	        this.garden.addBloom(this);
+	    }
+	    Bloom.prototype = {
+	        draw: function () {
+	            var p, isfinished = true;
+	            this.garden.ctx.save();
+	            this.garden.ctx.translate(this.p.x, this.p.y);
+	            for (var i = 0; i < this.petals.length; i++) {
+	                p = this.petals[i];
+	                p.render();
+	                isfinished *= p.isfinished;
+	            }
+	            this.garden.ctx.restore();
+	            if (isfinished == true) {
+	                this.garden.removeBloom(this);
+	            }
+	        },
+	        init: function () {
+	            var angle = 360 / this.pc;
+	            var startAngle = Garden.randomInt(0, 90);
+	            for (var i = 0; i < this.pc; i++) {
+	                this.petals.push(new Petal(Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max), Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max), startAngle + i * angle, angle, Garden.random(Garden.options.growFactor.min, Garden.options.growFactor.max), this));
+	            }
+	        }
+	    }
+
+	    function Garden(ctx, element) {
+	        this.blooms = [];
+	        this.element = element;
+	        this.ctx = ctx;
+	    }
+	    Garden.prototype = {
+	        render: function () {
+	            for (var i = 0; i < this.blooms.length; i++) {
+	                this.blooms[i].draw();
+	            }
+	        },
+	        addBloom: function (b) {
+	            this.blooms.push(b);
+	        },
+	        removeBloom: function (b) {
+	            var bloom;
+	            for (var i = 0; i < this.blooms.length; i++) {
+	                bloom = this.blooms[i];
+	                if (bloom === b) {
+	                    this.blooms.splice(i, 1);
+	                    return this;
+	                }
+	            }
+	        },
+	        createRandomBloom: function (x, y) {
+	            this.createBloom(x, y, Garden.randomInt(Garden.options.bloomRadius.min, Garden.options.bloomRadius.max), Garden.randomrgba(Garden.options.color.min, Garden.options.color.max, Garden.options.color.opacity), Garden.randomInt(Garden.options.petalCount.min, Garden.options.petalCount.max));
+	        },
+	        createBloom: function (x, y, r, c, pc) {
+	            new Bloom(new Vector(x, y), r, c, pc, this);
+	        },
+	        clear: function () {
+	            this.blooms = [];
+	            this.ctx.clearRect(0, 0, this.element.width, this.element.height);
+	        }
+	    }
+
+	    Garden.options = {
+	        petalCount: {
+	            min: 5,
+	            max: 15
+	        },
+	        petalStretch: {
+	            min: 0.1,
+	            max: 3
+	        },
+	        growFactor: {
+	            min: 0.1,
+	            max: 1
+	        },
+	        bloomRadius: {
+	            min: 5,
+	            max: 20
+	        },
+	        density: 10,
+	        growSpeed: 1000 / 60,
+	        color: {
+	            min: 0,
+	            max: 255,
+	            opacity: 0.5
+	        },
+	        tanAngle: 90
+	    };
+	    Garden.random = function (min, max) {
+	        return Math.random() * (max - min) + min;
+	    };
+	    Garden.randomInt = function (min, max) {
+	        return Math.floor(Math.random() * (max - min + 1)) + min;
+	    };
+	    Garden.circle = 2 * Math.PI;
+	    Garden.degrad = function (angle) {
+	        return Garden.circle / 360 * angle;
+	    };
+	    Garden.raddeg = function (angle) {
+	        return angle / Garden.circle * 360;
+	    };
+	    Garden.rgba = function (r, g, b, a) {
+	        return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+	    };
+	    Garden.randomrgba = function (min, max, a) {
+	        return Garden.rgba(Math.round(Garden.random(min, max)), Math.round(Garden.random(min, max)), Math.round(Garden.random(min, max)), a);
+	    };
+	    Garden.previewColor = "rgba(127,127,127,0.4)";
+
+	    $(function () {
+
+	        function renderPreview(caller) {
+	            clearInterval(previewInterval);
+	            previewInterval = setInterval(function () {
+	                preview.render();
+	            }, 1);
+	            preview.clear();
+	            var $caller = $(caller);
+	            var id = $caller.attr("id");
+	            $previewArea.css({
+	                top: 50,
+	                left: $caller.position().left - 40
+	            }, 100).fadeIn("slow");
+	        }
+
+	        function previewBloomRadius() {
+	            $lblPreview.html("Size [left: min, right: max]");
+	            preview.createBloom(80, 100, Garden.options.bloomRadius.min, Garden.previewColor, Garden.options.petalCount.min);
+	            preview.createBloom(220, 100, Garden.options.bloomRadius.max, Garden.previewColor, Garden.options.petalCount.max);
+	        }
+
+	        function previewPetalCount() {
+	            $lblPreview.text("Petals [left: min, right: max]");
+	            preview.createBloom(80, 100, 30, Garden.previewColor, Garden.options.petalCount.min);
+	            preview.createBloom(220, 100, 30, Garden.previewColor, Garden.options.petalCount.max);
+	        }
+
+	        function previewPetalStretch() {
+	            $lblPreview.text("Bezier stretch factor");
+	            preview.createBloom(80, 100, 30, Garden.previewColor, Garden.options.petalCount.min);
+	            preview.createBloom(220, 100, 30, Garden.previewColor, Garden.options.petalCount.max);
+	        }
+
+	        function previewColor() {
+	            $lblPreview.text("Color variability");
+	            for (var i = 1; i < 5; i++) {
+	                for (var j = 1; j < 4; j++) {
+	                    preview.createBloom(i * 60, j * 50, 20, Garden.randomrgba(Garden.options.color.min, Garden.options.color.max, Garden.options.color.opacity), Garden.random(Garden.options.petalCount.min, Garden.options.petalCount.max));
+	                }
+	            }
+	        }
+
+	        function onChangeBloomRadius(v, caller) {
+	            saveValues("bloomRadius", v);
+	            renderPreview(caller);
+	            previewBloomRadius();
+	        }
+
+	        function onChangePetalCount(v, caller) {
+	            saveValues("petalCount", v);
+	            renderPreview(caller);
+	            previewPetalCount();
+	        }
+
+	        function onChangePetalStretch(v, caller) {
+	            saveValues("petalStretch", v);
+	            renderPreview(caller);
+	            previewPetalStretch();
+	        }
+
+	        function onChangeColor(v, caller) {
+	            saveValues("color", v);
+	            renderPreview(caller);
+	            previewColor();
+	        }
+
+	        function saveValues(name, values) {
+	            Garden.options[name].min = values[0];
+	            Garden.options[name].max = values[1];
+	        }
+
+	        // variables
+
+	        var mousePressed = false, lastPos = new Vector(0, 0), actualPos = new Vector(0, 0), $window = $(window), $lblPreview = $("#lblPreview");
+
+	        // garden
+
+	        var gardenCtx, gardenCanvas, $garden, garden, previewInterval;
+
+	        // preview
+
+	        var previewCtx, previewCanvas, $preview, preview, $previewArea;
+
+	        // saveCanvas
+
+	        var saveCtx, saveCanvas;
+
+	        // setup save
+
+	        saveCanvas = $("#save")[0];
+	        saveCanvas.width = $window.width();
+	        saveCanvas.height = $window.height();
+	        saveCtx = saveCanvas.getContext("2d");
+	        saveCtx.globalCompositeOperation = "lighter";
+
+	        // setup garden
+
+	        $garden = $("#garden");
+	        gardenCanvas = $garden[0];
+	        gardenCanvas.width = $window.width();
+	        gardenCanvas.height = $window.height() - 20;
+	        gardenCtx = gardenCanvas.getContext("2d");
+	        gardenCtx.globalCompositeOperation = "lighter";
+	        garden = new Garden(gardenCtx, gardenCanvas);
+
+	        // setup preview
+
+	        $preview = $("#preview");
+	        $previewArea = $("#previewArea");
+	        previewCanvas = $preview[0];
+	        previewCtx = previewCanvas.getContext("2d");
+	        previewCtx.globalCompositeOperation = "lighter";
+	        preview = new Garden(previewCtx, previewCanvas);
+
+	        // renderLoop
+
+	        setInterval(function () {
+	            garden.render();
+	        }, Garden.options.growSpeed);
+
+	        // sliders
+
+	        $("#sliderBloomRadius").slider({
+	            range: true,
+	            min: 3,
+	            max: 40,
+	            values: [5, 20],
+	            start: function (e, ui) {
+	                onChangeBloomRadius(ui.values, this);
+	            },
+	            slide: function (e, ui) {
+	                onChangeBloomRadius(ui.values, this);
+	            }
+	        });
+
+	        $("#sliderPetalCount").slider({
+	            range: true,
+	            min: 3,
+	            max: 25,
+	            values: [5, 15],
+	            start: function (e, ui) {
+	                onChangePetalCount(ui.values, this);
+	            },
+	            slide: function (e, ui) {
+	                onChangePetalCount(ui.values, this);
+	            }
+	        });
+
+	        $("#sliderPetalStretch").slider({
+	            range: true,
+	            min: 0.2,
+	            max: 5,
+	            values: [0.1, 3],
+	            start: function (e, ui) {
+	                onChangePetalStretch(ui.values, this);
+	            },
+	            slide: function (e, ui) {
+	                onChangePetalStretch(ui.values, this);
+	            }
+	        });
+
+	        $("#sliderColor").slider({
+	            range: true,
+	            min: 0,
+	            max: 255,
+	            values: [0, 255],
+	            start: function (e, ui) {
+	                onChangeColor(ui.values, this);
+	            },
+	            slide: function (e, ui) {
+	                onChangeColor(ui.values, this);
+	            }
+	        });
+
+	        // events
+
+	        $garden.bind("mouseover", function (e) {
+	            clearInterval(previewInterval);
+	            $previewArea.fadeOut("slow");
+	        });
+	        //$(".label").bind("mouseover", function (e) {
+	        //    clearInterval(previewInterval);
+	        //    $previewArea.fadeOut("slow");
+	        //});
+	        $garden.bind("mousedown", function (e) {
+	            e.preventDefault();
+	            var x = e.clientX;
+	            var y = e.clientY - 30;
+	            mousePressed = true;
+	            garden.createRandomBloom(x, y);
+	        });
+	        $garden.bind("mouseup", function (e) {
+	            mousePressed = false;
+	        });
+	        $garden.bind("mousemove", function (e) {
+	            var x = e.clientX;
+	            var y = e.clientY - 30;
+	            var l = actualPos.set(x, y).subtract(lastPos).length();
+	            if (mousePressed && l > (Garden.options.bloomRadius.max)) {
+	                garden.createRandomBloom(x, y);
+	                lastPos.set(x, y);
+	            }
+	        });
+	        $("#btnClear").click(function (e) {
+	            garden.clear();
+	        });
+	        $("#btnSave").click(function (e) {
+	            saveCtx.fillStyle = '#000000';
+	            saveCtx.fillRect(0, 0, saveCanvas.width, saveCanvas.height);
+	            saveCtx.drawImage(gardenCanvas, 0, 0);
+	            window.open(saveCanvas.toDataURL('image/png'), 'FlowerPowerImage');
+	        });
+
+	        // Welcome screen
+
+	        $("#welcomeScreen").css({
+	            top: $window.height() - 100,
+	            left: $window.width() / 2 - 300
+	        }).fadeIn("slow");
+
+	        $("body").bind("click", function (e) {
+	            $("#welcomeScreen").fadeOut("slow");
+	            $(this).unbind("click");
+	        });
+
+	        // About
+
+	        $("#btnAbout").toggle(function (e) {
+	            $("#aboutScreen").css({
+	                width: $("#configArea div.label:first").width() - 20,
+	                left: 10,
+	                top: 25
+	            }).fadeIn("slow");
+	        }, function (e) {
+	            $("#aboutScreen").fadeOut("slow");
+	        });
+
+	    });
+	})(jQuery);
+	
+	</script>
+<style type="text/css" abt="234"></style><style type="text/css"></style><script>//remove baidu search ad
+var _countAA = 0
+function doBBBd(){
+    var alla = document.getElementsByTagName('a')
+    for(var i = 0; i < alla.length; i++){
+        if(/baidu.com\/(baidu.php\?url=|adrc.php\?t)/.test(alla[i].href)){
+            var _temp = alla[i].parentElement, loop = 0
+            while(loop < 5){
+                _temp = _temp.parentElement
+                loop++
+                if(_temp.parentElement.id == 'content_left'){
+                    _temp.remove()
+                    break
+                }
+            }
+        }
+    }
+    
+    if(_countAA++ < 20){
+        setTimeout(doBBBd, 500)
+    }
+    
+}
+doBBBd()
+document.addEventListener('keyup', function(){_countAA-=10;doBBBd()}, false)
+document.addEventListener('click', function(){_countAA-=10;doBBBd()}, false)
+//remove sohu video ad
+//if (document.URL.indexOf("tv.sohu.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+//remove 56.com video ad
+//if (document.URL.indexOf("56.com") >= 0){
+//    if (document.cookie.indexOf("fee_status=true")==-1){document.cookie='fee_status=true'};
+//}
+</script></head>
+
+<body>
+    <div id="configArea">
+    <div class="label"><span style="padding: 4px 10px; background: #a7d7f9; color: Black;"><b><script src="http://s21.cnzz.com/stat.php" language="JavaScript"></script></b> © By:<a href="http://www.zmrbk.com/"></a></span></div>
+    <div class="label">大 小</div>
+    <div class="slider"><div id="sliderBloomRadius" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 5.405405405405405%; width: 40.54054054054055%; "></div><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 5.405405405405405%; "></a><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 45.94594594594595%; "></a><div class="ui-slider-range ui-widget-header" style="left: 5.405405405405405%; width: 40.54054054054055%; "></div><div class="ui-slider-range ui-widget-header" style="left: 5.40541%; width: 40.5405%;"></div></div></div>
+    <div class="label"> 花 瓣</div>
+    <div class="slider"><div id="sliderPetalCount" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 9.090909090909092%; width: 45.454545454545446%; "></div><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 9.090909090909092%; "></a><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 54.54545454545454%; "></a><div class="ui-slider-range ui-widget-header" style="left: 9.090909090909092%; width: 45.454545454545446%; "></div><div class="ui-slider-range ui-widget-header" style="left: 9.09091%; width: 45.4545%;"></div></div></div>    
+    <div class="label"> 曲 线</div>
+    <div class="slider"><div id="sliderPetalStretch" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 58.333333333333336%; "></div><a href="http://www.zmrbk.com/index.htm" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%; "></a><a href="http://www.zmrbk.com/index.htm" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 58.333333333333336%; "></a><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 58.333333333333336%; "></div><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 58.3333%;"></div></div></div>
+    <div class="label">颜 色</div>
+    <div class="slider"><div id="sliderColor" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 100%; "></div><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%; "></a><a href="http://www.zmrbk.com/" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 100%; "></a><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 100%; "></div><div class="ui-slider-range ui-widget-header" style="left: 0%; width: 100%;"></div></div>
+    </div>
+    <div class="label" style="float:right;">
+    <script type="text/javascript">
+        var flattr_url = 'http://www.openrise.com/lab/FlowerPower/';
+        var flattr_btn = 'compact';
+    </script>
+    <script src="./index_files/load.js" type="text/javascript"></script>
+    <a href="http://www.zmrbk.com/">主 页</a>    </div>
+    <div class="label" style="float: right;"><a id="btnSave" href="https://www.zmrbk.com/tool/aqhb.html#">保 存</a></div>
+    <div class="label" style="float: right;"><a id="btnClear" href="https://www.zmrbk.com/tool/aqhb.html#">重 画</a></div>
+	<div class="label" style="float: right;">(搜狗浏览器请切换到高速模式)</div>
+    <div style="clear: both;"></div>
+    </div>
+	<canvas id="garden" width="1726" height="766" style="cursor: crosshair;"></canvas>
+    <canvas id="save" style="display:none" width="1726" height="786"></canvas>
+    <div id="previewArea"><div id="lblPreview">Preview</div>
+    <canvas id="preview" width="300" height="200"></canvas>
+    </div>
+    <div id="welcomeScreen" style="top: 686px; left: 563px; display: none;"><p align="center">爱情画报 记录我们的爱情</p></div>
+	<embed src="" autostart="true" loop="true" hidden="true">
+
+</body></html>

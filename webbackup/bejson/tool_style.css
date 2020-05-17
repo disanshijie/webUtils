@@ -1,0 +1,691 @@
+    * {
+    padding:0;
+    margin:0
+}
+img,input {
+    border:0;
+    vertical-align:middle
+}
+ul,ol {
+    list-style:none
+}
+a {
+    text-decoration:none
+}
+body {
+    font-family:Arial, Helvetica, sans-serif,"宋体";
+    font-size:12px;
+    line-height:1
+}
+.clear {
+    clear:both
+}
+.f_l {
+    float:left
+}
+.f_r {
+    float:right
+}
+
+#quickButton a{cursor:pointer}
+.header,.nav,.main {
+    width:960px;
+    margin:0 auto;
+    font-size:13px
+}
+.header {
+    height:68px;
+    overflow:hidden;
+    zoom:1;
+    padding-top:9px;
+}
+.header:after{
+    visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;
+}
+.logo {
+    text-align:center;
+    float:left;
+    display:inline;
+    width:300px;
+    overflow:hidden;
+    padding:5px 0;
+}
+.toppic{
+    margin-left:20px;
+    width:640px;
+    overflow:hidden;
+    float:right;
+    display:inline;
+}
+.navbg { /*.footer*/
+    background:url(bgx.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bgx.png*/ repeat-x
+}
+.navbg {
+    position:absolute;
+    top:78px;
+    left:0;
+    background-position:0 0;
+    display:inline-block;
+    width:100%;
+    height:179px
+}
+.nav {
+    font-size:13px;
+    height:67px;
+    position:relative
+}
+.basetab {
+    height:30px;
+    line-height:30px;
+    padding-top:8px
+}
+.basetab li {
+    float:left;
+    font-weight:bold
+}
+.basetab li a, .basetab li span {
+    color:#fff;
+    display:inline-block;
+    padding:0 22px
+}
+
+.basetab .hover {    background:url(nav_left.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/nav_left.png*/ no-repeat #FFF}
+.basetab .hover a,.basetab .hover span {    color:#234562;    background:url(nav_right.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/nav_right.png*/ no-repeat right top;    cursor:pointer}
+.subtab {    width:100%;    height:30px;    overflow:hidden}
+.subtab ul {    line-height:30px;    width:100%;  display:none; margin-left:20px;}
+.subtab ul.show{display: inline-block;}
+.subtab ul li {float:left;    margin:0 20px 0 0}
+.subtab ul li a {color:#666}
+.main {padding-top:15px; position:relative;}
+.main p{color:#666; margin:12px 0 20px 44px; line-height:20px;}
+.footer {clear:both;    margin:30px auto 0;  text-align:center; line-height:22px;  color:#666; background-position:0 -278px;}
+.footer .links{text-align: center; background: #F3F3F3; border: 1px solid #EBEBEB; height: 30px; line-height: 30px; color: #333; }
+.footer a {    color: #32628B;  padding:0 6px;}
+.footer ul{width:400px;  text-align:center; margin: 0 auto;}
+.footer li{float:left; color:#32628B; padding:0 6px;}
+.footer span{padding:0 6px;}
+.input_width {    width:350px}
+.table .bg {    background:#edf7ff}
+.table {    background:#d0e2f2;    border-collapse:separate;    border-spacing:1px;    width:100%}
+.table tr {    background:#fff;    color:#333}
+.table .table_tit td {    background:#eaf5ff;    text-align:center;    color:#32628b;    font-size:14px}
+.table_tit span {    color:#080}
+.table_tit span a{color:#080}
+.table .table_top {    color:#333;    font-size:13px}
+.table td {    height:30px;    line-height:30px;    text-align:center;    font-size:13px;    zoom:1}
+.table td span {    zoom:1}
+span.ajaxLoading{display:inline-block}
+.bad {    color:#98080b}
+.desc {    margin-top:30px;    width:100%;    clear:both}
+.desc_tit {    font-size:14px;    color:#32628b;    font-weight:bold;    border-top:1px solid #ccc;    padding:15px 0 10px}
+.desc pre{    background:#EFEFEF;    font-family: "Courier New",Courier,mono;    font-size:12px;    line-height:23px;    padding:10px;    color:#666;}
+.desc p {    line-height:30px;    font-size:13px;    color:#666;    margin-top:10px;    margin-left:26px;}
+.sortBtn {    cursor:pointer;    text-decoration:underline;    color:#32628b}
+#Hide_Box {    border:1px #ccc solid;    top:31px;    background:#fff;    display:none;    position:absolute;    z-index:9999;    font-size:12px}
+#Hide_Box li {height:26px;    line-height:26px;    text-align:left;    cursor:pointer;    text-indent:10px;    color:#98080b; overflow: hidden; 
+              text-overflow: ellipsis; white-space: nowrap; width:255px; float:left; }
+#Hide_Box .xPng { clear:left; background:url(close-1.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/close.gif*/ no-repeat; background-position:0 8px;  width:16px; height:26px; float:left; cursor:pointer; margin-left:5px}
+#Hide_Box a {color:#f90}
+#Hide_Box li.Mhover {    background:#d8edff}
+.box {    line-height:24px;    color:#32628b;    font-size:14px;    width:100%}
+form .box {    padding-top:10px}
+.spanright {    background-position:0 -137px;    width:4px;    height:30px;    float:left}
+.rightbox .inquiry {    color:#fff; display: inline-block; text-align: center;}
+.get_url_list li {    line-height:30px;    font-size:13px}
+.get_url_list li span {    color:#008000}
+.get_url_list .status_error span {    color:#f00}
+.status_error a {    color:#f00}
+.timeout {    color:#f00}
+.center {    text-align:center;    line-height:30px;    height:30px;    font-size:13px;    color:#666;    clear:both}
+.center a {    color:green;}
+.jsBtn {    background:url(lBtn.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/lBtn.png*/ no-repeat;    width:90px;    height:30px;    color:#fff;    cursor:pointer}
+.jsBtn2 {    background:url(lBtn.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/lBtn.png*/ no-repeat;    background-position:0 -40px;    width:128px;    height:30px;    color:#fff;    cursor:pointer}
+.encrypt_result {    height:100px;    margin:10px 0 0 105px;    width:600px;    border:1px solid #4187c3}
+.urlencode_input{height: 100px; width: 250px; border: 1px solid #4187C3;}
+.jsDesc {    margin-left:10px;    color:#369;    line-height:32px}
+.ajaxLoading {    background:url(ajax_loader4.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/ajax_loader4.gif*/ no-repeat;    width:16px;    height:16px;    margin:0 auto}
+.pop,.hpop {position:absolute; background-color:#fff; right:0; top:0; zoom:1; width:550px; z-index:9999; border:5px solid #e3eef7; white-space:normal}
+#results {white-space:normal; background:url(more_bg.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/more_bg.png*/ repeat-x; top:0; padding:10px 20px 10px 20px; word-break:break-all; 
+          line-height:26px; text-align:left; font-size:13px; color:#32628b;}
+.pop .close_menu,.hpop .close_menu { position:absolute;  right:0;  top:1px;  cursor:pointer;   background:url(close1.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/close1.gif*/ no-repeat;  width:17px;  height:17px}
+.rela {    position:relative}
+.rightbox .index_span {  width:98px;  text-align:right;}
+.wfull { width:100%}
+.w900 {    width:900px}
+.w850{    width:850px;}
+.w800 {    width:800px}
+.w750 {    width:750px}
+.w500{ width:500px;}
+.w570{width: 570px;}
+.w430 {    width:430px}
+.w400 {    width:400px}
+.noDisplay {    display:none}
+.mt15 {    margin-top:15px}
+.mt0 {    margin-top:0}
+.ml20{margin-left:20px;}
+.ml18{margin-left:18px;}
+.main .ml55{margin-left:55px;}
+.pr10 {    padding-right:10px}
+.pt15 {    padding-top:15px}
+.blank_10 {height: 10px;width: 100%;clear: both;}
+.fixurl_encode {    height:40px;    line-height:30px;    float:left;}
+.whoisResult {    width:870px; margin:auto;    font-size:13px;    line-height:20px}
+.fixLabel {    float:left;    margin-left:20px;    width:90px;    font-size:14px;    text-align:center}
+.urlcrypt {    display:inline-block;    height:28px;    line-height:28px;    background-position:0 -216px;    width:400px;    overflow:hidden;    color:#666;
+               border-top:1px solid #4187c3;    border-bottom:1px solid #4187c3;    overflow:hidden;    float:left;    font-size:13px}
+.fixLoading {    padding-left:20px;    display:none;    line-height:33px;    text-indent:10px}
+.fixLoading2 {    padding-left:20px;    display:none}
+.fixmd5 {    float:left;    padding:10px 3px; font-size:13px; }
+.fixmd5 label{padding-right:1px;}
+
+
+.f-text {
+    width:362px;
+    height:28px;
+    line-height:28px;
+    font-size:14px;
+    text-indent:8px
+}
+form .field {
+    position:relative;
+    text-align:center;
+    float:left;
+    z-index:1;
+    margin-bottom:10px
+}
+form .field-group .tips {
+    float:left;
+    height:30px;
+    line-height:40px
+}
+form .field label {
+    font-size:14px;
+    height:30px;
+    line-height:30px;
+    padding-right:14px;
+    _padding-right:11px;
+    text-align:right;
+    width:160px;
+    float:left
+}
+form .field .f-input {
+    margin:3px 0 0;
+    width:280px
+}
+form .field .f-text {
+    display:inline-block;
+    height:28px;
+    line-height:28px;
+    background-position:0 -216px;
+    width:285px;
+    overflow:hidden;
+    color:#666;
+    border-top:1px solid #4187c3;
+    border-bottom:1px solid #4187c3;
+    overflow:hidden;
+    float:left;
+    font-size:13px
+}
+form .inquiry {
+    color:#fff
+}
+form .field .f-textarea {
+    float:left;
+    height:100px;
+    margin:3px 0 0;
+    width:290px
+}
+form .field .f-check {
+    float:left;
+    margin-top:3px
+}
+form .hint {
+    clear:left;
+    color:#989898;
+    float:left;
+    font-size:12px;
+    margin-left:140px;
+    width:300px
+}
+form .act {    float:left}
+form .wrong {
+    background:url("bg.png")/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bg.png*/ no-repeat 5px -137px transparent;
+    color:#c66
+}
+form .warning {
+    background:url("icons-signup.png")/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/icons-signup.png*/ no-repeat scroll 5px -97px transparent;
+    color:#666
+}
+.loading {
+    background:url("signup-loading.gif")/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/signup-loading.gif*/ no-repeat scroll 5px center transparent
+}
+form .highlight {
+    border:1px solid #c33
+}
+form .check {
+    margin-left:110px!important;
+    margin-left:55px;
+    margin-top:0;
+    padding:none;
+    width:300px;
+    font-size:12px
+}
+form .check label {
+    width:150px;
+    line-height:20px!important;
+    line-height:30px;
+    font-size:12px;
+    text-align:left
+}
+form .check .hint {
+    margin-left:0;
+    width:300px
+}
+form .wrong_input {
+    float:left;
+    font-family:Tahoma;
+    font-size:12px;
+    margin-left:315px;
+    display:none;
+    text-indent:25px
+}
+.error {
+    border:1px #ff9a66 solid;
+    background-color:#fff9ee
+}
+div.success {
+    background:url("bg-pay-return-success.gif")/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bg-pay-return-success.gif*/ no-repeat scroll 285px 25px transparent;
+    height:45px;
+    padding-left:395px;
+    padding-top:50px
+}
+div.success h2,div.error h2 {
+    font-family:'黑体',helvetica,arial,sans-serif;
+    font-size:28px;
+    display:inline;
+    padding-left:10px
+}
+.sect {
+    border-top:1px solid #def;
+    padding:50px;
+    width:auto
+}
+.notice-title {
+    font-size:16px
+}
+.notice-content {
+    color:#666;
+    padding:5px 0
+}
+.help-tip {
+    background:none repeat scroll 0 0 #f7f7f7;
+    font-size:12px;
+    margin-top:25px;
+    padding:20px 30px 20px 25px
+}
+.help-list {
+    margin:10px 0 0
+}
+.help-list li {
+    list-style:none outside none;
+    color:#666;
+    list-style-position:inside;
+    list-style-type:disc;
+    margin-bottom:5px
+}
+.btn_buy2 {
+    cursor:pointer;
+    font-size:10px;
+    height:31px;
+    letter-spacing:1px;
+    line-height:31px;
+    width:120px;
+    margin-left:0;
+    margin-top:2px;
+    float:left;
+    border:0;
+    background:url(inner_btn2.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/inner_btn2.png*/ no-repeat;
+    color:#fff
+}
+.box .field label {
+    width:300px
+}
+#msg_container {
+    display:none;
+    line-height:20px;
+    margin-bottom:20px
+}
+#msg_container p {
+    line-height:18px
+}
+.submit_succ {
+    display:none;
+    line-height:20px;
+    margin-bottom:20px;
+    background:#bf6f01
+}
+.submit_succ,.succ_msg {
+    width:100%;
+    height:auto;
+    padding:8px 0 8px 15px;
+    border:1px solid #e6db55;
+    background-color:#fffbcc;
+    color:#333;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px
+}
+.error_msg {
+    padding:8px 0 8px 15px;
+    border:1px solid #ff8eac;
+    background-color:#fcc;
+    color:#555;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px
+}
+.input1,.input_err {
+    border:#ccc solid 1px;
+    background-color:#fff;
+    color:#666;
+    margin-left:15px;
+    margin-top:5px;
+    display:inline-block;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    !important;
+    position:relative
+}
+.input1:focus,textarea:focus {
+    border:2px solid #ef9e4d;
+    background:#fff;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px
+}
+.input_err {
+    border:1px solid #ef9e4d;
+    background-color:#ffe9d6
+}
+.page_container {
+    padding:5px;
+    text-align:right
+}
+.pages {
+    padding:5px 10px;
+    text-align:right;
+    height:30px;
+    margin-top:20px;
+    float:right
+}
+.pages a {
+    margin-right:1px;
+    border:1px solid #bbb;
+    padding:3px 4px;
+    color:#32628B
+}
+.pages a.this {
+    background-color:#2c4455;
+    color:#fff;
+    border:1px solid #2c4455
+}
+.pages a.this:visited {
+    background-color:#2c4455;
+    color:#fff;
+    border:1px solid #2c4455
+}
+form .input_bg {
+    background:url(bgx.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bgx.png*/ repeat-x 0 -248px
+}
+h1 {
+    font-size:14px;
+    color:#32628b;
+    margin-left:15px
+}
+h3 {
+    font-size:13px;
+    color:#32628b;
+    margin-left:29px;
+    border-bottom: 1px #999 solid;
+}
+.spanbg,.spanright {
+    background:url(ico.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/ico.gif*/ no-repeat
+}
+.input_bg {
+    background:url(bgx.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bgx.png*/ repeat-x
+}
+.tit {
+    width:300px;
+    text-align:right;
+    padding-right:10px
+}
+.box span {
+    display:inline-block;
+    line-height:30px
+}
+.spanbg {
+    display:inline-block;
+    height:30px;
+    line-height:30px;
+    vertical-align:top;
+    overflow:hidden;
+    background-position:0 -74px;
+    padding-left:4px
+}
+.input_bg {
+    display:inline-block;
+    height:28px;
+    line-height:28px;
+    background-position:0 -216px;
+    width:285px;
+    overflow:hidden;
+    color:#666;
+    border-top:1px solid #4187c3;
+    border-bottom:1px solid #4187c3;
+    overflow:hidden;
+    float:left;
+    font-size:13px
+}
+.inquiry {
+    background:url(button.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/button.gif*/ no-repeat;
+    background-position:0 -98px;
+    width:72px;
+    height:30px;
+    cursor:pointer
+}
+.spanright {
+    background-position:0 -107px;
+    width:4px;
+    height:30px;
+    float:left
+}
+.input_width {
+    width:350px
+}
+.smallbox {
+    width:100%;
+    display:inline-block;
+    padding-top:15px
+}
+.smallbox span {
+    display:inline-block;
+    font-size:14px;
+    color:#32628b
+}
+.smallbox input {
+    margin-left:10px
+}
+.list {
+    display:inline-block;
+    width:100%;
+    margin-top:30px
+}
+.list_name {
+    float:left;
+    margin:0 10px;
+    font-size:13px;
+    display:inline-block;
+    _display:inline
+}
+.list_top {
+    height:16px;
+    line-height:16px;
+    margin-bottom:12px;
+    width:100px
+}
+.list_top span {
+    width:64px;
+    margin-left:5px;
+    background:#4186c2;
+    display:inline-block;
+    color:#fff;
+    text-align:center
+}
+.list_name ul {
+    display:inline-block;
+    width:135px
+}
+.list_name ul li {
+    height:20px;
+    line-height:20px
+}
+.list_name ul label {
+    margin-left:5px
+}
+.result {
+    clear:both;
+    width:930px;
+    margin:20px auto 0
+}
+
+.normal_tips {
+    padding:8px 6px 6px 40px;
+    border:1px solid #e6db55;
+    font-size:12px;
+    line-height:20px;
+    overflow:hidden;
+    zoom:1;
+    margin-top:6px;
+    margin:10px 0 0 200px;
+    background:url(bg.png)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/bg.png*/ #fffbcc -48px 10px no-repeat;
+    color:#333;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px
+}
+.http_header_info {
+    padding:10px;
+    border:1px solid #e6e6e6;
+    line-height:22px
+}
+#div_result {
+    font-size:13px
+}
+.DNSLineName {
+    border-top:1px solid #e6e6e6;
+    height:27px;
+    line-height:27px;
+    text-indent:22px
+}
+.DNSload_result {
+    border-top:1px solid #e6e6e6;
+    height:27px;
+    line-height:27px;
+    width:697px;
+    float:right;
+    background:url(ajax_loader4.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/ajax_loader4.gif*/ no-repeat;
+    background-position:320px 6px
+}
+.DNSRequestTimeOut {
+    height:27px;
+    line-height:27px;
+    text-align:center;
+    color:#f00
+}
+.DNSserver {
+    float:left;
+    text-align:center;
+    line-height:27px;
+    width:230px;
+    border-right:1px solid #e6e6e6;
+    border-top:1px solid #e6e6e6;
+    height:27px
+}
+.box2 {
+    border:1px solid #eee
+}
+.pop {
+    top:25px
+}
+li.dns_1 {
+    width:230px;
+    border-right:1px solid #e6e6e6;
+    height:27px
+}
+li.dns_2 {
+    width:230px;
+    border-right:1px solid #e6e6e6;
+    height:27px
+}
+li.dns_3 {
+    width:230px;
+    height:27px;
+    border-right:1px solid #e6e6e6;
+    height:27px;
+    position:relative
+}
+li.dns_4 {
+    width:230px;
+    height:27px;
+    height:27px
+}
+.result ul {
+    width:100%
+}
+.result_header {
+    height:26px;
+    background:#e4eef8
+}
+.result .tb_meta .result_header td {
+    background:#e4eef8;
+    height:28px
+}
+.result_header a {
+    color:#008000
+}
+.result_header p {
+    text-align:center;
+    line-height:26px
+}
+.result_header li {float:left;  overflow:hidden;  text-align:center;  border-top:1px solid #e6e6e6;  height:26px;  line-height:26px}
+.result_header strong {    line-height:26px;    overflow:hidden;}
+.result .result_content {    height:auto;    line-height:27px;    float:left;}
+.result .result_content li {    float:left;    border-top:1px solid #e6e6e6;    text-align:center;}
+.result .result_content li p {    text-align:left}
+
+.text_tips4{ background: url(help3.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/help3.gif*/ 100% 0 no-repeat; position: absolute; width: 14px; height: 15px;  right: -20px;  top: 10px; z-index: 9999;}
+
+.green{color: #008000;}
+.red{color:#FF0000;}
+
+#bad_link{cursor:pointer;}
+.seoList{margin-left:33px; font-size: 13px; padding-bottom:20px; color:#333;}
+.seoList li{line-height: 28px; margin-left:22px;}
+.seoList a{text-decoration: underline; color:#00F;}
+.friendLink {padding-top:20px; clear:both;}
+.friendLink .top{width:100%; height:20px; line-height:20px; border-bottom:1px solid #ccc; color:#32628B; font-size:14px; font-weight:bold;}
+.friendLink .top span{border-bottom: 1px solid #32628B; display: inline-block; padding: 0 12px;}
+.friendLink ul{text-indent:16px;}
+.friendLink li{float:left; height:26px; line-height:26px;}
+.friendLink a{padding-right:6px; color:#333;}
+
+.history{white-space: normal; width:100%; line-height:20px; margin:3px 2px; text-align:left; clear:both; }
+.history_head{width:100%;}
+.history li{float:left; padding-right:15px; height:26px; color:#666;}
+.history a{ display: inline-block; white-space: nowrap;text-overflow: ellipsis;overflow: hidden; color:#666;}
+
+.history_index{white-space: normal; width:100%; line-height:20px; margin:3px 2px; text-align:left; clear:both; }
+.history_index a{ display: inline-block; white-space: nowrap;text-overflow: ellipsis;overflow: hidden; color:#666; padding-right:15px;}
+
+.inquiry2{background: url(button.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/button.gif*/ no-repeat; background-position: 0 -207px; width: 100px; height: 30px;cursor: pointer; font-size: 14px;color: white;margin-left: 14px;}
+.inquiry3{background: url(button.gif)/*tpa=http://www.bejson.com/static/bejson/ui/getcolor/toolimgs/button.gif*/ no-repeat; background-position: 0 -203px; width: 100px; height: 30px;cursor: pointer; font-size: 14px;color: white;margin-left: 14px;}
+.feedback{padding-top:15px;}
+.pointer{cursor:pointer;}
+#all_line{text-align:center; padding-bottom:10px;}
+#all_monitors{display:none}

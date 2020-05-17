@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<title>HTTP Content对照表-BeJSON.com</title>
+				<meta name="keywords" content="HTTP状态码详解运算符优先级TCP/UDP常见端口参考网页字体参考文件扩展名Content-Type(Mime-Type)文件扩展名Content-Type(Mime-Type) Manifest,安卓权限描述大全" />
+		<meta name="description" content="HTTP状态码详解运算符优先级TCP/UDP常见端口参考网页字体参考文件扩展名Content-Type(Mime-Type)文件扩展名Content-Type(Mime-Type)">
+						<link rel='dns-prefetch' href='//cdn.staticfile.org' />
+		<link rel='dns-prefetch' href='//www.bejson.com' />
+			<meta property="qc:admins" content="14002146716252376637571563176" />
+		<!-- Site CSS -->
+		<script src="jquery.min.js" tppabs="http://cdn.staticfile.org/jquery/1.9.1/jquery.min.js"></script>
+		<link  href="bootstrap.min.css" tppabs="http://cdn.staticfile.org/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<script src="bootstrap.min.js" tppabs="http://cdn.staticfile.org/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href="layer.css" tppabs="http://www.bejson.com/static/3part/layer2/theme/default/layer.css" rel="stylesheet">
+			<!--<link href="//cdn.staticfile.org/layer/2.3/skin/layer.css" rel="stylesheet">-->
+		<link rel="stylesheet" type="text/css" href="global.css" tppabs="http://www.bejson.com/static/css/global.css"/>
+		<script src="global.js-20180929.js" tppabs="http://www.bejson.com/static/bejson/common/global.js?20180929"></script>
+		<!--<script src="//cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>-->
+		<script src="clipboard.min.js" tppabs="http://cdn.staticfile.org/clipboard.js/1.7.1/clipboard.min.js"></script>
+		<meta name="baidu-site-verification" content="9jisY2iAF8" />
+		<script>
+			var NewVer = 201901092;
+		</script>
+		
+	</head>
+
+	<body>
+		<div class="aw-container-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="aw-content-wrap clearfix">
+						<div class=" aw-main-content" style="min-height:700px;max-height:2000px">
+
+							<nav class="navbar navbar-default"  id='top_menu'>
+								<div class="container-fluid">
+									<ul class="nav navbar-nav"  style="width: 100%;">
+										<!--<li>
+											<a href="javascript:;" style="color: red;"  onclick="showList()" data-target="#mod" data-toggle="modal" target="_blank">菜单</a>
+										</li>-->
+										
+										
+										<li>
+											<a href="index.htm" tppabs="http://www.bejson.com/">首页</a>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="jsontools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">JSON<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index.htm" tppabs="http://www.bejson.com/">格式化校验</a>
+												</li>
+												
+												<li><a href="index-1.htm" tppabs="http://www.bejson.com/jsonviewernew/" target="_blank" red>JSON视图</a>
+												</li>
+												<li><a href="index-2.htm" tppabs="http://www.bejson.com/zhuanyi/" red>JSON压缩转义</a>
+												</li>
+												<li><a href="index-3.htm" tppabs="http://www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a>
+												</li>
+												<li><a href="index-4.htm" tppabs="http://www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												</li>
+												<li><a href="index-5.htm" tppabs="http://www.bejson.com/jsoneditoronline/" red>JSON在线编辑器</a>
+												</li>
+												<li><a href="index-6.htm" tppabs="http://www.bejson.com/json/jsonsort/" id="jsonsort">JSON排序</a>
+												</li>
+												<li><a href="index-7.htm" tppabs="http://www.bejson.com/color/">JSON着色</a></li>
+												<li><a href="index-8.htm" tppabs="http://www.bejson.com/xml2json/" red>XML-JSON互转</a></li>
+												<li><a href="index-9.htm" tppabs="http://www.bejson.com/jsontools/json2get/" id="json2get">JSON和GET请求字符串互转</a></li>
+												<li><a href="index-10.htm" tppabs="http://www.bejson.com/json/col2json/" id="excel2json">Excel转Json</a></li>
+												<li><a href="index-11.htm" tppabs="http://www.bejson.com/json/json2excel/" id="json2csv">json转csv、excel</a></li>
+												<li><a href="index-12.htm" tppabs="http://www.bejson.com/json/json2yaml/" id="json2csv">在线JSON转yaml,yaml转JSON</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="encTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												编码/加密<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-13.htm" tppabs="http://www.bejson.com/enc/base64/">Base64编码、解码</a></li>
+												<li><a href="index-14.htm" tppabs="http://www.bejson.com/enc/md5/">MD5加密</a></li>
+												<li><a href="javascript:if(confirm(%27https://www.somd5.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.somd5.com/%27" tppabs="https://www.somd5.com/"  target="_blank" rel="external nofollow" id="demd5">MD5解密</a></li>
+												<li><a href="index-15.htm" tppabs="http://www.bejson.com/enc/aesdes/" id="aes">DES,AES等对称加密解密</a></li>
+												<li><a href="index-16.htm" tppabs="http://www.bejson.com/enc/rsa/" id="rsa">RSA,RSA2公钥私钥加密解密</a></li>
+												<li><a href="index-17.htm" tppabs="http://www.bejson.com/enc/sha/">SHA加密</a></li>
+												<li><a href="index-18.htm" tppabs="http://www.bejson.com/enc/escape/">Escape编码</a></li>
+												<li><a href="index-19.htm" tppabs="http://www.bejson.com/enc/urlencode/" id="urlEncode">URL编码</a></li>
+												<li><a href="index-20.htm" tppabs="http://www.bejson.com/enc/eval_package/">Javascript Eval加密解密</a></li>
+												<li id="jshunxiao"><a href="javascript:if(confirm(%27https://javascriptobfuscator.com/Javascript-Obfuscator.aspx  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://javascriptobfuscator.com/Javascript-Obfuscator.aspx%27" tppabs="https://javascriptobfuscator.com/Javascript-Obfuscator.aspx" target="_blank" rel="external nofollow">Javascript加密混淆</a></li>
+												<li><a href="index-21.htm" tppabs="http://www.bejson.com/enc/morse/">摩斯密码加密解密</a></li>
+												<li><a id="unicodechinese" href="index-22.htm" tppabs="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" id="formatTools" aria-expanded="false">格式化<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-23.htm" tppabs="http://www.bejson.com/jshtml_format/">Javascript/HTML压缩、格式化</a></li>
+												<li><a href="index-24.htm" tppabs="http://www.bejson.com/otherformat/css/">CSS压缩、格式化</a></li>
+												<li><a href="index-25.htm" tppabs="http://www.bejson.com/otherformat/xmlsort/">XML排序、压缩、格式化</a></li>
+												<li><a href="index-26.htm" tppabs="http://www.bejson.com/otherformat/sql/" id="formatsql">SQL压缩、格式化</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="httputil" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												网络<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li id=""><a href="index-27.htm" tppabs="http://www.bejson.com/othertools/profession_request_tools/" target="_blank"  rel="external nofollow">模拟HTTP请求工具</a></li>
+												<li id="websocket"><a href="index-28.htm" tppabs="http://www.bejson.com/httputil/websocket/">在线模拟websocket请求工具</a></li>
+												<li><a href="index-29.htm" tppabs="http://www.bejson.com/httputil/getip/">获取你的IP</a></li>
+												<li><a href="index-30.htm" tppabs="http://www.bejson.com/httputil/queryip/" id="queryip">获取IP信息</a></li>
+												<li><a href="index-31.htm" tppabs="http://www.bejson.com/httputil/ip2addr/" id="ip2addr">IP定位周边信息</a></li>
+												<li><a href="index-32.htm" tppabs="http://www.bejson.com/httputil/clientinfo/" id="clientinfo">获取您的浏览器信息</a></li>
+												<li><a href="index-33.htm" tppabs="http://www.bejson.com/httputil/useragent/" id="useragent">常用USER_AGENT</a></li>
+												<li><a href="index-34.htm" tppabs="http://www.bejson.com/convert/ip2int/" id="ip2int">IP转数字,数字转IP</a></li>
+												<li><a href="index-35.htm" tppabs="http://www.bejson.com/convert/subnetmask/" id="subnetmask">TCP/IP子网掩码计算换算</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.ssleye.com/web/cipher_suites  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.ssleye.com/web/cipher_suites%27" tppabs="http://www.ssleye.com/web/cipher_suites" target="_blank" rel="external nofollow">SSL协议套件探测</a></li>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="uitools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												前端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu ul-list">
+												<li><a href="index-36.htm" tppabs="http://www.bejson.com/ui/tuchuang/" id="tuchuang">图床</a></li>
+												<li><a href="index-37.htm" tppabs="http://www.bejson.com/convert/gif2frame/" id="gif2frame">在线GIF转成帧</a></li>
+												<li><a href="index-38.htm" tppabs="http://www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="index-39.htm" tppabs="http://www.bejson.com/ui/fontawesome/" id="tinypic">fontawesome图标查询</a></li>
+												<li id="keycodes"><a href="index-40.htm" tppabs="http://www.bejson.com/othertools/keycodes/">在线获取键盘按键值(keycode、ascii码)</a></li>
+												<li ><a href="index-41.htm" tppabs="http://www.bejson.com/convert/str2img/" id="str2img">字符生成线条字</a></li>
+												<li id="genplayer"><a href="javascript:if(confirm(%27http://www.bejson.com/ui/gen_player  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.bejson.com/ui/gen_player%27" tppabs="http://www.bejson.com/ui/gen_player">生成音乐播放器</a></li>
+												<li><a href="index-42.htm" tppabs="http://www.bejson.com/ui/compress_img/" id="compress_img">图片在线压缩工具</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.bejson.com/pages/cooleditor/  \n\nThis file was not retrieved by Teleport Pro, because the server reports that this file cannot be found.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.bejson.com/pages/cooleditor/%27" tppabs="http://www.bejson.com/pages/cooleditor/" id="simpleeidtor">在线代码编辑器</a></li>
+												<li><a href="index-44.htm" tppabs="http://www.bejson.com/ui/photoshop/" target="_blank">在线photoshop</a></li>
+												<li><a href="javascript:if(confirm(%27http://h5.baidu.com/store  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://h5.baidu.com/store%27" tppabs="http://h5.baidu.com/store" target="_blank"  rel="external nofollow"  id="h5maker">H5模板在线制作</a></li>
+												<li><a href="index-45.htm" tppabs="http://www.bejson.com/ui/borderradius/" id="borderradius">在线生成圆角图片</a></li>
+												<li><a id="logocreate" href="index-46.htm" tppabs="http://www.bejson.com/ui/create_logo/" id="borderradius" title="IOS安卓手机开发logo图标生成工具">IOS安卓手机开发logo生成工具</a></li>
+												<li><a href="index-47.htm" tppabs="http://www.bejson.com/ui/icomaker/" id="icomaker">ICO图标在线转换工具</a></li>
+												<li><a href="javascript:if(confirm(%27http://runjs.cn/code  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://runjs.cn/code%27" tppabs="http://runjs.cn/code" target="_blank" rel="external nofollow" id="runjs">RunJS在线编辑器</a></li>
+												<li><a href="index-48.htm" tppabs="http://www.bejson.com/ui/ueditor/" id="ueditor">ueditor在线代码编辑器</a></li>
+												<li><a href="index-49.htm" tppabs="http://www.bejson.com/ui/getcolor/">在线调色板</a></li>
+												<li><a href="index-50.htm" tppabs="http://www.bejson.com/ui/safecolor/" id="safecolor">WEB安全色</a></li>
+												<li><a href="index-51.htm" tppabs="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a href="index-52.htm" tppabs="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="index-53.htm" tppabs="http://www.bejson.com/ui/phonesize/" id="phonesize">iPhone/iPad/Android UI尺寸规范</a></li>
+												<li><a href="javascript:if(confirm(%27http://www.iconfont.cn/plus/collections/index  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.iconfont.cn/plus/collections/index%27" tppabs="http://www.iconfont.cn/plus/collections/index" target="_blank" rel="external nofollow">阿里巴巴矢量图标库</a></li>
+												<li><a href="javascript:if(confirm(%27http://fontawesome.io/icons/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://fontawesome.io/icons/%27" tppabs="http://fontawesome.io/icons/" target="_blank" rel="external nofollow">fontawesome矢量图标库</a></li>
+												<li><a href="index-54.htm" tppabs="http://www.bejson.com/ui/svg_editor/" id="svgedit">SVG代码编辑预览</a></li>
+												<li><a href="index-55.htm" tppabs="http://www.bejson.com/othertools/libcdn/" id="libcdn">常用JS资源库</a></li>
+												<li><a href="index-56.htm" tppabs="http://www.bejson.com/ui/openweb/" id="openweb">弹出窗口生成器</a></li>
+												<li><a href="index-57.htm" tppabs="http://www.bejson.com/ui/texteditor/" id="texteditor">自动排版工具</a></li>
+												
+											</ul>
+										</li> 
+										<li class="dropdown hide1">
+											<a href="#" id="houduantools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												后端<span class="caret"></span></a>
+												
+											<ul class="dropdown-menu">
+												<li><a href="index-3.htm" tppabs="http://www.bejson.com/json2javapojo/new/" red>JSON生成Java实体类</a></li>
+												<li><a href="javascript:if(confirm(%27http://java.bejson.com/generator/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://java.bejson.com/generator/%27" tppabs="http://java.bejson.com/generator/" id="jpa" style="color:red">SQL生成Java代码</a></li>
+												<li><a href="index-4.htm" tppabs="http://www.bejson.com/convert/json2csharp/" id="json2csharp">JSON生成C#实体类</a>
+												<li><a href="index-58.htm" tppabs="http://www.bejson.com/devtools/sql2pojo/" id="mysql2pojo">mysql转Java实体类</a></li>
+												<li><a href="index-59.htm" tppabs="http://www.bejson.com/devtools/sql2csharppojo/" id="sql2csharppojo">SQL转CSharp实体类</a></li>
+												<li><a href="index-60.htm" tppabs="http://www.bejson.com/othertools/sql2pojo/" id="sql2pojo">oracle转Java实体类</a></li>
+												<li><a href="index-61.htm" tppabs="http://www.bejson.com/devtools/sqlview/" id="sqlview">数据库插入、修改字段视图</a></li>
+												<li><a href="javascript:if(confirm(%27https://www.bejson.com/devtools/properties2yaml/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://www.bejson.com/devtools/properties2yaml/%27" tppabs="https://www.bejson.com/devtools/properties2yaml/" id="prop2yaml">properties转yaml</a></li>
+												<li><a href="index-62.htm" tppabs="http://www.bejson.com/validators/yaml_editor/">YAML、YML在线编辑(校验)器</a>
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" id="convertTools" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												转换<span class="caret"></span></a>
+											<ul class="dropdown-menu ul-list">
+												<li><a href="index-63.htm" tppabs="http://www.bejson.com/convert/html_string/"  id="html2string">字符串拼接(多语言)</a></li>
+												<li><a href="index-64.htm" tppabs="http://www.bejson.com/convert/camel_underscore/"  id="camel2under">驼峰转下划线,下划线转驼峰</a></li>
+												<li><a href="index-38.htm" tppabs="http://www.bejson.com/convert/html_js/" id="html2js">在线html转js,js转html</a></li>
+												<li><a href="index-65.htm" tppabs="http://www.bejson.com/convert/ueditor2markdown/" id="ue2mk">在线ueditor富文本编辑器转markdown语法</a></li>
+												<li><a href="index-66.htm" tppabs="http://www.bejson.com/convert/deserialize/" id="deserialize">php反序列化成JSON和代码</a></li>
+												<li><a href="index-52.htm" tppabs="http://www.bejson.com/ui/imagehandler/" id="imghandler">在线图片大小格式(支持webp)转换</a></li>
+												<li><a href="index-67.htm" tppabs="http://www.bejson.com/convert/image_to_svg/" id="tosvg">jpg,png图片在线转svg</a></li>
+												<li><a href="index-68.htm" tppabs="http://www.bejson.com/convert/map/" id="mapdw">在线地图经纬度定位换算</a></li>
+												<li><a href="index-69.htm" tppabs="http://www.bejson.com/ui/px2em/" id="px2em">px转em,em转px</a></li>
+												<li><a href="index-51.htm" tppabs="http://www.bejson.com/ui/image2base64/" id="img2base64">在线图片转Base64编码</a></li>
+												<li><a id="unicodechinese" href="index-22.htm" tppabs="http://www.bejson.com/convert/unicode_chinese/">unicode中文互转</a></li>
+												<li><a href="index-70.htm" tppabs="http://www.bejson.com/convert/shorturl/" id="shorturl">在线短地址转换</a></li>
+												<li><a href="index-71.htm" tppabs="http://www.bejson.com/convert/unix/">Unix时间转换(日期转毫秒)</a></li>
+												<li><a href="index-72.htm" tppabs="http://www.bejson.com/convert/jinzhi/">进制转换</a></li>
+												<li><a href="index-73.htm" tppabs="http://www.bejson.com/convert/ox2str/">16进制到文本字符串</a></li>
+												<li><a href="index-74.htm" tppabs="http://www.bejson.com/convert/uplowercase/" id="uplowercase">字母大小写转换</a></li>
+										
+												<li><a href="index-75.htm" tppabs="http://www.bejson.com/convert/rgbhex/" id="rgbhex">RGB颜色和HEX互转</a></li>
+												<li><a href="index-76.htm" tppabs="http://www.bejson.com/convert/file2pdf/" id="file2pdf">在线文档转PDF</a></li>
+												<li><a href="index-77.htm" tppabs="http://www.bejson.com/convert/qrcode/" id="qrtools">二维码生成与解码</a></li>
+												<li><a href="index-78.htm" tppabs="http://www.bejson.com/convert/numtohz/" id="numtohz">数字转中文(人民币)</a></li>
+												<li><a href="index-79.htm" tppabs="http://www.bejson.com/convert/filesize/" id="filesizehs">在线文件大小换算</a></li>
+												<li><a href="index-80.htm" tppabs="http://www.bejson.com/convert/nativeascii/" id="navasc">NATIVE/ASCII编码互转工具</a></li>
+												
+												<li><a href="index-81.htm" tppabs="http://www.bejson.com/convert/htmlubb/" id="htmlubb">Html与UBB代码互相转换工具</a></li>
+												<li><a href="index-82.htm" tppabs="http://www.bejson.com/convert/topinying/" id="topinying">汉字转换拼音</a></li>
+												 <li><a href="index-83.htm" tppabs="http://www.bejson.com/convert/fullhalf/" id="fullhalf">全角半角转换</a></li>
+												 <li><a href="index-84.htm" tppabs="http://www.bejson.com/convert/j2f/" id="j2f">简繁体火星文互转</a></li>
+												 <li><a href="index-85.htm" tppabs="http://www.bejson.com/convert/html2markdown/" id="html2markdown">Html转换为MarkDown工具</a></li>
+												<li><a href="index-86.htm" tppabs="http://www.bejson.com/convert/video2audio/" target='_blank' title='视频秒转音频' style="color: red;">视频秒转音频(mp3)</a></li>
+											</ul>
+										</li>
+										
+										
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="otherTools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												其他<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="index-87.htm" tppabs="http://www.bejson.com/othertools/compare/" target="字符串数字对比" id="compare">字符串数字对比</a></li>
+												<li><a href="index-88.htm" tppabs="http://www.bejson.com/othertools/stringarraysort/" id="stringArraySort" target="字符串数组在线排序工具">字符串数组在线排序工具</a></li>
+												<li><a href="index-89.htm" tppabs="http://www.bejson.com/othertools/regex/" id="deserialize">正则表达式测试</a></li>
+												<li><a href="index-90.htm" tppabs="http://www.bejson.com/testtools/xpath/" id="deserialize">xpath测试</a></li>
+												<li id="barcode"><a href="index-91.htm" tppabs="http://www.bejson.com/othertools/barcode/">条形码生成器</a></li>
+												<li id="keycodes"><a href="index-40.htm" tppabs="http://www.bejson.com/othertools/keycodes/">在线获取键盘按键值(ascii码)</a></li>
+												<li id="cront"><a href="index-92.htm" tppabs="http://www.bejson.com/othertools/cron/">Cron表达式生成器</a></li>
+												<li id="cronvalidate"><a href="index-93.htm" tppabs="http://www.bejson.com/othertools/cronvalidate/">Cron表达式校验工具</a></li>
+												
+												<li><a href="index-94.htm" tppabs="http://www.bejson.com/othertools/fanyi/" target="jquery文档">中英互译</a></li>
+												<li><a href="index-95.htm" tppabs="http://www.bejson.com/othertools/findelement/" id="findbyxpath">寻找图片、链接或xpath寻找元素</a></li>
+												<li><a href="index-96.htm" tppabs="http://www.bejson.com/othertools/finddif3/">文字对比找不同处</a></li>
+												<li><a href="index-97.htm" tppabs="http://www.bejson.com/othertools/regex_create/">正则表达式代码生成工具</a></li>
+												<li><a href="index-98.htm" tppabs="http://www.bejson.com/othertools/sqlAppend/">SQL追加或去除双引号</a></li>
+												<li><a href="index-99.htm" tppabs="http://www.bejson.com/othertools/removeDuplicate/">去除重复字符串</a></li>
+												<li><a href="index-100.htm" tppabs="http://www.bejson.com/othertools/sortwords/" id="sortWords">在线根据首字母排序</a></li>
+												<li><a  href="index-101.htm" tppabs="http://www.bejson.com/chargeservice/ocr/">在线文字识别</a></li>
+												<li><a href="index-102.htm" tppabs="http://www.bejson.com/other/qqskey/">获取QQ的SKEY</a></li>
+												<li><a href="index-103.htm" tppabs="http://www.bejson.com/othertools/wordpress/">在线查询wordpress主题模版出处</a></li>
+												<li><a href="index-104.htm" tppabs="http://www.bejson.com/othertools/pic2weibo/">根据微博图片寻找微博出处</a></li>
+												<li><a href="index-105.htm" tppabs="http://www.bejson.com/othertools/ziponline/">在线解压缩获取文件列表名</a></li>
+												<li><a id="weixinalipay" href="index-106.htm" tppabs="http://www.bejson.com/othertools/createaliweixinqrcode/">支付宝、微信收款码共存</a></li>
+											</ul>
+										</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="jsonapi" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												API<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<!-- 20180803 - 20191123 王宣
+												<li><a href="https://www.mysubmail.com/sms/api?tag=bejson" rel="external nofollow" target="_blank">短信接口API</a></li>-->
+												<li><a href="index-107.htm" tppabs="http://www.bejson.com/knownjson/webInterface/" id="findbyxpath">免费JSON接口</a></li>										
+											</ul>
+										</li>
+										<li class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="docs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+												文档<span class="caret"></span></a>
+											<ul class="dropdown-menu  ul-list" >
+												<li><a href="index-108.htm" tppabs="http://www.bejson.com/doc/systemd/">Systemd 入门教程：命令篇</a></li>
+												<li><a id="jqapi" href="index-109.htm" tppabs="http://www.bejson.com/apidoc/jquery/" target="_blank" rel="external nofollow">jQuery文档</a></li>
+												<li><a id="bootcssapi" href="javascript:if(confirm(%27http://v3.bootcss.com/components/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://v3.bootcss.com/components/%27" tppabs="http://v3.bootcss.com/components/" target="_blank" rel="external nofollow">Bootstrap文档</a></li>
+												<li><a id="vueapi" href="javascript:if(confirm(%27https://cn.vuejs.org/v2/api/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://cn.vuejs.org/v2/api/%27" tppabs="https://cn.vuejs.org/v2/api/" target="_blank" rel="external nofollow">VueJs文档</a></li>
+												
+												<li><a id="apliayapi" href="javascript:if(confirm(%27http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5%27" tppabs="http://wiki.open.qq.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank" rel="external nofollow">腾讯开发平台</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27http://mp.weixin.qq.com/wiki/home/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/wiki/home/index.html%27" tppabs="http://mp.weixin.qq.com/wiki/home/index.html" target="_blank" rel="external nofollow">微信公众平台开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html%27" tppabs="http://mp.weixin.qq.com/wiki/11/74ad127cc054f6b80759c40f77ec03db.html" target="_blank" rel="external nofollow">微信JSSDK开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/index.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/index.html%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/index.html" target="_blank" rel="external nofollow">微信支付开发文档</a></li>
+												<li><a id="wxapi" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/sl.html  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/sl.html%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/sl.html" target="_blank" rel="external nofollow">微信支付服务商文档</a></li>
+												<li><a id="wxliteappapi" href="javascript:if(confirm(%27https://developers.weixin.qq.com/miniprogram/dev/api/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://developers.weixin.qq.com/miniprogram/dev/api/%27" tppabs="https://developers.weixin.qq.com/miniprogram/dev/api/" target="_blank" rel="external nofollow">微信小程序开发文档</a></li>
+												<li><a id="tbapi" href="javascript:if(confirm(%27http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD%27" tppabs="http://open.taobao.com/api/api_list.htm?spm=a219a.7386789.1.27.Lf4YRD" target="_blank" rel="external nofollow">淘宝开发文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://openhome.alipay.com/developmentDocument.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openhome.alipay.com/developmentDocument.htm%27" tppabs="https://openhome.alipay.com/developmentDocument.htm" target="_blank" rel="external nofollow">支付宝开发文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1%27" tppabs="https://doc.open.alipay.com/docs/doc.htm?articleId=107529&docType=1" target="_blank" rel="external nofollow">支付宝智慧门店文档</a></li>
+												<li><a id="apliayapi" href="javascript:if(confirm(%27https://docs.open.alipay.com/399  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://docs.open.alipay.com/399%27" tppabs="https://docs.open.alipay.com/399" target="_blank" rel="external nofollow">支付宝开发商文档</a></li>
+							
+												<!--<li><a id="baiduinterface" href="http://apistore.baidu.com/astore/classificationservicelist.html" target="_blank" rel="external nofollow">百度API市场</a></li>
+												-->
+												<li><a href="index-110.htm" tppabs="http://www.bejson.com/doc/AndroidManifest/" id="androidManifest">Android权限大全</a></li>
+
+												<li><a href="index-111.htm" tppabs="http://www.bejson.com/knownjson/aboutjson/">什么是JSON</a></li>
+												<li><a href="index-112.htm" tppabs="http://www.bejson.com/knownjson/demo/">举个栗子</a></li>
+												<li><a href="index-107.htm" tppabs="http://www.bejson.com/knownjson/webInterface/">JSON API免费接口</a></li>
+												<li><a href="index-113.htm" tppabs="http://www.bejson.com/knownjson/regexJiaocheng/">正则表达式30分钟入门教程</a></li>
+												<li><a href="index-114.htm" tppabs="http://www.bejson.com/knownjson/httpstate/">HTTP状态码查询</a></li>
+												<li><a href="index-115.htm" tppabs="http://www.bejson.com/doc/httpcontent/">HTTP Content对照表</a></li>
+												<li><a href="index-116.htm" tppabs="http://www.bejson.com/doc/ascii/">ASCII码对照表</a></li>
+												<li><a href="index-117.htm" tppabs="http://www.bejson.com/doc/port/">常用端口解释</a></li>
+											</ul>
+										</li>
+										
+										
+										<li  class="dropdown hide1">
+											<a href="#" class="dropdown-toggle" id="testtools" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">平台工具<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug%27" tppabs="http://mp.weixin.qq.com/debug">微信公众平台调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/tools/signverify/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/tools/signverify/%27" tppabs="https://pay.weixin.qq.com/wiki/tools/signverify/">微信公众平台支付接口调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1%27" tppabs="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=20_1">微信支付接口签名校验工具</a></li>
+													<li><a id="coupon" rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign%27" tppabs="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=cardsign">微信卡券JSAPI签名校验工具</a></li>
+													<li><a id="wxsign" rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign%27" tppabs="http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">微信 JS 接口签名校验工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://qy.weixin.qq.com/debug  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://qy.weixin.qq.com/debug%27" tppabs="http://qy.weixin.qq.com/debug">微信企业号调试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"  href="javascript:if(confirm(%27http://connect.qq.com/sdk/webtools/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://connect.qq.com/sdk/webtools/%27" tppabs="http://connect.qq.com/sdk/webtools/">QQ互联API调试工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R4617Pf  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R4617Pf%27" tppabs="http://t.cn/R4617Pf">淘宝oauth2.0测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461ZZu  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461ZZu%27" tppabs="http://t.cn/R461ZZu">淘宝API测试工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461Zm2  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461Zm2%27" tppabs="http://t.cn/R461Zm2">淘宝错误码查询工具</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://t.cn/R461wa7  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://t.cn/R461wa7%27" tppabs="http://t.cn/R461wa7">淘宝商品属性工具</a></li>
+													 <li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27https://openmonitor.alipay.com/acceptance/cloudparse.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openmonitor.alipay.com/acceptance/cloudparse.htm%27" tppabs="https://openmonitor.alipay.com/acceptance/cloudparse.htm">支付宝联调日志排查</a></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect%27" tppabs="http://sandbox.alipaydev.com/home/apiTestTools.htm?method=alipay.security.risk.detect">支付宝API工具</a></li>
+													<li><a id="paicha" rel="external nofollow" target="_blank" href="javascript:if(confirm(%27https://openmonitor.alipay.com/acceptance/troubleshoot.htm  \n\nThis file was not retrieved by Teleport Pro, because it is addressed using an unsupported protocol (e.g., gopher).  \n\nDo you want to open it from the server?%27))window.location=%27https://openmonitor.alipay.com/acceptance/troubleshoot.htm%27" tppabs="https://openmonitor.alipay.com/acceptance/troubleshoot.htm">开发者自助排查工具</a></li>
+													<li role="separator" class="divider"></li>
+													<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://open.weibo.com/tools/console  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://open.weibo.com/tools/console%27" tppabs="http://open.weibo.com/tools/console">新浪微博API工具</a></li>
+											</ul>
+										</li>
+										
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											站长工具<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sanshu.cn/seotools/sitemap/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sanshu.cn/seotools/sitemap/%27" tppabs="http://sanshu.cn/seotools/sitemap/">sitemap提交入口大全</a></li>
+												<li><a rel="external nofollow" target="_blank"   href="javascript:if(confirm(%27http://sanshu.cn/seotools/beian/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://sanshu.cn/seotools/beian/%27" tppabs="http://sanshu.cn/seotools/beian/">备案查询</a></li>
+											</ul>
+										</li>
+										
+										<!--<li>
+											<a href="http://bbs.hellojava.com/" style="color: red;" target="_blank">Java社区</a>
+										</li>-->
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" id="moret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+											更多<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li>
+													<a href="index-118.htm" tppabs="http://www.bejson.com/soft/">常用软件下载</a>
+												</li>
+												<!--
+												<li >
+													<a href="//www.bejson.com/robot/" id="td" style="color: green;">我是泰迪</a>
+												</li>
+												-->
+												<li>
+													<a href="index-119.htm" tppabs="http://www.bejson.com/other/blogs/">Blogs</a>
+												</li>
+												<li>
+													<a href="index-120.htm" tppabs="http://www.bejson.com/knownjson/msg/">留言</a>
+													
+												</li>
+												<li>
+													<a href="index-121.htm" tppabs="http://www.bejson.com/other/whatisnew/">更新日志</a>
+												</li>
+												<li>
+													<a href="index-122.htm" tppabs="http://www.bejson.com/other/ads/">广告招租</a>
+												</li>
+												
+											</ul>
+										</li>
+										
+									<!--	
+										-->
+									</ul>
+									
+								</div>
+							</nav>
+							
+							<script>
+							var showaban = true;
+								var storageKey = "newtools20191218";
+								if(window.localStorage.getItem(storageKey)==null){
+									$("#convertTools").after('<span class="newFeatureTip">●</span>');
+									
+									$("#html2string").before('<span class="newItem">●</span>');
+									document.getElementById("html2string").onmouseover = function(){
+										window.localStorage.setItem(storageKey,"has");
+										$(".newFeatureTip").text('');
+									}
+								}
+							</script>
+							<div style="clear:both"></div>
+							<style>
+							.a2016{
+								color: white; 
+								font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu ;
+								text-align: center;    background: red;    border-radius: 2px;
+							}
+							
+							.touxiang{
+								height: 20px;
+								line-height: 45px;
+							}
+							</style>
+							<!--<div style=" text-align: center;    background: #6699FF;    border-radius: 2px;"><a href="http://beshequ.com/data/thread-111-1-1.html" target="_blank" style="  color: white;  ">求教身份验证是放在session里好？还是用签名串来回交互的好？</a></div>-->
+							<!--<div class="a2016">2016 bejson祝各位工资涨涨涨,写程序无BUG,都能找到对象!!! new Object(); 拿走不谢!</div>-->
+								
+							<!-- content st -->
+								<blockquote class="layui-elem-quote layui-quote-nm" style='margin-bottom: 5px;display:none;padding: 4px 20px;font-size:13px;    text-align: left;'>
+ 您最近使用了：<span  id="history"></span>
+</blockquote>	<script>
+		var showaban = false;
+	</script>
+	<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="media">
+			<div class="media-body">
+				<h4 class="media-heading">HTTP Content对照表</h4>
+				<div id="desc1">HTTP状态码详解运算符优先级TCP/UDP常见端口参考网页字体参考文件扩展名Content-Type(Mime-Type)文件扩展名Content-Type(Mime-Type)</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="panel-body">
+		<!--内容块开始-->
+<div class="alert alert-success" role="alert">
+				 	<p><code>注意：</code>请使用  <kbd><kbd>Ctrl</kbd> + <kbd>F</kbd></kbd> 查找你的文件别名对应的<code>Content-Type(Mime-Type)</code>即可！</p>
+				 	
+				</div>
+<table width="100%" cellspacing="0" cellpadding="0" class="layui-table">
+	<tbody>
+		<tr>
+			<th class="separateColor">文件扩展名</th>
+			<th>Content-Type(Mime-Type)</th>
+			<th class="separateColor">文件扩展名</th>
+			<th>Content-Type(Mime-Type)</th>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<td class="separateColor">.*（ 二进制流，不知道下载文件类型）</td>
+			<td>application/octet-stream</td>
+			<td class="separateColor">.tif</td>
+			<td>image/tiff</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.001</td>
+			<td>application/x-001</td>
+			<td class="separateColor">.301</td>
+			<td>application/x-301</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.323</td>
+			<td>text/h323</td>
+			<td class="separateColor">.906</td>
+			<td>application/x-906</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.907</td>
+			<td>drawing/907</td>
+			<td class="separateColor">.a11</td>
+			<td>application/x-a11</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.acp</td>
+			<td>audio/x-mei-aac</td>
+			<td class="separateColor">.ai</td>
+			<td>application/postscript</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.aif</td>
+			<td>audio/aiff</td>
+			<td class="separateColor">.aifc</td>
+			<td>audio/aiff</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.aiff</td>
+			<td>audio/aiff</td>
+			<td class="separateColor">.anv</td>
+			<td>application/x-anv</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.asa</td>
+			<td>text/asa</td>
+			<td class="separateColor">.asf</td>
+			<td>video/x-ms-asf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.asp</td>
+			<td>text/asp</td>
+			<td class="separateColor">.asx</td>
+			<td>video/x-ms-asf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.au</td>
+			<td>audio/basic</td>
+			<td class="separateColor">.avi</td>
+			<td>video/avi</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.awf</td>
+			<td>application/vnd.adobe.workflow</td>
+			<td class="separateColor">.biz</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.bmp</td>
+			<td>application/x-bmp</td>
+			<td class="separateColor">.bot</td>
+			<td>application/x-bot</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.c4t</td>
+			<td>application/x-c4t</td>
+			<td class="separateColor">.c90</td>
+			<td>application/x-c90</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cal</td>
+			<td>application/x-cals</td>
+			<td class="separateColor">.cat</td>
+			<td>application/vnd.ms-pki.seccat</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cdf</td>
+			<td>application/x-netcdf</td>
+			<td class="separateColor">.cdr</td>
+			<td>application/x-cdr</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cel</td>
+			<td>application/x-cel</td>
+			<td class="separateColor">.cer</td>
+			<td>application/x-x509-ca-cert</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cg4</td>
+			<td>application/x-g4</td>
+			<td class="separateColor">.cgm</td>
+			<td>application/x-cgm</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cit</td>
+			<td>application/x-cit</td>
+			<td class="separateColor">.class</td>
+			<td>java/*</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cml</td>
+			<td>text/xml</td>
+			<td class="separateColor">.cmp</td>
+			<td>application/x-cmp</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cmx</td>
+			<td>application/x-cmx</td>
+			<td class="separateColor">.cot</td>
+			<td>application/x-cot</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.crl</td>
+			<td>application/pkix-crl</td>
+			<td class="separateColor">.crt</td>
+			<td>application/x-x509-ca-cert</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.csi</td>
+			<td>application/x-csi</td>
+			<td class="separateColor">.css</td>
+			<td>text/css</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.cut</td>
+			<td>application/x-cut</td>
+			<td class="separateColor">.dbf</td>
+			<td>application/x-dbf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dbm</td>
+			<td>application/x-dbm</td>
+			<td class="separateColor">.dbx</td>
+			<td>application/x-dbx</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dcd</td>
+			<td>text/xml</td>
+			<td class="separateColor">.dcx</td>
+			<td>application/x-dcx</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.der</td>
+			<td>application/x-x509-ca-cert</td>
+			<td class="separateColor">.dgn</td>
+			<td>application/x-dgn</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dib</td>
+			<td>application/x-dib</td>
+			<td class="separateColor">.dll</td>
+			<td>application/x-msdownload</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.doc</td>
+			<td>application/msword</td>
+			<td class="separateColor">.dot</td>
+			<td>application/msword</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.drw</td>
+			<td>application/x-drw</td>
+			<td class="separateColor">.dtd</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dwf</td>
+			<td>Model/vnd.dwf</td>
+			<td class="separateColor">.dwf</td>
+			<td>application/x-dwf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dwg</td>
+			<td>application/x-dwg</td>
+			<td class="separateColor">.dxb</td>
+			<td>application/x-dxb</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.dxf</td>
+			<td>application/x-dxf</td>
+			<td class="separateColor">.edn</td>
+			<td>application/vnd.adobe.edn</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.emf</td>
+			<td>application/x-emf</td>
+			<td class="separateColor">.eml</td>
+			<td>message/rfc822</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ent</td>
+			<td>text/xml</td>
+			<td class="separateColor">.epi</td>
+			<td>application/x-epi</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.eps</td>
+			<td>application/x-ps</td>
+			<td class="separateColor">.eps</td>
+			<td>application/postscript</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.etd</td>
+			<td>application/x-ebx</td>
+			<td class="separateColor">.exe</td>
+			<td>application/x-msdownload</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.fax</td>
+			<td>image/fax</td>
+			<td class="separateColor">.fdf</td>
+			<td>application/vnd.fdf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.fif</td>
+			<td>application/fractals</td>
+			<td class="separateColor">.fo</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.frm</td>
+			<td>application/x-frm</td>
+			<td class="separateColor">.g4</td>
+			<td>application/x-g4</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.gbr</td>
+			<td>application/x-gbr</td>
+			<td class="separateColor">.</td>
+			<td>application/x-</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.gif</td>
+			<td>image/gif</td>
+			<td class="separateColor">.gl2</td>
+			<td>application/x-gl2</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.gp4</td>
+			<td>application/x-gp4</td>
+			<td class="separateColor">.hgl</td>
+			<td>application/x-hgl</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.hmr</td>
+			<td>application/x-hmr</td>
+			<td class="separateColor">.hpg</td>
+			<td>application/x-hpgl</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.hpl</td>
+			<td>application/x-hpl</td>
+			<td class="separateColor">.hqx</td>
+			<td>application/mac-binhex40</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.hrf</td>
+			<td>application/x-hrf</td>
+			<td class="separateColor">.hta</td>
+			<td>application/hta</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.htc</td>
+			<td>text/x-component</td>
+			<td class="separateColor">.htm</td>
+			<td>text/html</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.html</td>
+			<td>text/html</td>
+			<td class="separateColor">.htt</td>
+			<td>text/webviewhtml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.htx</td>
+			<td>text/html</td>
+			<td class="separateColor">.icb</td>
+			<td>application/x-icb</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ico</td>
+			<td>image/x-icon</td>
+			<td class="separateColor">.ico</td>
+			<td>application/x-ico</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.iff</td>
+			<td>application/x-iff</td>
+			<td class="separateColor">.ig4</td>
+			<td>application/x-g4</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.igs</td>
+			<td>application/x-igs</td>
+			<td class="separateColor">.iii</td>
+			<td>application/x-iphone</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.img</td>
+			<td>application/x-img</td>
+			<td class="separateColor">.ins</td>
+			<td>application/x-internet-signup</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.isp</td>
+			<td>application/x-internet-signup</td>
+			<td class="separateColor">.IVF</td>
+			<td>video/x-ivf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.java</td>
+			<td>java/*</td>
+			<td class="separateColor">.jfif</td>
+			<td>image/jpeg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.jpe</td>
+			<td>image/jpeg</td>
+			<td class="separateColor">.jpe</td>
+			<td>application/x-jpe</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.jpeg</td>
+			<td>image/jpeg</td>
+			<td class="separateColor">.jpg</td>
+			<td>image/jpeg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.jpg</td>
+			<td>application/x-jpg</td>
+			<td class="separateColor">.js</td>
+			<td>application/x-javascript</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.jsp</td>
+			<td>text/html</td>
+			<td class="separateColor">.la1</td>
+			<td>audio/x-liquid-file</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.lar</td>
+			<td>application/x-laplayer-reg</td>
+			<td class="separateColor">.latex</td>
+			<td>application/x-latex</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.lavs</td>
+			<td>audio/x-liquid-secure</td>
+			<td class="separateColor">.lbm</td>
+			<td>application/x-lbm</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.lmsff</td>
+			<td>audio/x-la-lms</td>
+			<td class="separateColor">.ls</td>
+			<td>application/x-javascript</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ltr</td>
+			<td>application/x-ltr</td>
+			<td class="separateColor">.m1v</td>
+			<td>video/x-mpeg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.m2v</td>
+			<td>video/x-mpeg</td>
+			<td class="separateColor">.m3u</td>
+			<td>audio/mpegurl</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.m4e</td>
+			<td>video/mpeg4</td>
+			<td class="separateColor">.mac</td>
+			<td>application/x-mac</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.man</td>
+			<td>application/x-troff-man</td>
+			<td class="separateColor">.math</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mdb</td>
+			<td>application/msaccess</td>
+			<td class="separateColor">.mdb</td>
+			<td>application/x-mdb</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mfp</td>
+			<td>application/x-shockwave-flash</td>
+			<td class="separateColor">.mht</td>
+			<td>message/rfc822</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mhtml</td>
+			<td>message/rfc822</td>
+			<td class="separateColor">.mi</td>
+			<td>application/x-mi</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mid</td>
+			<td>audio/mid</td>
+			<td class="separateColor">.midi</td>
+			<td>audio/mid</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mil</td>
+			<td>application/x-mil</td>
+			<td class="separateColor">.mml</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mnd</td>
+			<td>audio/x-musicnet-download</td>
+			<td class="separateColor">.mns</td>
+			<td>audio/x-musicnet-stream</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mocha</td>
+			<td>application/x-javascript</td>
+			<td class="separateColor">.movie</td>
+			<td>video/x-sgi-movie</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mp1</td>
+			<td>audio/mp1</td>
+			<td class="separateColor">.mp2</td>
+			<td>audio/mp2</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mp2v</td>
+			<td>video/mpeg</td>
+			<td class="separateColor">.mp3</td>
+			<td>audio/mp3</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mp4</td>
+			<td>video/mpeg4</td>
+			<td class="separateColor">.mpa</td>
+			<td>video/x-mpg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mpd</td>
+			<td>application/vnd.ms-project</td>
+			<td class="separateColor">.mpe</td>
+			<td>video/x-mpeg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mpeg</td>
+			<td>video/mpg</td>
+			<td class="separateColor">.mpg</td>
+			<td>video/mpg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mpga</td>
+			<td>audio/rn-mpeg</td>
+			<td class="separateColor">.mpp</td>
+			<td>application/vnd.ms-project</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mps</td>
+			<td>video/x-mpeg</td>
+			<td class="separateColor">.mpt</td>
+			<td>application/vnd.ms-project</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mpv</td>
+			<td>video/mpg</td>
+			<td class="separateColor">.mpv2</td>
+			<td>video/mpeg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mpw</td>
+			<td>application/vnd.ms-project</td>
+			<td class="separateColor">.mpx</td>
+			<td>application/vnd.ms-project</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.mtx</td>
+			<td>text/xml</td>
+			<td class="separateColor">.mxp</td>
+			<td>application/x-mmxp</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.net</td>
+			<td>image/pnetvue</td>
+			<td class="separateColor">.nrf</td>
+			<td>application/x-nrf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.nws</td>
+			<td>message/rfc822</td>
+			<td class="separateColor">.odc</td>
+			<td>text/x-ms-odc</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.out</td>
+			<td>application/x-out</td>
+			<td class="separateColor">.p10</td>
+			<td>application/pkcs10</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.p12</td>
+			<td>application/x-pkcs12</td>
+			<td class="separateColor">.p7b</td>
+			<td>application/x-pkcs7-certificates</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.p7c</td>
+			<td>application/pkcs7-mime</td>
+			<td class="separateColor">.p7m</td>
+			<td>application/pkcs7-mime</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.p7r</td>
+			<td>application/x-pkcs7-certreqresp</td>
+			<td class="separateColor">.p7s</td>
+			<td>application/pkcs7-signature</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pc5</td>
+			<td>application/x-pc5</td>
+			<td class="separateColor">.pci</td>
+			<td>application/x-pci</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pcl</td>
+			<td>application/x-pcl</td>
+			<td class="separateColor">.pcx</td>
+			<td>application/x-pcx</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pdf</td>
+			<td>application/pdf</td>
+			<td class="separateColor">.pdf</td>
+			<td>application/pdf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pdx</td>
+			<td>application/vnd.adobe.pdx</td>
+			<td class="separateColor">.pfx</td>
+			<td>application/x-pkcs12</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pgl</td>
+			<td>application/x-pgl</td>
+			<td class="separateColor">.pic</td>
+			<td>application/x-pic</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pko</td>
+			<td>application/vnd.ms-pki.pko</td>
+			<td class="separateColor">.pl</td>
+			<td>application/x-perl</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.plg</td>
+			<td>text/html</td>
+			<td class="separateColor">.pls</td>
+			<td>audio/scpls</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.plt</td>
+			<td>application/x-plt</td>
+			<td class="separateColor">.png</td>
+			<td>image/png</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.png</td>
+			<td>application/x-png</td>
+			<td class="separateColor">.pot</td>
+			<td>application/vnd.ms-powerpoint</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ppa</td>
+			<td>application/vnd.ms-powerpoint</td>
+			<td class="separateColor">.ppm</td>
+			<td>application/x-ppm</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pps</td>
+			<td>application/vnd.ms-powerpoint</td>
+			<td class="separateColor">.ppt</td>
+			<td>application/vnd.ms-powerpoint</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ppt</td>
+			<td>application/x-ppt</td>
+			<td class="separateColor">.pr</td>
+			<td>application/x-pr</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.prf</td>
+			<td>application/pics-rules</td>
+			<td class="separateColor">.prn</td>
+			<td>application/x-prn</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.prt</td>
+			<td>application/x-prt</td>
+			<td class="separateColor">.ps</td>
+			<td>application/x-ps</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ps</td>
+			<td>application/postscript</td>
+			<td class="separateColor">.ptn</td>
+			<td>application/x-ptn</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.pwz</td>
+			<td>application/vnd.ms-powerpoint</td>
+			<td class="separateColor">.r3t</td>
+			<td>text/vnd.rn-realtext3d</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ra</td>
+			<td>audio/vnd.rn-realaudio</td>
+			<td class="separateColor">.ram</td>
+			<td>audio/x-pn-realaudio</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ras</td>
+			<td>application/x-ras</td>
+			<td class="separateColor">.rat</td>
+			<td>application/rat-file</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rdf</td>
+			<td>text/xml</td>
+			<td class="separateColor">.rec</td>
+			<td>application/vnd.rn-recording</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.red</td>
+			<td>application/x-red</td>
+			<td class="separateColor">.rgb</td>
+			<td>application/x-rgb</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rjs</td>
+			<td>application/vnd.rn-realsystem-rjs</td>
+			<td class="separateColor">.rjt</td>
+			<td>application/vnd.rn-realsystem-rjt</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rlc</td>
+			<td>application/x-rlc</td>
+			<td class="separateColor">.rle</td>
+			<td>application/x-rle</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rm</td>
+			<td>application/vnd.rn-realmedia</td>
+			<td class="separateColor">.rmf</td>
+			<td>application/vnd.adobe.rmf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rmi</td>
+			<td>audio/mid</td>
+			<td class="separateColor">.rmj</td>
+			<td>application/vnd.rn-realsystem-rmj</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rmm</td>
+			<td>audio/x-pn-realaudio</td>
+			<td class="separateColor">.rmp</td>
+			<td>application/vnd.rn-rn_music_package</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rms</td>
+			<td>application/vnd.rn-realmedia-secure</td>
+			<td class="separateColor">.rmvb</td>
+			<td>application/vnd.rn-realmedia-vbr</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rmx</td>
+			<td>application/vnd.rn-realsystem-rmx</td>
+			<td class="separateColor">.rnx</td>
+			<td>application/vnd.rn-realplayer</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rp</td>
+			<td>image/vnd.rn-realpix</td>
+			<td class="separateColor">.rpm</td>
+			<td>audio/x-pn-realaudio-plugin</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rsml</td>
+			<td>application/vnd.rn-rsml</td>
+			<td class="separateColor">.rt</td>
+			<td>text/vnd.rn-realtext</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rtf</td>
+			<td>application/msword</td>
+			<td class="separateColor">.rtf</td>
+			<td>application/x-rtf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.rv</td>
+			<td>video/vnd.rn-realvideo</td>
+			<td class="separateColor">.sam</td>
+			<td>application/x-sam</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.sat</td>
+			<td>application/x-sat</td>
+			<td class="separateColor">.sdp</td>
+			<td>application/sdp</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.sdw</td>
+			<td>application/x-sdw</td>
+			<td class="separateColor">.sit</td>
+			<td>application/x-stuffit</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.slb</td>
+			<td>application/x-slb</td>
+			<td class="separateColor">.sld</td>
+			<td>application/x-sld</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.slk</td>
+			<td>drawing/x-slk</td>
+			<td class="separateColor">.smi</td>
+			<td>application/smil</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.smil</td>
+			<td>application/smil</td>
+			<td class="separateColor">.smk</td>
+			<td>application/x-smk</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.snd</td>
+			<td>audio/basic</td>
+			<td class="separateColor">.sol</td>
+			<td>text/plain</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.sor</td>
+			<td>text/plain</td>
+			<td class="separateColor">.spc</td>
+			<td>application/x-pkcs7-certificates</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.spl</td>
+			<td>application/futuresplash</td>
+			<td class="separateColor">.spp</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ssm</td>
+			<td>application/streamingmedia</td>
+			<td class="separateColor">.sst</td>
+			<td>application/vnd.ms-pki.certstore</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.stl</td>
+			<td>application/vnd.ms-pki.stl</td>
+			<td class="separateColor">.stm</td>
+			<td>text/html</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.sty</td>
+			<td>application/x-sty</td>
+			<td class="separateColor">.svg</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.swf</td>
+			<td>application/x-shockwave-flash</td>
+			<td class="separateColor">.tdf</td>
+			<td>application/x-tdf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.tg4</td>
+			<td>application/x-tg4</td>
+			<td class="separateColor">.tga</td>
+			<td>application/x-tga</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.tif</td>
+			<td>image/tiff</td>
+			<td class="separateColor">.tif</td>
+			<td>application/x-tif</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.tiff</td>
+			<td>image/tiff</td>
+			<td class="separateColor">.tld</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.top</td>
+			<td>drawing/x-top</td>
+			<td class="separateColor">.torrent</td>
+			<td>application/x-bittorrent</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.tsd</td>
+			<td>text/xml</td>
+			<td class="separateColor">.txt</td>
+			<td>text/plain</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.uin</td>
+			<td>application/x-icq</td>
+			<td class="separateColor">.uls</td>
+			<td>text/iuls</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vcf</td>
+			<td>text/x-vcard</td>
+			<td class="separateColor">.vda</td>
+			<td>application/x-vda</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vdx</td>
+			<td>application/vnd.visio</td>
+			<td class="separateColor">.vml</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vpg</td>
+			<td>application/x-vpeg005</td>
+			<td class="separateColor">.vsd</td>
+			<td>application/vnd.visio</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vsd</td>
+			<td>application/x-vsd</td>
+			<td class="separateColor">.vss</td>
+			<td>application/vnd.visio</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vst</td>
+			<td>application/vnd.visio</td>
+			<td class="separateColor">.vst</td>
+			<td>application/x-vst</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vsw</td>
+			<td>application/vnd.visio</td>
+			<td class="separateColor">.vsx</td>
+			<td>application/vnd.visio</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.vtx</td>
+			<td>application/vnd.visio</td>
+			<td class="separateColor">.vxml</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wav</td>
+			<td>audio/wav</td>
+			<td class="separateColor">.wax</td>
+			<td>audio/x-ms-wax</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wb1</td>
+			<td>application/x-wb1</td>
+			<td class="separateColor">.wb2</td>
+			<td>application/x-wb2</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wb3</td>
+			<td>application/x-wb3</td>
+			<td class="separateColor">.wbmp</td>
+			<td>image/vnd.wap.wbmp</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wiz</td>
+			<td>application/msword</td>
+			<td class="separateColor">.wk3</td>
+			<td>application/x-wk3</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wk4</td>
+			<td>application/x-wk4</td>
+			<td class="separateColor">.wkq</td>
+			<td>application/x-wkq</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wks</td>
+			<td>application/x-wks</td>
+			<td class="separateColor">.wm</td>
+			<td>video/x-ms-wm</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wma</td>
+			<td>audio/x-ms-wma</td>
+			<td class="separateColor">.wmd</td>
+			<td>application/x-ms-wmd</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wmf</td>
+			<td>application/x-wmf</td>
+			<td class="separateColor">.wml</td>
+			<td>text/vnd.wap.wml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wmv</td>
+			<td>video/x-ms-wmv</td>
+			<td class="separateColor">.wmx</td>
+			<td>video/x-ms-wmx</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wmz</td>
+			<td>application/x-ms-wmz</td>
+			<td class="separateColor">.wp6</td>
+			<td>application/x-wp6</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wpd</td>
+			<td>application/x-wpd</td>
+			<td class="separateColor">.wpg</td>
+			<td>application/x-wpg</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wpl</td>
+			<td>application/vnd.ms-wpl</td>
+			<td class="separateColor">.wq1</td>
+			<td>application/x-wq1</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wr1</td>
+			<td>application/x-wr1</td>
+			<td class="separateColor">.wri</td>
+			<td>application/x-wri</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wrk</td>
+			<td>application/x-wrk</td>
+			<td class="separateColor">.ws</td>
+			<td>application/x-ws</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.ws2</td>
+			<td>application/x-ws</td>
+			<td class="separateColor">.wsc</td>
+			<td>text/scriptlet</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.wsdl</td>
+			<td>text/xml</td>
+			<td class="separateColor">.wvx</td>
+			<td>video/x-ms-wvx</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xdp</td>
+			<td>application/vnd.adobe.xdp</td>
+			<td class="separateColor">.xdr</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xfd</td>
+			<td>application/vnd.adobe.xfd</td>
+			<td class="separateColor">.xfdf</td>
+			<td>application/vnd.adobe.xfdf</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xhtml</td>
+			<td>text/html</td>
+			<td class="separateColor">.xls</td>
+			<td>application/vnd.ms-excel</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xls</td>
+			<td>application/x-xls</td>
+			<td class="separateColor">.xlw</td>
+			<td>application/x-xlw</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xml</td>
+			<td>text/xml</td>
+			<td class="separateColor">.xpl</td>
+			<td>audio/scpls</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xq</td>
+			<td>text/xml</td>
+			<td class="separateColor">.xql</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xquery</td>
+			<td>text/xml</td>
+			<td class="separateColor">.xsd</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xsl</td>
+			<td>text/xml</td>
+			<td class="separateColor">.xslt</td>
+			<td>text/xml</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.xwd</td>
+			<td>application/x-xwd</td>
+			<td class="separateColor">.x_b</td>
+			<td>application/x-x_b</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.sis</td>
+			<td>application/vnd.symbian.install</td>
+			<td class="separateColor">.sisx</td>
+			<td>application/vnd.symbian.install</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.x_t</td>
+			<td>application/x-x_t</td>
+			<td class="separateColor">.ipa</td>
+			<td>application/vnd.iphone</td>
+		</tr>
+		<tr>
+			<td class="separateColor">.apk</td>
+			<td>application/vnd.android.package-archive</td>
+			<td class="separateColor">.xap</td>
+			<td>application/x-silverlight-app</td>
+		</tr>
+	</tbody>
+</table>
+		<!--内容块结束-->
+	</div>
+	<div class="panel-footer"></div>
+</div>
+
+<script src="adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js" tppabs="http://www.bejson.com/static/js/adview_pic_cpc_cpm_cpa_guanggao_gg_ads_300x250.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	if (typeof(killads)=='undefined'){
+		console.log('广告被过滤');
+		$("body").css({"background":"url('data:image/png;base64,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') repeat"})
+		
+	}
+</script><!-- content ed -->
+<!--<script src="//cdn.staticfile.org/layer/2.3/layer.js"></script>-->
+<div  id="ga">
+    <script async src="adsbygoogle.js" tppabs="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- bejson,970x90 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:970px;height:90px"
+         data-ad-client="ca-pub-1130438465287629"
+         data-ad-slot="8181570098"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<script src="layer2.js" tppabs="http://www.bejson.com/static/3part/layer2/layer2.js" type="text/javascript" charset="utf-8"></script>
+</div></div></div></div></div>
+<script src="bejsoncommon.js-v=20170711.js" tppabs="http://www.bejson.com/static/js/bejsoncommon.js?v=20170711"></script>
+<script>
+//GetJs("bejsoncommon.js-v=20170711.js"/*tpa=http://www.bejson.com/static/js/bejsoncommon.js?v=20170711*/,"bejson_common",NewVer);
+	function getCookie(cookieName){  
+        var cookieValue="";  
+        if (document.cookie && document.cookie != '') {   
+            var cookies = document.cookie.split(';');  
+            for (var i = 0; i < cookies.length; i++) {   
+                 var cookie = cookies[i];  
+                 if (cookie.substring(0, cookieName.length + 2).trim() == cookieName.trim() + "=") {  
+                       cookieValue = cookie.substring(cookieName.length + 2, cookie.length);   
+                       break;  
+                 }  
+             }  
+        }   
+        return cookieValue;  
+   }
+	
+var figureurl = getCookie("vdh_figureurl");
+if(figureurl!="" && $("#touxiang").attr("src")=="//www.bejson.com/static/common/QQ2.svg"){
+	$("#touxiang").attr("src",decodeURIComponent(figureurl));
+	$("#touxiang").after('<ul class="dropdown-menu" id="user_drop"> <li><a href="index-124.htm"/*tpa=http://www.bejson.com/mytools/shoucang/*/><i class="icon icon-inbox"></i> 网络收藏夹</a></li> <li><a href="http://www.bejson.com/account/openid/qq/bind/return_url-"><i class="icon icon-inbox"></i> 图床</a></li> <li><a href="index-126.htm"/*tpa=http://www.bejson.com/account/logout/*/><i class="icon icon-logout"></i> 退出</a></li>');
+}
+</script>
+<script src="z_stat.php-id=3302454&web_id=3302454.js" tppabs="https://s9.cnzz.com/z_stat.php?id=3302454&web_id=3302454" async="async" language="JavaScript"></script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "hm.js-ddbefc59d8991dcfdf3e602a50174fbb"/*tpa=https://hm.baidu.com/hm.js?ddbefc59d8991dcfdf3e602a50174fbb*/;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</div>
+</body></html>
