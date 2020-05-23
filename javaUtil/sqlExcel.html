@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>任意列excel替换到指定位置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+
+    <script type="text/javascript" src="../common/js/jquery.min.js"></script>
+
+    <style>
+        ul li {
+            float: left;
+            height: 30px;
+            list-style-type: none;
+            margin-right: 20px;
+        }
+        
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 描述区 -->
+    <div style="">
+        <div class="codelines" style="margin-top: 0px;">
+            <div class="lineno lineselect"></div>
+        </div>
+        <div>
+            <p>ps：来源excel2any.html <a href="../strUtil/excel/excel2any.html">《excel任意列指定插》</a> 详细参考它就行</p>
+        </div>
+    </div>
+    <!-- 输入区 -->
+    <div class="clear"></div>
+    <div>
+        <textarea id="sun_input_id" name="RawJson" class="changeable" rows="16" style="width: 100%;" spellcheck="false" placeholder="请输入option值组 空格间隔"></textarea>
+    </div>
+    <!-- 功能按钮区 -->
+    <div class="clear"></div>
+    <div>
+        <ul style="margin-left: -40px;">
+            <li>共用按钮：</li>
+            <li><input type="button" name="" id="" value="清空输入" onclick="clearInput()"></li>
+            <li><input type="button" name="" id="" value="清空结果" onclick="clearOutput()"></li>
+            <li><input type="button" name="" id="" value="清空所有" onclick="clearAll()"></li>
+        </ul>
+
+    </div>
+    <!-- 参数区 -->
+    <div class="clear"></div>
+    <div id="fun_1" style="margin:5px 0">
+        <br/> 表名：
+        <input class="tableName" type="text" style="width:200px" value=''> 描述：
+        <input class="tableDesc" type="text" style="width:200px" value="">
+        <br/><span>字段类型转换：</span><br/>
+        <textarea class="sun_transformtype" name="json_result" class="" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 350px; height:100px;">
+{
+"long": "bigint(20) DEFAULT NULL",
+"integer": "int(9) DEFAULT null",
+"tinyint": "tinyint(4) DEFAULT NULL",
+"enum": "tinyint(4) DEFAULT NULL",
+"bigint": "bigint(20) DEFAULT NULL",
+"int": "int(9) DEFAULT null",
+"string": "varchar(64) DEFAULT ''",
+"varchar": "varchar(64) DEFAULT ''",
+"char": "char(4) DEFAULT ''",
+"datetime": "datetime",
+"date": "datetime",
+"text": "varchar(64) DEFAULT ''",
+"": ""
+}
+        </textarea>
+    </div>
+
+    <div>
+        <div>
+            <div style="margin: 20px 5px;border: 1px solid #9C27B0;width: 800px;" id="createtable">
+                <input class="sun_autoStr" type="text" style="width:200px" value="  `-2-` -3- COMMENT '-1-',"> 替换符：
+                <input class="sun_autoRexp" type="text" style="width:100px" value="-i-">
+                <input type="button" name="" id="" value="生成MySql建表语句" onclick="createTableRow('#createtable',1)">
+                <input type="button" name="" id="" value="生成完整建表语句" onclick="createTable('#createtable',1)">
+                <input type="button" name="" id="" value="例子" onclick="createTableRowDemo('#createtable',1)">
+            </div>
+        </div>
+        <div>
+            <div style="margin: 20px 5px;border: 1px solid #9C27B0;width: 800px;" id="updatetable">
+                <input class="sun_autoStr" type="text" style="width:200px" value="ADD COLUMN `-2-` -3- COMMENT '-1-',"> 替换符：
+                <input class="sun_autoRexp" type="text" style="width:100px" value="-i-">
+                <input type="button" name="" id="" value="更新表语句" onclick="updatetable('#updatetable',1)">
+            </div>
+        </div>
+    </div>
+    <!-- 结果区 -->
+    <div class="clear"></div>
+    <div class="box-ouput">
+        <textarea id="sun_output_id" name="json_result" class="" rows="30" cols="100" spellcheck="false" placeholder="Enter JSON to validate" style="resize: both; width: 1078px; max-width: 1070px;height:150px;"></textarea>
+    </div>
+
+    <!-- json转化结果 -->
+    <div>
+        <div class="resultMsg">
+            <pre></pre>
+        </div>
+
+    </div>
+    <!-- 格式化json -->
+    <div class="Canvas"></div>
+
+    <div style="display: none;">
+        <textarea id="createTableRowDemo">
+状态	status	char
+备注	remark	varchar
+租户id	tenant_id	varchar
+版本号	update_count	bigint
+排序	sort	int
+创建人	create_by	varchar
+创建时间	create_time	datetime
+修改人	update_by	varchar
+修改时间	update_time	datetime
+0表示未删除,1表示删除	del_flag	varchar
+            </textarea>
+
+    </div>
+</body>
+
+</html>
+<script>
+    //清空输入
+    function clearInput() {
+        $("#sun_input_id").val('');
+    }
+    //清空结果
+    function clearOutput() {
+        $("#sun_output_id").val('');
+    }
+    //清空所有
+    function clearAll() {
+        clearInput();
+        clearOutput();
+        $("#sun_cellRexpNull").val('');
+        $("#sun_cellRexpNullVal").val('');
+        $("#sun_autoRexpNull").val('');
+    }
+
+    //更新表
+    function updatetable(obj, params) {
+        let text = $("#sun_input_id").val();
+        let tableName = $(".tableName").val();
+        let tableDesc = $(".tableDesc").val();
+
+        let str = '';
+        str += "ALTER TABLE `" + tableName + "`" + "\r\n";
+
+        let autoStr = $(obj).find(".sun_autoStr").val();
+        let sun_autoRexp = $(obj).find(".sun_autoRexp").val();
+        //自定义 Java类型和sql类型转换
+        let transformCell = $(obj).find(".sun_transformtype").val();
+        //JSON.parse(transformCell);
+        transformCell = eval('(' + transformCell + ')');
+        //替换
+        str += linetoAutoDefined(text, autoStr, sun_autoRexp, null, "", null, transformCell);
+
+        str = str.replace(/(.*),(\s*?)$/, '$1;'); //去掉尾部, 改为;
+
+        $("#sun_output_id").val(str);
+
+    }
+    //创建表
+    function createTable(obj, params) {
+        let text = $("#sun_input_id").val();
+        let tableName = $(".tableName").val();
+        let tableDesc = $(".tableDesc").val();
+
+        let str = '';
+        str += "CREATE TABLE `" + tableName + "` (" + "\r\n";
+        str += "  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键'," + "\r\n";
+
+        let autoStr = $(obj).find(".sun_autoStr").val();
+        let sun_autoRexp = $(obj).find(".sun_autoRexp").val();
+        //自定义 Java类型和sql类型转换
+        let transformCell = $(obj).find(".sun_transformtype").val();
+        //JSON.parse(transformCell);
+        transformCell = eval('(' + transformCell + ')');
+        //替换
+        str += linetoAutoDefined(text, autoStr, sun_autoRexp, null, "", null, transformCell);
+
+        str += "   PRIMARY KEY (`id`) USING BTREE" + "\r\n";
+        str += ") ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='" + tableDesc + "';" + "\r\n";
+
+        $("#sun_output_id").val(str);
+    }
+
+    //创建表 只有字段列
+    function createTableRow(obj, params) {
+        let text = $("#sun_input_id").val();
+        let outputValue = '';
+
+        let autoStr = $(obj).find(".sun_autoStr").val();
+        let sun_autoRexp = $(obj).find(".sun_autoRexp").val();
+        //自定义 Java类型和sql类型转换
+        let transformCell = $(obj).find(".sun_transformtype").val();
+        //JSON.parse(transformCell);
+        transformCell = eval('(' + transformCell + ')');
+        //替换
+        outputValue = linetoAutoDefined(text, autoStr, sun_autoRexp, null, "", null, transformCell);
+
+        $("#sun_output_id").val(outputValue);
+    }
+
+    /**
+     * 将 多列excel格式内容 按顺序填入自定义模板内
+     * text 输入值
+     * autoStr 模板文本内容
+     * autoRexp 正则 默认 -i-
+     * cellRexpNull 单元格为空处理 使用新的正则匹配 里面必须包含占位符i
+     * cellNull 单元格为空处理 默认不处理
+     * autoRexpNull 没有此单元格 
+     */
+    function linetoAutoDefined(text, autoStr, autoRexp, cellRexpNull, cellNull, autoRexpNull, transformCell) {
+        if (!text || !autoStr) {
+            console.log("请输入：");
+            return "";
+        }
+        autoRexp = autoRexp || "-i-";
+        //console.log("执行："+text+">>>"+autoStr);
+        let str = '';
+        text = text.replace(/(^\s*)|(\s*$)/g, ""); // 删除首尾空白
+
+        var arryLine = text.split("\n"); //每行
+        arryLine.forEach(element => {
+            //console.log(element);
+            let temp = autoStr;
+            //let line = element.replace(/\s+/g,",").split(","); //空格换为, 连续两个空格会被忽略
+            //let line = element.replace(/\s{1}/g, ",,,").split(",,,"); //空格换为, 连续两个空格产生数组空对象
+            let line = element.replace(/	{1}/g, ",,,").split(",,,"); //空格换为, 连续两个空格产生数组空对象
+            for (let i = 0; i < line.length; i++) {
+                //for ( var i in line) { //此循环方式 i是字符串 无法加减运算
+                let cell = line[i];
+                //console.log("-"+(i+1)+"-"+">>>>"+cell);
+                let rexp = autoRexp.replace("i", (i + 1)); //将假i替换成真i
+                //自动将 -i-替换位单位格中的内容
+                if (cell) {
+                    //自定义转换
+                    if (transformCell && transformCell[cell.toLowerCase()]) {
+                        let trVal = transformCell[cell.toLowerCase()];
+                        //console.log(trVal);
+                        //trVal = trVal.replace("$1", cell); //将需要转换的内容中的 参数转换
+                        cell = trVal;
+                    }
+                    //cell = cell.replace(/\n(\n)*(\s)*(\n)*\n/g,"\n"); //删除空行
+                    /* 
+                    //let autoRexp=new RegExp("-"+(i+1)+"-","g"); //默认使用 -i-
+                    console.log("-"+(i+1)+"-"+">>>>"+cell);
+                    temp =temp.replace("-"+(i+1)+"-",cell);
+                    */
+                    console.log(rexp + ">>>>" + cell);
+                    temp = temp.replace(rexp, cell);
+
+
+                } else {
+                    //数组值为空 处理
+                    if (cellRexpNull) {
+                        rexp = cellRexpNull.replace("i", (i + 1)); //将假i替换成真i
+                        temp = temp.replace(rexp, cellNull);
+                    } else {
+                        //  默认是这个空数组值""
+                        temp = temp.replace(rexp, cell);
+                    }
+                }
+            }
+
+            if (autoRexpNull) {
+                let rexpNull = autoRexpNull.replace("i", "\\d"); //将假i替换成数字
+                temp = temp.replace(new RegExp(rexpNull, "g"), ''); // 无法替换自动删除
+                //temp=temp.replace(/-\d-/g,''); // 无法替换自动删除
+            }
+
+            str += temp + '\r\n'
+        });
+        return str;
+    }
+
+    function createTableRowDemo(obj, params) {
+        let text = $("#createTableRowDemo").val();
+        $("#sun_input_id").val(text);
+
+        $(obj).find(".sun_autoStr").val("  `-2-` -3- COMMENT '-1-',");
+    }
+</script>
