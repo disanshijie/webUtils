@@ -27,30 +27,31 @@
                     <br/> 字段正则
                     <input class="fieldRegex" type="text" style="width:200px" value='^`(\w+?)`(.*?)$'> 描述正则
                     <input class="commentRegex" type="text" style="width:200px" value="(.+?)COMMENT(.*?)\'(.*?)\'(.*?)$"> int类型转换
-                    <label onclick="extractEntityRow();"><input name="fieldform" type="radio" value="1" checked="checked" />Long</label>
-                    <label onclick="extractEntityRow();"><input name="fieldform" type="radio" value="2" />Integer</label>
+                    <label onclick="extractEntityRow();"><input name="fieldform" type="radio" value="1" />Long</label>
+                    <label onclick="extractEntityRow();"><input name="fieldform" type="radio" value="2" checked="checked" />Integer</label>
 
                 </div>
                 <div id="fun_3" style="margin:5px 0">
                     <br/>
                     <div class="checkboxSelect">
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="0" checked="checked" />添加注释</label>
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="1" checked="checked"/>添加apimodel</label>
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="2" checked="checked"/>添加jpa</label>
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="3" checked="checked"/>添加excel</label>
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="4" checked="checked"/>特殊字段加强</label>
-                        <label onclick="extractEntityRow();"><input name="addContent" type="checkbox" value="5" checked="checked"/>构造器</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="1" checked="checked"/>添加apimodel</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="2" checked="checked"/>添加jpa</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="0" checked="checked" />添加注释</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="3" checked="checked"/>添加excel</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="4" checked="checked"/>特殊字段加强</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="5" checked="checked"/>构造器</label>
+                        <label onclick="createEntityRow();"><input name="addContent" type="checkbox" value="6" checked="checked"/>mybatis-plus</label>
                     </div>
                 </div>
 
 
                 <div style="margin:10px 0">
                     <br/>
-                    <button type="button" class="btn btn-danger" onclick="createEntity();">MySQL语句生成完整类</button>
-                    <button type="button" class="btn btn-danger" onclick="createEntityRow();">提取实体类字段行</button>
-                    <button type="button" class="btn btn-danger" onclick="extractEntityRowDemo();">例子</button>
-                    <button type="button" class="btn btn-danger" onclick="Empty();">清空结果</button>
-                    <button type="button" class="btn btn-danger" onclick="changText();"> 转换文本内容</button>
+                    <button type="button" class="btn btn-danger" onclick="createEntity(this);">MySQL语句生成完整类</button>
+                    <button type="button" class="btn btn-danger" onclick="createEntityRow(this);">提取实体类字段行</button>
+                    <button type="button" class="btn btn-danger" onclick="extractEntityRowDemo(this);">例子</button>
+                    <button type="button" class="btn btn-danger" onclick="Empty(this);">清空结果</button>
+                    <button type="button" class="btn btn-danger" onclick="changText(this);"> 转换文本内容</button>
                 </div>
             </div>
 
@@ -134,13 +135,15 @@
 
             let entityHeadStr = '@Entity' + '\r\n';
             entityHeadStr += '@Table(name = "' + tableName + '")' + '\r\n';
-            entityHeadStr += 'public class ' + entityName + 'Entity {' + '\r\n';
+            // entityHeadStr += 'public class ' + entityName + 'Entity {' + '\r\n';
+            entityHeadStr += 'public class ' + entityName + ' {' + '\r\n';
             //类名
             str += entityHeadStr;
             //创建属性内容
             str += extractEntityRow(text, parentObj);
             //构造器
-            str += 'protected ' + entityName + 'Entity() {}' + '\r\n\r\n' + "}";
+            str += 'protected ' + entityName + '() {}' + '\r\n\r\n' + "}";
+            //str += 'protected ' + entityName + 'Entity() {}' + '\r\n\r\n' + "}";
 
             $("#translateResult").val(str);
         }
@@ -169,6 +172,7 @@
             let typeRegex_int = new RegExp(/int\([0-9]+?\)/);
             let typeRegex_bigint = new RegExp(/bigint\([0-9]+?\)/);
             let typeRegex_double = new RegExp(/double\(\S+?\)/);
+            let typeRegex_decimal = new RegExp(/decimal\(\S+?\)/);
             let typeRegex_datetime = new RegExp(/datetime/);
             let typeRegex_text = new RegExp(/text/);
 
@@ -209,6 +213,8 @@
                                 type_java = "Long";
                             }
                         } else if (typeRegex_double.test(item)) {
+                            type_java = "Double";
+                        } else if (typeRegex_decimal.test(item)) {
                             type_java = "BigDecimal";
                         } else if (typeRegex_datetime.test(item)) {
                             type_java = "Date";
@@ -241,6 +247,11 @@
                         if (checkValue.indexOf("3") != -1) {
                             //console.log(checkValue);
                             str += '@Excel(name = "' + comment + '", width = 15)' + '\r\n';
+                        }
+                        //mybatis plus
+                        if (checkValue.indexOf("6") != -1) {
+                            //console.log(checkValue);
+                            str += '@TableField(value="' + field + '")' + '\r\n';
                         }
                         //加强
                         if (checkValue.indexOf("4") != -1) {
