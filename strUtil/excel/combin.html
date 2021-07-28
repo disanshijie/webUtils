@@ -123,7 +123,8 @@
             console.log("长度：" + resArray.length);
             if (!resArray) return;
             resArray.forEach(e => {
-                outputValue += e + "\n";
+                //outputValue += e + "\n";
+				outputValue += e + ",";
             })
         } else if ('2' == param) {
             let resArray = linetoAutoDefined(inputValue, autoStr, sun_autoRexp);
