@@ -1,6 +1,17 @@
 # webUtils
 
 ps：
+
+2021-12-11
+
+v2ray-config-gen
+
+添加v2ray的配置文件生成模板
+
+来源：https://intmainreturn0.com/v2ray-config-gen/
+
+
+
 2020-10-03
 添加 数组排列组合
 

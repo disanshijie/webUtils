@@ -340,10 +340,10 @@ inspectionTaskMultimediaEntity
             array.forEach((item, k, v) => {
                 //console.log(item);
                 if (item && item.trim()) {
-                    let temp = template.replace("-$1-", arr1[k].trim());
-                    temp = temp.replace("-$2-", arr2[k].trim());
-                    temp = temp.replace("-$3-", arr3[k].trim());
-                    temp = temp.replace("-$0-", item.trim());
+                    let temp = template.replaceAll("-$1-", arr1[k].trim());
+                    temp = temp.replaceAll("-$2-", arr2[k].trim());
+                    temp = temp.replaceAll("-$3-", arr3[k].trim());
+                    temp = temp.replaceAll("-$0-", item.trim());
                     str += temp + "\n";
                 }
             });
