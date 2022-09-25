@@ -1,7 +1,5 @@
 # webUtils
 
-ps：
-
 2021-12-11
 
 v2ray-config-gen
@@ -22,6 +20,14 @@ v2ray-config-gen
 ## htmlutil
 
 ## jsonUtil
+
+2022-09-18
+js/template-web.js
+来源：https://aui.github.io/art-template/zh-cn/docs/installation.html
+
+
+
+
 
 ## pictureUtil
 
