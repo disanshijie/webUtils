@@ -1,4 +1,9 @@
 
+// 常量
+const constant_response_example_max_number = 3; // 示例的最大数量
+const constant_limit_length = 1000; // 示例的最大数量
+
+
 /**
  * Create structure of markdown documentation
  * @param {object} docJson 
@@ -44,16 +49,16 @@ function readAuthorization(auth){
  */
 function readRequestHeader(header){
     let markdown = ''
-	
+    
     if(header){
-		
-		markdown += `\n`
-		markdown += `请求头header`
-		markdown += `\n`
-		markdown += `\n`
-		markdown += `> |参数|必选|类型|示例|说明|\n`
-		markdown += `|:-----  |:-------|:-----|:-----|:-----|\n`
-			
+        
+        markdown += `\n`
+        markdown += `请求头header`
+        markdown += `\n`
+        markdown += `\n`
+        markdown += `> |参数|必选|类型|示例|说明|\n`
+        markdown += `|:-----  |:-------|:-----|:-----|:-----|\n`
+            
         header.map(item =>{
             markdown += `|${item.key}|${item.disabled ? false : true}|${item.type ? item.type : "String"}|${item.value ? item.value : "---"}|${item.description ? item.description : "-"}|\n`
         })
@@ -64,13 +69,13 @@ function readRequestHeader(header){
 function readQueryParams(url){
     let markdown = ''
     if(url.query){
-		markdown += `\n`
-		markdown += `请求参数form`
-		markdown += `\n`
-		markdown += `\n`
-		markdown += `> |参数|必选|类型|示例|说明|\n`
-		markdown += `|:-----  |:-------|:-----|:-----|:-----|\n`
-			
+        markdown += `\n`
+        markdown += `请求参数form`
+        markdown += `\n`
+        markdown += `\n`
+        markdown += `> |参数|必选|类型|示例|说明|\n`
+        markdown += `|:-----  |:-------|:-----|:-----|:-----|\n`
+            
         url.query.map(item =>{
             markdown += `|${item.key}|${item.disabled ? false : true}|${item.type ? item.type : "String"}|${item.value}|${item.description ? item.description : "-"}|\n`
         })
@@ -89,35 +94,36 @@ function readFormDataBody(body) {
     if(!body){
         return markdown 
     }
-	
-	if(body.mode === 'raw'){
-		if (body.raw.length < 2) {
-			return markdown
-		}
-		markdown += `\n`
-		markdown += `请求Body (**${body.mode}**)\n`
-		markdown += `\n`
-		markdown += `\`\`\`json\n`
-		markdown += `${body.raw}\n`
-		markdown += `\`\`\`\n`
-		markdown += `\n`
-	}
+    
+    if(body.mode === 'raw'){
+        if (body.raw.length < 2) {
+            return markdown
+        }
+        markdown += `\n`
+        markdown += `请求Body (**${body.mode}**)\n`
+        markdown += `\n`
+        markdown += `\`\`\`json\n`
+ //       markdown += `${body.raw}\n`
+        markdown += `${reformatJsonTxt(body.raw)}\n`
+        markdown += `\`\`\`\n`
+        markdown += `\n`
+    }
 
-	if(body.mode === 'formdata'){
-		if (body.formdata.length < 1) {
-			return markdown
-		}
-		markdown += `\n`
-		markdown += `请求Body ${body.mode}\n`
-		markdown += `\n`
-		markdown += `|参数|示例|类型|\n`
-		markdown += `|---|---|---|\n`
-		body.formdata.map(form =>{
-			markdown += `|${form.key}|${form.type === 'file' ? form.src : form.value !== undefined ? form.value.replace(/\\n/g,'') : '' }|${form.type}|\n`
-		})
-		markdown += `\n`
-		markdown += `\n`
-	}
+    if(body.mode === 'formdata'){
+        if (body.formdata.length < 1) {
+            return markdown
+        }
+        markdown += `\n`
+        markdown += `请求Body ${body.mode}\n`
+        markdown += `\n`
+        markdown += `|参数|示例|类型|\n`
+        markdown += `|---|---|---|\n`
+        body.formdata.map(form =>{
+            markdown += `|${form.key}|${form.type === 'file' ? form.src : form.value !== undefined ? form.value.replace(/\\n/g,'') : '' }|${form.type}|\n`
+        })
+        markdown += `\n`
+        markdown += `\n`
+    }
 
     return markdown 
 }
@@ -128,20 +134,23 @@ function readFormDataBody(body) {
  */
 function readResponse(responses) {
     let markdown = ''
-    if (responses.length) {
-        const response = responses[0]; // TODO 只取了一个
-		
-		
-        markdown += `${response.name}\n`
+    if (!responses.length) {
+        return "略";
+    }
+    //const response = responses[0]; // TODO 只取了一个
+    responses.forEach((response, key) => {
+        if (constant_response_example_max_number <= key) {return;}
+        markdown += `${key + 1}. ${response.name}\n`
         markdown += `\n`
         markdown += readResponseRequest(response.originalRequest)
         markdown += `返回结果: （状态码: ${response.code}）\n`
         markdown += `\n`
         markdown += `\`\`\`json\n`
-        markdown += `${response.body}\n`
+        markdown += `${reformatJsonTxt(response.body)}\n`
         markdown += `\`\`\`\n`
         markdown += `\n`
-    }
+    })
+
     return markdown;
 }
 
@@ -150,22 +159,28 @@ function readResponse(responses) {
  * @param {array} responses 
  */
 function readResponseRequest(originalRequest) {
-	let markdown = ''
-	if (!originalRequest) { return markdown; }
-	
-	markdown += `\n`
-	markdown += `> 地址：${originalRequest.url.raw}\n`
-		markdown += `\n`
-	return markdown;
+    let markdown = ''
+    if (!originalRequest) { return markdown; }
+    
+    markdown += `\n`
+    markdown += `> 地址：${originalRequest.url.raw}\n`
+        markdown += `\n`
+    return markdown;
 }
 
 function readResponseHeader(responseHeader) {
-	let markdown = ''
-	if (!responseHeader) { return markdown; }
-	// TODO 请求示例中的 请求头
-	return markdown;
+    let markdown = ''
+    if (!responseHeader) { return markdown; }
+    // TODO 请求示例中的 请求头
+    return markdown;
 }
 
+function readResponseParam(responseParam) {
+    let markdown = ''
+    if (!responseParam) { return markdown; }
+    // TODO 请求示例中的 请参数
+    return markdown;
+}
 
 /**
  * Read methods of each item
@@ -184,16 +199,16 @@ function readMethods(method){
     markdown += strLevel + `HTTP请求方式\n`
     markdown += `> ${method.request.method}\n`
 
-	//请求参数
-	markdown += strLevel + `请求参数\n` 
+    //请求参数
+    markdown += strLevel + `请求参数\n` 
     markdown += readRequestHeader(method.request.header)
     markdown += readFormDataBody(method.request.body)
     markdown += readQueryParams(method.request.url)
-	// TODO 返回字段
-	
+    // TODO 返回字段
+    
     markdown += readAuthorization(method.request.auth)
-	
-	markdown += strLevel + `接口示例\n` 
+    
+    markdown += strLevel + `接口示例\n` 
     markdown += readResponse(method.response)
     markdown += `\n`
     markdown += `\n`
@@ -219,19 +234,39 @@ function readItems(items, folderDeep = 3) {
     return markdown
 }
 
-/**
- * Create file
- * @param {string} content 
- */
-function writeFile(content, fileName){
-
-}
+// ---------------------------------公共方法---------------------------------
 
 function titleLevel(folderDeep = 3) {
     return '#'.repeat(folderDeep) + " "
 }
 
+/**
+ * 压缩/格式化json字符串，条件大于1000字符时压缩，小于1000字符时格式化
+ * 
+ * @param {string} jsonTxt 
+ */
+function reformatJsonTxt(jsonTxt) {
+    let jsonObj = null;
+    if (!jsonTxt) {return jsonTxt;}
+
+    try {
+        //jsonObj = eval('('+jsonTxt+')');
+        jsonObj = JSON.parse(jsonTxt);
+    }catch(e) {   
+        console.log('数据源语法错误,格式化失败! 错误信息: '+e.description,'err');   
+        return jsonTxt;   
+    };
+    
+    let jsonTemp =  JSON.stringify(jsonObj);
+    if (jsonTemp.length > constant_limit_length) {
+        return jsonTemp;
+    }
+    
+    return  JSON.stringify(jsonObj, null, 4)
+}
+
+
 module.exports = {
-    createStructureOfMarkdown,
-    writeFile
+    createStructureOfMarkdown
+    
 }
